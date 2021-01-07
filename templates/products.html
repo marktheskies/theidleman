@@ -1,0 +1,9 @@
+{% extends "layout.html" %}
+
+{% block title %}Products | TheIdleMan{% endblock %}
+
+{% block content %}
+    {% for product in products %}
+        {{ product.name }}
+    {% endfor %}
+{% endblock %}

@@ -1,0 +1,7 @@
+*.sqlite3
+*.sqlite
+.coverage
+venv
+media/*
+.idea
+__pycache__

@@ -3,7 +3,49 @@
 {% block title %}Products | TheIdleMan{% endblock %}
 
 {% block content %}
-    {% for product in products %}
-        {{ product.name }}
-    {% endfor %}
+    <div class="container-fluid bg-light py-3">
+        <div class="container">
+            <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/">Home</a></li>
+                    <li class="breadcrumb-item active">Products</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+
+    <div class="container text-center py-5">
+        <div class="row">
+            <div class="col-md-7 mx-auto"><h1>Menswear</h1>
+                <p class="lead">Browse the latest in men's clothing and fashion with The Idle Man. Offering modern fits
+                    and
+                    premium fabrics, you'll discover the perfect outfit for any occasion.</p>
+                <p class="lead">With our range, be the best man you can be.</p></div>
+        </div>
+    </div>
+
+    <div class="container-fluid bg-light py-3 shadow-sm">
+        <div class="container">
+            <a href="#" class="btn btn-link">Filter <i class="fas fa-filter"></i></a>
+            <a href="#" class="btn btn-link">Sort <i class="fas fa-sort"></i></a>
+        </div>
+    </div>
+
+    <div class="container py-5">
+        <div class="row g-4">
+            {% for product in products %}
+                <div class="col-lg-3 col-md-6">
+                    <div class="card border-0 shadow-sm">
+                        <img src="{{ product.image.url }}" class="card-img-top" alt="...">
+                        <div class="card-body text-center">
+                            <h6 class="card-title">{{ product.name }}</h6>
+                            <span class="h5 strong">${{ product.price }}</span>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+
 {% endblock %}

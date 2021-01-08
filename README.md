@@ -99,6 +99,30 @@ $body-color: #111;
 
 Save `app.scss` and sass will automatically generate `app.css` for you. Refresh your browser to see the changes.
 
+## Site Admin
+
+### Access
+
+To access the site admin in your local environment, start the development server (as above) and create a superuser with the following command.
+
+```
+python manage.py createsuperuser
+```
+
+Then navigate to http://127.0.0.1:8000/admin and log in with the credentials you just created. From the site admin, you can create, update and delete products, categories, users, etc.
+
+### Scaffolding test data
+
+*WARNING - This command will delete ALL PRODUCTS in your local DB.*
+
+To scaffold test products, categories, etc., we have provided a convenient command.
+
+```
+python manage.py createtestdata
+```
+
+See `core/management/command/createtestdata.py` for more information.
+
 ## Running the tests
 
 TODO: Document the testing process

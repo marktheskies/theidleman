@@ -45,6 +45,14 @@
                     </div>
                 </div>
             {% endfor %}
+            <script type="text/javascript">
+                const productCards = document.getElementsByClassName("product-card");
+                for (const productCard of productCards) {
+                    productCard.onclick = function() {
+                        window.location = `/products/${productCard.dataset.productId}`;
+                    }
+                }
+            </script>
         </div>
     </div>
 {% endblock %}

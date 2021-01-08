@@ -6,8 +6,13 @@ $headings-font-family: "Oswald";
 $light: #ece8e5;
 $primary: #89a9c3;
 
+$navbar-nav-link-padding-x: 2rem;
+
 @import "../../../node_modules/bootstrap/scss/bootstrap";
 
+.navbar-nav .nav-item {
+  text-transform: uppercase;
+}
 
 .footer-link {
   text-decoration: none;

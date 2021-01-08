@@ -18,15 +18,24 @@ If Python 3 is not installed, install Python at https://www.python.org/downloads
 
 ### Installing
 
-First, clone the repo to your local machine.
+First, clone the repo to your local machine and change into it's directory.
 
 ```
 git clone https://github.com/marktheskies/theidleman.git
+cd theidleman
 ```
 
 Then, set up a virtual environment to ensure that we don't install Django to the system's Python. The following command uses Python 3's virtualenv module to create a virtual environment in the folder `venv/` and activates it.
 
 ```
+python3 -m virtualenv venv
+source venv/bin/activate
+```
+
+If you get an error saying that there is "no module named virtualenv installed", then install virtualenv.
+
+```
+pip3 install virtualenv
 python3 -m virtualenv venv
 source venv/bin/activate
 ```

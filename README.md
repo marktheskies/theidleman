@@ -83,7 +83,7 @@ $body-bg: #000;
 $body-color: #111;
 
 // Bootstrap variable overrides **must** be above this line
-@import "../node_modules/bootstrap/scss/bootstrap";
+@import "../../../node_modules/bootstrap/scss/bootstrap";
 
 // Any other custom CSS **must** go below this line
 .some-custom-class {

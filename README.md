@@ -75,6 +75,24 @@ Finally, start a process to compile CSS on the fly. This will take the SCSS from
 sass --watch core/static/scss:core/static/css
 ```
 
+Now you can add styles to `core/static/scss/app.scss` and/or override the built-in Bootstrap SASS variables, for example:
+
+```
+// Bootstrap variable overrides go here
+$body-bg: #000;
+$body-color: #111;
+
+// Bootstrap variable overrides **must** be above this line
+@import "../node_modules/bootstrap/scss/bootstrap";
+
+// Any other custom CSS **must** go below this line
+.some-custom-class {
+    ...
+}
+```
+
+Save `app.scss` and sass will automatically generate `app.css` for you. Refresh your browser to see the changes.
+
 ## Running the tests
 
 TODO: Document the testing process

@@ -7,3 +7,10 @@ $light: #ece8e5;
 $primary: #89a9c3;
 
 @import "../../../node_modules/bootstrap/scss/bootstrap";
+
+
+.footer-link {
+  text-decoration: none;
+  color: $dark;
+  text-transform: uppercase;
+}

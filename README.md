@@ -51,6 +51,12 @@ yarn
 npm install
 ```
 
+Then, compile the application's styles.
+
+```
+sass core/static/scss:core/static/css
+```
+
 Finally, test your setup by starting up the Django development server.
 
 ```

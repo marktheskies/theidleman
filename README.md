@@ -60,7 +60,7 @@ yarn
 npm install
 ```
 
-Then, compile the application's styles.
+Then, compile the application's styles. Note: you need to make sure you are using Dart Sass for the following command to work. Install Sass as per the Sass docs -> https://sass-lang.com/install
 
 ```
 sass core/static/scss:core/static/css

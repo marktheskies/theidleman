@@ -76,13 +76,7 @@ python manage.py runserver
 
 To make updates to the sites styles, you'll need to update its SASS stylesheet and compile the changes. The easiest way is to have SASS watch for changes.
 
-First, install SASS to your machine if needed.
-
-```
-yarn global install sass
-# OR
-npm -g install sass
-```
+First, install SASS to your machine if needed -> https://sass-lang.com/install
 
 Finally, start a process to compile CSS on the fly. This will take the SCSS from `core/static/scss` and compile it down to browser-readable CSS in `core/static/css`.
 

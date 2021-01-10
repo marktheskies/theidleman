@@ -7,3 +7,4 @@ media/*
 __pycache__
 */static/css
 node_modules
+.DS_Store

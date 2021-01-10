@@ -30,6 +30,9 @@ Then, set up a virtual environment to ensure that we don't install Django to the
 ```
 python3 -m virtualenv venv
 source venv/bin/activate
+
+# IF YOU ARE ON WINDOWS:
+venv\Scripts\activate
 ```
 
 If you get an error saying that there is "no module named virtualenv installed", then install virtualenv.
@@ -38,6 +41,9 @@ If you get an error saying that there is "no module named virtualenv installed",
 pip3 install virtualenv
 python3 -m virtualenv venv
 source venv/bin/activate
+
+# IF YOU ARE ON WINDOWS:
+venv\Scripts\activate
 ```
 
 Next, install the required Python packages to your virtual environment.

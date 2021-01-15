@@ -16,7 +16,8 @@
                     <img src="{% static 'images/homepage-feature.jpg' %}" class="d-block w-100">
                     <div class="carousel-caption d-none d-md-block text-start text-dark">
                         <h1 class="display-3">Discover our latest <br>collection</h1>
-                        <p class="lead">Click below to see our latest collection and always look your best,<br>day or night.</p>
+                        <p class="lead">Click below to see our latest collection and always look your best,<br>day or
+                            night.</p>
                         <button class="btn btn-primary shadow text-white btn-lg">See More</button>
                     </div>
                 </div>
@@ -41,19 +42,23 @@
     </div>
 
     <div class="container-fluid shadow">
-        <div class="container py-5">
+        <div class="container py-4">
             <div class="row">
-                <div class="col-md-3 mb-3 text-center">
-                    <img src="https://picsum.photos/100/40?random=1">
+                <div class="col-3 d-flex">
+                    {% load static %}
+                    <img class="img-fluid brand-img my-auto mx-auto" src="{% static 'images/brand-fossil.png' %}">
                 </div>
-                <div class="col-md-3 mb-3 text-center">
-                    <img src="https://picsum.photos/100/40?random=2">
+                <div class="col-3 d-flex">
+                    {% load static %}
+                    <img class="img-fluid brand-img my-auto mx-auto" src="{% static 'images/brand-taikan.png' %}">
                 </div>
-                <div class="col-md-3 mb-3 text-center">
-                    <img src="https://picsum.photos/100/40?random=3">
+                <div class="col-3 d-flex">
+                    {% load static %}
+                    <img class="img-fluid brand-img my-auto mx-auto" src="{% static 'images/brand-topman.png' %}">
                 </div>
-                <div class="col-md-3 mb-3 text-center">
-                    <img src="https://picsum.photos/100/40?random=4">
+                <div class="col-3 d-flex">
+                    {% load static %}
+                    <img class="img-fluid brand-img my-auto mx-auto" src="{% static 'images/brand-vans.png' %}">
                 </div>
             </div>
         </div>
@@ -64,26 +69,28 @@
             <div class="row">
                 <div class="col-md-4">
                     {% load static %}
-                    <img class="img-fluid" src="{% static 'images/dodgy-person.png' %}">
+                    <img class="img-fluid" src="{% static 'images/stylish-dude.png' %}">
                 </div>
-                <div class="col-md-8 p-4">
-                    <h2 class="text-uppercase">Discover Our Latest Trends</h2>
-                    <p>Refresh your wardrobe with our new summer styles.<br>
-                        Click below to view more of our modeled outfits.</p>
-                    <button class="btn btn-primary text-white shadow">New Style</button>
-                    <div class="row mt-3">
-                        {% for product in products %}
-                            <div class="col">
-                                <div class="product-card card border-0 cursor-pointer"
-                                     data-product-id="{{ product.id }}">
-                                    <img src="{{ product.image.url }}" class="card-img-top">
-                                    <div class="card-body text-center">
-                                        <h6 class="card-title">{{ product.name }}</h6>
-                                        <span class="h5"><strong>${{ product.price }}</strong></span>
+                <div class="col-md-8 p-4 d-flex">
+                    <div class="my-auto">
+                        <h2 class="text-uppercase">Discover Our Latest Trends</h2>
+                        <p>Refresh your wardrobe with our new summer styles.<br>
+                            Click below to view more of our modeled outfits.</p>
+                        <button class="btn btn-primary text-white shadow mb-4">New Styles</button>
+                        <div class="row mt-3">
+                            {% for product in products %}
+                                <div class="col">
+                                    <div class="product-card card border-0 cursor-pointer"
+                                         data-product-id="{{ product.id }}">
+                                        <img src="{{ product.image.url }}" class="card-img-top shadow">
+                                        <div class="card-body text-center">
+                                            <h6 class="card-title">{{ product.name }}</h6>
+                                            <span class="h5"><strong>${{ product.price }}</strong></span>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        {% endfor %}
+                            {% endfor %}
+                        </div>
                     </div>
                 </div>
             </div>

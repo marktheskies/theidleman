@@ -10,6 +10,11 @@ $navbar-nav-link-padding-x: 2rem;
 
 @import "../../../node_modules/bootstrap/scss/bootstrap";
 
+// Prevent overlap of navbar
+body {
+  padding-top: 88px;
+}
+
 .navbar-nav .nav-item {
   text-transform: uppercase;
 }
@@ -37,4 +42,9 @@ $navbar-nav-link-padding-x: 2rem;
   left: 0;
   right: initial;
   padding: 5rem 10rem;
+}
+
+.brand-img {
+  max-width: 6rem;
+  filter: grayscale(100%);
 }

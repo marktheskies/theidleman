@@ -3,7 +3,7 @@
 {% block title %}Home | TheIdleMan{% endblock %}
 
 {% block content %}
-    <div class="container">
+    <div class="container homepage-top">
         <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
             <ol class="carousel-indicators">
                 <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"></li>
@@ -12,13 +12,21 @@
             </ol>
             <div class="carousel-inner">
                 <div class="carousel-item active">
-                    <img src="https://picsum.photos/2048/684?random=1" class="d-block w-100" alt="...">
+                    {% load static %}
+                    <img src="{% static 'images/homepage-feature.jpg' %}" class="d-block w-100">
+                    <div class="carousel-caption d-none d-md-block text-start text-dark">
+                        <h1 class="display-3">Discover our latest <br>collection</h1>
+                        <p class="lead">Click below to see our latest collection and always look your best,<br>day or night.</p>
+                        <button class="btn btn-primary shadow text-white btn-lg">See More</button>
+                    </div>
                 </div>
                 <div class="carousel-item">
-                    <img src="https://picsum.photos/2048/684?random=2" class="d-block w-100" alt="...">
+                    {% load static %}
+                    <img src="{% static 'images/homepage-feature2.jpg' %}" class="d-block w-100">
                 </div>
                 <div class="carousel-item">
-                    <img src="https://picsum.photos/2048/684?random=3" class="d-block w-100" alt="...">
+                    {% load static %}
+                    <img src="{% static 'images/homepage-feature3.jpg' %}" class="d-block w-100">
                 </div>
             </div>
             <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-bs-slide="prev">
@@ -68,7 +76,7 @@
                             <div class="col">
                                 <div class="product-card card border-0 cursor-pointer"
                                      data-product-id="{{ product.id }}">
-                                    <img src="{{ product.image.url }}" :q!class="card-img-top" alt="...">
+                                    <img src="{{ product.image.url }}" class="card-img-top">
                                     <div class="card-body text-center">
                                         <h6 class="card-title">{{ product.name }}</h6>
                                         <span class="h5"><strong>${{ product.price }}</strong></span>
@@ -82,95 +90,114 @@
         </div>
     </div>
 
-<div class="container text-center py-4">
-<!-- Would load recent/chosen blog post snippets from database ? Using dummy content for now -->
-    <div class="row">
-        <div class="col-md-4">
-            <img class="img-fluid py-1" src="{% static 'images/blog-christmasgifts.jpg' %}" alt="...">
-            <h5 class="text-uppercase">Christmas Gift Ideas</h5>
-            <p>Christmas is just aroundthe corner and you're fresh out of ideas. Don't panic. We've built an entire...</p>
-        </div>
-        <div class="col-md-4">
-            <img class="img-fluid py-1" src="{%static 'images/blog-winterstyles.jpg' %}" alt="...">
-            <h5 class="text-uppercase">5 Best Winter Styles</h5>
-            <p>Cold weather doesn't automatically mean you need to reach for your big coat. We've got some fresh...</p>
-        </div>
-        <div class="col-md-4">
-            <img class="img-fluid py-1" src="{%static 'images/blog-wardrobehacks.jpg' %}" alt="...">
-            <h5 class="text-uppercase">Our Top Wardrobe Hacks</h5>
-            <p>So you've just invested in a new wardrobe. You've got the shoes, the suit, and the...</p>
+    {# Blogpost section #}
+    <div class="container-fluid text-center py-4 homepage-blogposts-section">
+        <!-- Would load recent/chosen blog post snippets from database ? Using dummy content for now -->
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <img class="img-fluid py-1" src="{% static 'images/blog-christmasgifts.jpg' %}" alt="...">
+                    <h5 class="text-uppercase">Christmas Gift Ideas</h5>
+                    <p>Christmas is just around the corner and you're fresh out of ideas. Don't panic. We've built an
+                        entire...</p>
+                </div>
+                <div class="col-md-4">
+                    <img class="img-fluid py-1" src="{% static 'images/blog-winterstyles.jpg' %}" alt="...">
+                    <h5 class="text-uppercase">5 Best Winter Styles</h5>
+                    <p>Cold weather doesn't automatically mean you need to reach for your big coat. We've got some
+                        fresh...</p>
+                </div>
+                <div class="col-md-4">
+                    <img class="img-fluid py-1" src="{% static 'images/blog-wardrobehacks.jpg' %}" alt="...">
+                    <h5 class="text-uppercase">Our Top Wardrobe Hacks</h5>
+                    <p>So you've just invested in a new wardrobe. You've got the shoes, the suit, and the...</p>
+                </div>
+            </div>
+            <button class="btn btn-primary text-white text-uppercase shadow">See More</button>
         </div>
     </div>
-    <button class="btn btn-primary text-white text-uppercase shadow">See More</button>
-</div>
 
- <!-- Load top reviews from database in a carousel here ? -->
- <div class="container bg-light text-center">
-     <h3 class="text-uppercase py-3">What Our Customers Say</h3>
-        <div class="row justify-content-evenly py-4">
-            <div class="col-2 bg-white py-3 rounded shadow">
-                <img class="img-fluid col-md-1" src="{%static 'images/star.png' %}" alt="...">
-                <img class="img-fluid col-md-1" src="{%static 'images/star.png' %}" alt="...">
-                <img class="img-fluid col-md-1" src="{%static 'images/star.png' %}" alt="...">
-                <img class="img-fluid col-md-1" src="{%static 'images/star.png' %}" alt="...">
-                <img class="img-fluid col-md-1" src="{%static 'images/star.png' %}" alt="...">
+    <div class="container-fluid bg-light">
+        <div class="container">
+            &nbsp;
+            <hr>
+            &nbsp;
+        </div>
+    </div>
+
+    <!-- Load top reviews from database in a carousel here ? -->
+    <div class="container-fluid bg-light text-center">
+        <div class="container">
+            <h3 class="text-uppercase py-3">What Our Customers Say</h3>
+            <div class="row justify-content-evenly py-4">
+                <div class="col-2 bg-white py-3 rounded shadow">
+                    <img class="img-fluid col-md-1" src="{% static 'images/star.png' %}" alt="...">
+                    <img class="img-fluid col-md-1" src="{% static 'images/star.png' %}" alt="...">
+                    <img class="img-fluid col-md-1" src="{% static 'images/star.png' %}" alt="...">
+                    <img class="img-fluid col-md-1" src="{% static 'images/star.png' %}" alt="...">
+                    <img class="img-fluid col-md-1" src="{% static 'images/star.png' %}" alt="...">
                     <div class="py-3">
-                        <p>This is the first time I've used The Idle Man site and have had no problems 
-                        whatsoever. A very efficient and professional way to shop. I appreciate their ways of dealing with...</p>
+                        <p>This is the first time I've used The Idle Man site and have had no problems
+                            whatsoever. A very efficient and professional way to shop. I appreciate their ways of
+                            dealing
+                            with...</p>
                         <a href="#" class="text-uppercase">Read More</a>
                     </div>
-            </div>
-            <div class="col-2 bg-white py-3 rounded shadow">
-                <img class="img-fluid col-md-1" src="{%static 'images/star.png' %}" alt="...">
-                <img class="img-fluid col-md-1" src="{%static 'images/star.png' %}" alt="...">
-                <img class="img-fluid col-md-1" src="{%static 'images/star.png' %}" alt="...">
-                <img class="img-fluid col-md-1" src="{%static 'images/star.png' %}" alt="...">
-                <img class="img-fluid col-md-1" src="{%static 'images/star.png' %}" alt="...">
+                </div>
+                <div class="col-2 bg-white py-3 rounded shadow">
+                    <img class="img-fluid col-md-1" src="{% static 'images/star.png' %}" alt="...">
+                    <img class="img-fluid col-md-1" src="{% static 'images/star.png' %}" alt="...">
+                    <img class="img-fluid col-md-1" src="{% static 'images/star.png' %}" alt="...">
+                    <img class="img-fluid col-md-1" src="{% static 'images/star.png' %}" alt="...">
+                    <img class="img-fluid col-md-1" src="{% static 'images/star.png' %}" alt="...">
                     <div class="py-3">
                         <p>Good product - good delivery!<br>
                             Very happy with the whole process. This is about my seventh transaction.</p>
                     </div>
-            </div>
-            <div class="col-2 bg-white py-3 rounded shadow">
-                <img class="img-fluid col-md-1" src="{%static 'images/star.png' %}" alt="...">
-                <img class="img-fluid col-md-1" src="{%static 'images/star.png' %}" alt="...">
-                <img class="img-fluid col-md-1" src="{%static 'images/star.png' %}" alt="...">
-                <img class="img-fluid col-md-1" src="{%static 'images/star.png' %}" alt="...">
-                <img class="img-fluid col-md-1" src="{%static 'images/star.png' %}" alt="...">
+                </div>
+                <div class="col-2 bg-white py-3 rounded shadow">
+                    <img class="img-fluid col-md-1" src="{% static 'images/star.png' %}" alt="...">
+                    <img class="img-fluid col-md-1" src="{% static 'images/star.png' %}" alt="...">
+                    <img class="img-fluid col-md-1" src="{% static 'images/star.png' %}" alt="...">
+                    <img class="img-fluid col-md-1" src="{% static 'images/star.png' %}" alt="...">
+                    <img class="img-fluid col-md-1" src="{% static 'images/star.png' %}" alt="...">
                     <div class="py-3">
-                        <p>Delivered promptly and efficiently as expected. Unfortunately had to return as item did not 
+                        <p>Delivered promptly and efficiently as expected. Unfortunately had to return as item did not
                             fit - refund given immediately upon receipt. Would be very happy to use this...</p>
                         <a href="#" class="text-uppercase">Read More</a>
                     </div>
-            </div>
-            <div class="col-2 bg-white py-3 rounded shadow">
-                <img class="img-fluid col-md-1" src="{%static 'images/star.png' %}" alt="...">
-                <img class="img-fluid col-md-1" src="{%static 'images/star.png' %}" alt="...">
-                <img class="img-fluid col-md-1" src="{%static 'images/star.png' %}" alt="...">
-                <img class="img-fluid col-md-1" src="{%static 'images/star.png' %}" alt="...">
-                <img class="img-fluid col-md-1" src="{%static 'images/star.png' %}" alt="...">
+                </div>
+                <div class="col-2 bg-white py-3 rounded shadow">
+                    <img class="img-fluid col-md-1" src="{% static 'images/star.png' %}" alt="...">
+                    <img class="img-fluid col-md-1" src="{% static 'images/star.png' %}" alt="...">
+                    <img class="img-fluid col-md-1" src="{% static 'images/star.png' %}" alt="...">
+                    <img class="img-fluid col-md-1" src="{% static 'images/star.png' %}" alt="...">
+                    <img class="img-fluid col-md-1" src="{% static 'images/star.png' %}" alt="...">
                     <div class="py-3">
                         <p>Professional, reliable and efficient. Genuine items delivered quickly and safely. Good value
                             and highly recommended from someone who uses several similar sites.</p>
                     </div>
+                </div>
+            </div>
         </div>
     </div>
-</div>
 
- <form class="text-center">
-    <div class="container py-5">
-        <div class="row g-3 justify-content-center">
-            <div class="col-auto">
-                <p>Sign up to be notified of promos and style advice</p>
-            </div>
-            <div class="col-md-4">
-                <input type="email" class="form-control bg-light border-0 text-uppercase" id="exampleInputEmail1" placeholder="Email Address">
-            </div>
-            <div class="col-auto">
-                <button type="submit" class="btn btn-primary text-uppercase text-white shadow">Join</button> <!-- button needs to be gold rather than blue -->
+    <form class="text-center">
+        <div class="container py-5">
+            <div class="row g-3 justify-content-center">
+                <div class="col-auto">
+                    <p>Sign up to be notified of promos and style advice</p>
+                </div>
+                <div class="col-md-4">
+                    <input type="email" class="form-control bg-light border-0 text-uppercase" id="exampleInputEmail1"
+                           placeholder="Email Address">
+                </div>
+                <div class="col-auto">
+                    <button type="submit" class="btn btn-primary text-uppercase text-white shadow">Join</button>
+                    <!-- button needs to be gold rather than blue -->
+                </div>
             </div>
         </div>
-    </div>
-</form>
+    </form>
 
 {% endblock %}

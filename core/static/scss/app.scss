@@ -27,3 +27,14 @@ $navbar-nav-link-padding-x: 2rem;
 .btn {
   text-transform: uppercase;
 }
+
+.homepage-blogposts-section {
+  background: linear-gradient(#FFFFFF, $light);
+}
+
+.homepage-top .carousel-caption {
+  top: 0;
+  left: 0;
+  right: initial;
+  padding: 5rem 10rem;
+}

@@ -180,4 +180,5 @@ Finally, create a pull request for your branch. During our sprint review, we wil
 
 As you contribute to the codebase, please add your name and role to this list.
 
-* **Mark Harris** - *Backend/Frontend Developer*
+* **Mark Harris** - *Backend/Frontend Developer & Initial Setup*
+* **Jessica Matterson-Jones** - *Frontend Developer*

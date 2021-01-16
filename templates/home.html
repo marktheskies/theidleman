@@ -1,0 +1,194 @@
+{% extends "layout.html" %}
+
+{% block title %}Home | TheIdleMan{% endblock %}
+
+{% block content %}
+    <div class="container-fluid homepage-top px-0">
+        <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+            <ol class="carousel-indicators">
+                <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"></li>
+                <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"></li>
+                <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"></li>
+            </ol>
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    {% load static %}
+                    <img src="{% static 'images/homepage-feature.jpg' %}" class="d-block w-100">
+                    <div class="carousel-caption d-none d-md-block text-start text-dark">
+                        <h1 class="display-3">Discover our latest <br>collection</h1>
+                        <p class="lead">Click below to see our latest collection and always look your best,<br>day or
+                            night.</p>
+                        <button class="btn btn-primary shadow text-white">See More</button>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    {% load static %}
+                    <img src="{% static 'images/homepage-feature2.jpg' %}" class="d-block w-100">
+                </div>
+                <div class="carousel-item">
+                    {% load static %}
+                    <img src="{% static 'images/homepage-feature3.jpg' %}" class="d-block w-100">
+                </div>
+            </div>
+            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </a>
+        </div>
+    </div>
+
+    <div class="container-fluid shadow">
+        <div class="container py-4">
+            <div class="row">
+                <div class="col-3 d-flex">
+                    {% load static %}
+                    <img class="img-fluid brand-img my-auto mx-auto" src="{% static 'images/brand-fossil.png' %}">
+                </div>
+                <div class="col-3 d-flex">
+                    {% load static %}
+                    <img class="img-fluid brand-img my-auto mx-auto" src="{% static 'images/brand-taikan.png' %}">
+                </div>
+                <div class="col-3 d-flex">
+                    {% load static %}
+                    <img class="img-fluid brand-img my-auto mx-auto" src="{% static 'images/brand-topman.png' %}">
+                </div>
+                <div class="col-3 d-flex">
+                    {% load static %}
+                    <img class="img-fluid brand-img my-auto mx-auto" src="{% static 'images/brand-vans.png' %}">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid py-2">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    {% load static %}
+                    <img class="img-fluid" src="{% static 'images/stylish-dude.png' %}">
+                </div>
+                <div class="col-md-8 p-4 d-flex">
+                    <div class="my-auto">
+                        <h2 class="text-uppercase">Discover Our Latest Trends</h2>
+                        <p>Refresh your wardrobe with our new summer styles.<br>
+                            Click below to view more of our modeled outfits.</p>
+                        <button class="btn btn-primary text-white shadow mb-4">New Styles</button>
+                        <div class="row mt-3">
+                            {% for product in products %}
+                                <div class="col">
+                                    <div class="product-card card border-0 cursor-pointer"
+                                         data-product-id="{{ product.id }}">
+                                        <img src="{{ product.image.url }}" class="card-img-top shadow">
+                                        <div class="card-body text-center">
+                                            <h6 class="card-title">{{ product.name }}</h6>
+                                            <span class="h5"><strong>${{ product.price }}</strong></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {# Blogpost section #}
+    <div class="container-fluid text-center py-4 homepage-blogposts-section">
+        <!-- Would load recent/chosen blog post snippets from database ? Using dummy content for now -->
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <img class="img-fluid py-1" src="{% static 'images/blog-christmasgifts.jpg' %}">
+                    <h5 class="text-uppercase">Christmas Gift Ideas</h5>
+                    <p>Christmas is just around the corner and you're fresh out of ideas. Don't panic. We've built an
+                        entire...</p>
+                </div>
+                <div class="col-md-4">
+                    <img class="img-fluid py-1" src="{% static 'images/blog-winterstyles.jpg' %}">
+                    <h5 class="text-uppercase">5 Best Winter Styles</h5>
+                    <p>Cold weather doesn't automatically mean you need to reach for your big coat. We've got some
+                        fresh...</p>
+                </div>
+                <div class="col-md-4">
+                    <img class="img-fluid py-1" src="{% static 'images/blog-wardrobehacks.jpg' %}">
+                    <h5 class="text-uppercase">Our Top Wardrobe Hacks</h5>
+                    <p>So you've just invested in a new wardrobe. You've got the shoes, the suit, and the...</p>
+                </div>
+            </div>
+            <button class="btn btn-primary text-white text-uppercase shadow">See More</button>
+        </div>
+    </div>
+
+    <div class="container-fluid bg-light">
+        <div class="container">
+            &nbsp;
+            <hr>
+            &nbsp;
+        </div>
+    </div>
+
+    <!-- Load top reviews from database in a carousel here ? -->
+    <div class="container-fluid bg-light text-center">
+        <div class="container">
+            <h3 class="text-uppercase py-3">What Our Customers Say</h3>
+            <div class="row py-4 justify-content-evenly">
+                <div class="col-md-3 me-1 bg-white py-3 rounded shadow mb-4">
+                    <div class="py-3 px-5">
+                        <img src="{% static 'images/five-stars.png' %}" alt="five stars" class="img-fluid">
+                    </div>
+                    <div class="py-3">
+                        <p>This is the first time I've used The Idle Man site and have had no problems
+                            whatsoever. A very efficient and professional way to shop. I appreciate their ways of
+                            dealing
+                            with...</p>
+                        <a href="#" class="text-uppercase">Read More</a>
+                    </div>
+                </div>
+
+                <div class="col-md-3 me-1 bg-white py-3 rounded shadow mb-4">
+                    <div class="py-3 px-5">
+                        <img src="{% static 'images/five-stars.png' %}" alt="five stars" class="img-fluid">
+                    </div>
+                    <div class="py-3">
+                        <p>Good product - good delivery!<br>
+                            Very happy with the whole process. This is about my seventh transaction.</p>
+                    </div>
+                </div>
+                <div class="col-md-3 me-1 bg-white py-3 rounded shadow mb-4">
+                    <div class="py-3 px-5">
+                        <img src="{% static 'images/five-stars.png' %}" alt="five stars" class="img-fluid">
+                    </div>
+                    <div class="py-3">
+                        <p>Delivered promptly and efficiently as expected. Unfortunately had to return as item did not
+                            fit - refund given immediately upon receipt. Would be very happy to use this...</p>
+                        <a href="#" class="text-uppercase">Read More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <form class="text-center">
+        <div class="container py-5">
+            <div class="row g-3 justify-content-center">
+                <div class="col-auto d-flex">
+                    <p class="my-auto">Sign up to be notified of promos and style advice</p>
+                </div>
+                <div class="col-md-4">
+                    <input type="email" class="form-control bg-light border-0 text-uppercase" id="exampleInputEmail1"
+                           placeholder="Email Address">
+                </div>
+                <div class="col-auto">
+                    <button type="submit" class="btn btn-secondary text-uppercase text-white shadow">Join</button>
+                    <!-- button needs to be gold rather than blue -->
+                </div>
+            </div>
+        </div>
+    </form>
+
+{% endblock %}

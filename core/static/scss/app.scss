@@ -3,12 +3,23 @@
 $font-family-sans-serif: "Abel";
 $headings-font-family: "Oswald";
 
+// Theme colors
 $light: #ece8e5;
 $primary: #89a9c3;
+$secondary: #ddc167;
 
 $navbar-nav-link-padding-x: 2rem;
 
+// Buttons
+$input-btn-padding-y: .7rem;
+$input-btn-padding-x: 1.5rem;
+
 @import "../../../node_modules/bootstrap/scss/bootstrap";
+
+// Prevent overlap of navbar
+body {
+  padding-top: 88px;
+}
 
 .navbar-nav .nav-item {
   text-transform: uppercase;
@@ -22,4 +33,24 @@ $navbar-nav-link-padding-x: 2rem;
 
 .cursor-pointer {
   cursor: pointer;
+}
+
+.btn {
+  text-transform: uppercase;
+}
+
+.homepage-blogposts-section {
+  background: linear-gradient(#FFFFFF, $light);
+}
+
+.homepage-top .carousel-caption {
+  top: 0;
+  left: 0;
+  right: initial;
+  padding: 5rem 10rem;
+}
+
+.brand-img {
+  max-width: 6rem;
+  filter: grayscale(100%);
 }

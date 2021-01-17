@@ -4,6 +4,59 @@
 
 {% block content %}
 
-{{ product.name }}
+<div class="container-fluid bg-light py-3">
+    <div class="container">
+        <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+            <ol class="breadcrumb mb-0">
+                <li class="breadcrumb-item"><a href="/">Home</a></li>
+                <li class="breadcrumb-item active"><a href="/products">Products</a></li>
+                <li class="breadcrumb-item active">{{ product.name }}</li>
+            </ol>
+        </nav>
+    </div>
+</div>
+
+{# Main Product Details/Selection #}
+<div class="container-fluid py-4">
+    <div class="container">
+        <div class="row">
+            <!-- Main Image -->
+            <div class="col-md-6">
+                <img src="{{ product.image.url }}" class="card-img-top">
+            </div>
+            <div class="col-md-2">
+                {% load static %}
+                <!-- Need to pull additional product images from database which can be clicked through as main (largest) image -->
+                <!-- Using placeholder images for now -->
+                <img src="{% static 'images/idleman-hoodie-blue1.jpg' %}" alt="..." class="img-fluid py-2">
+                <img src="{% static 'images/idleman-hoodie-blue3.jpeg' %}" alt="..." class="img-fluid py-2">
+                <img src="{% static 'images/idleman-hoodie-blue4.jpeg' %}" alt="..." class="img-fluid py-2">
+            </div>
+            <!-- Right side product info -->
+            <div class="col-md-4 mt-3">
+                <p class="fs-4 py-1">{{ product.name }}</p>
+                <h4 class="fw-bolder py-1">${{ product.price }}</h4>
+                <p class="py-2"><u>Free delivery & returns*</u></p>
+                <!-- Star rating -->
+                <div class="row g-2">
+                    <div class="col-md-3">
+                        <img src="{% static 'images/five-stars.png' %}" alt="five stars" class="img-fluid">
+                    </div>
+                    <div class="col-auto">
+                        <p>5 (6 reviews)</p>
+                    </div>
+                </div>
+                <!-- Colour selection -->
+                <h6 class="fw-bolder text-uppercase py-3">Colour:</h6>
+                <div class="row g-2">
+                    <div class="col-1 p-3 mb-2 mt-1 mx-1 bg-light shadow"></div><!-- Colour A -->
+                    <div class="col-1 p-3 mb-2 mt-1 mx-1 bg-secondary shadow border border-2 border-dark"></div><!-- Colour B -->
+                    <div class="col-1 p-3 mb-2 mt-1 mx-1 bg-primary shadow"></div><!-- Colour C -->
+                </div>
+                <!-- Colour selection -->
+            </div>
+        </div>
+    </div>
+</div>
 
 {% endblock %}

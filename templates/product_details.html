@@ -24,13 +24,13 @@
             <div class="col-md-6">
                 <img src="{{ product.image.url }}" class="card-img-top">
             </div>
-            <div class="col-md-2">
+            <div class="col-md-2 row">
                 {% load static %}
                 <!-- Need to pull additional product images from database which can be clicked through as main (largest) image -->
                 <!-- Using placeholder images for now -->
-                <img src="{% static 'images/idleman-hoodie-blue1.jpg' %}" alt="..." class="img-fluid py-2">
-                <img src="{% static 'images/idleman-hoodie-blue3.jpeg' %}" alt="..." class="img-fluid py-2">
-                <img src="{% static 'images/idleman-hoodie-blue4.jpeg' %}" alt="..." class="img-fluid py-2">
+                <img src="{% static 'images/idleman-hoodie-blue1.jpg' %}" alt="..." class="img-fluid pb-3">
+                <img src="{% static 'images/idleman-hoodie-blue3.jpeg' %}" alt="..." class="img-fluid py-3">
+                <img src="{% static 'images/idleman-hoodie-blue4.jpeg' %}" alt="..." class="img-fluid pt-3">
             </div>
             <!-- Right side product info -->
             <div class="col-md-4 mt-3">
@@ -151,20 +151,44 @@
         </div>      
 </div> 
 
-<!-- You May Also Like Scroller -->
-<!-- Work in progress -->
+<!-- You May Also Like Carousel -->
+<!-- Work in progress, needs more formatting -->
 <!-- Will need further products entered to link -->
-<!-- May need to be changed to a carousel -->
 <div class="d-flex justify-content-center">
     <h3 class="text-uppercase my-5">You Might Also Like...</h3>
 </div>    
 
-<div class="horizontalScroll">
-    <a class="card m-3">Product 1</a>
-    <a class="card m-3">Product 2</a>
-    <a class="card m-3">Product 3</a>
-    <a class="card m-3">Product 4</a>
-    <a class="card m-3">Product 5</a>
+<div class="container-fluid bg-secondary d-flex justify-content-center">
+    <div id="carouselExampleIndicators" class="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <a class="card d-inline-block py-5 mx-5">Product 1</a>
+                <a class="card d-inline-block py-5 mx-5">Product 2</a>
+                <a class="card d-inline-block py-5 mx-5">Product 3</a>
+                <a class="card d-inline-block py-5 mx-5">Product 4</a> 
+            </div>
+            <div class="carousel-item">
+                <a class="card d-inline-block py-5 mx-5">Product 5</a>
+                <a class="card d-inline-block py-5 mx-5">Product 6</a>
+                <a class="card d-inline-block py-5 mx-5">Product 7</a>
+                <a class="card d-inline-block py-5 mx-5">Product 8</a>
+            </div>
+            <div class="carousel-item">        
+                <a class="card d-inline-block py-5 mx-5">Product 9</a>
+                <a class="card d-inline-block py-5 mx-5">Product 10</a>
+                <a class="card d-inline-block py-5 mx-5">Product 11</a>
+                <a class="card d-inline-block py-5 mx-5">Product 12</a> 
+            </div>
+        </div>
+        <a class="carousel-control-prev justify-content-start" href="#carouselExampleIndicators" role="button" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </a>
+        <a class="carousel-control-next justify-content-end" href="#carouselExampleIndicators" role="button" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </a>
+    </div>
 </div>
 
 <!-- Test the Look Section -->

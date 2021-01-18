@@ -55,23 +55,3 @@ body {
   max-width: 6rem;
   filter: grayscale(100%);
 }
-
-
-// Scroll products in 'You Might Also Like' section of Product_Details pages
-// **WIP - May not be necessary**
-.horizontalScroll {
-  overflow: auto;
-  white-space: nowrap;
-}
-
-// Scroll products in 'You Might Also Like' section of Product_Details pages
-// **WIP - May not be necessary
-.horizontalScroll a {
-  width: 33%;
-  height: 400px;
-  display: inline-block;
-  color: black;
-  text-align: center;
-  padding: 14px;
-  text-decoration: none;
-}

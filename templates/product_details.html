@@ -96,13 +96,22 @@
                   </div>
 
                 <!-- Test on avatar link -->
-                <div class="row py-4">
-                      <!-- Add t-shirt icon -->
-                      <div class="col-md-1">
-                        <img src="#" alt="avatar" class="img-fluid">
+                    <div class="d-flex justify-content-end align-items-center pt-4">
+                        <div class="col-md-1">
+                            <img src="{% static 'images/avatar-icon.png' %}" alt="avatar icon" class="img-fluid p-2">
+                        </div>
+                        <div class="col-auto">
+                            <a href="#" class="text-uppercase text-underline">Test On Avatar</a>
+                        </div>
+                    </div>
+
+                <!-- Add to wishlist link -->
+                <div class="d-flex justify-content-end align-items-center py-2">
+                    <div class="col-md-1">
+                        <img src="{% static 'images/heart-icon.png' %}" alt="wishlist icon" class="img-fluid p-2">
                     </div>
                     <div class="col-auto">
-                        <a href="#" class="text-uppercase text-underline">Test On Avatar</a>
+                        <a href="#" class="text-uppercase text-underline">Add to Wishlist</a>
                     </div>
                 </div>
                                                   
@@ -193,15 +202,15 @@
 
 <!-- Test the Look Section -->
 <div class="d-flex justify-content-center my-5">
-    <h3 class="text-uppercase ">Want to test the look?</h3>
+    <h3 class="text-uppercase">Want to test the look?</h3>
 </div>  
 <div class="d-flex justify-content-center">
-    <p class="text-uppercase w-50 text-center">We know online shopping isn't always easy, especially when it comes to matching clothing pieces. Ever done an online clothing haul and realised you can't wear any of it together? Yeah, us too</p>
+    <p class="text w-50 text-center">We know online shopping isn't always easy, especially when it comes to matching clothing pieces. Ever done an online clothing haul and realised you can't wear any of it together? Yeah, us too</p>
 </div>
 <!-- Try on Avatar button -->
 <div class="d-flex justify-content-center my-5">
     <!-- Add t-shirt icon -->
-    <button class="btn btn-secondary shadow text-white"><img src="#" alt="avatar icon" class="img-fluid"> Try on Avatar</button>
+    <button class="btn btn-secondary shadow text-white"><img src="{% static 'images/avatar-icon.png' %}" alt="avatar icon" class="img-fluid col-md-1 px-2">Try on Avatar</button>
 </div>  
 
 {% endblock %}

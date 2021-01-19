@@ -24,14 +24,14 @@
             <div class="col-md-6">
                 <img src="{{ product.image.url }}" class="card-img-top">
             </div>
-            <div class="col-md-2 row">
-                {% load static %}
-                <!-- Need to pull additional product images from database which can be clicked through as main (largest) image -->
-                <!-- Using placeholder images for now -->
-                <img src="{% static 'images/idleman-hoodie-blue1.jpg' %}" alt="..." class="img-fluid pb-3">
-                <img src="{% static 'images/idleman-hoodie-blue3.jpeg' %}" alt="..." class="img-fluid py-3">
-                <img src="{% static 'images/idleman-hoodie-blue4.jpeg' %}" alt="..." class="img-fluid pt-3">
-            </div>
+                <div class="col-md-2">
+                    {% load static %}
+                    <!-- Need to pull additional product images from database which can be clicked through as main (largest) image -->
+                    <!-- Using placeholder images for now -->
+                    <img src="{% static 'images/idleman-hoodie-blue1.jpg' %}" alt="..." class="img-fluid py-2">
+                    <img src="{% static 'images/idleman-hoodie-blue3.jpeg' %}" alt="..." class="img-fluid py-2">
+                    <img src="{% static 'images/idleman-hoodie-blue4.jpeg' %}" alt="..." class="img-fluid py-2">
+                </div>
             <!-- Right side product info -->
             <div class="col-md-4 mt-3">
                 <p class="fs-4 py-1">{{ product.name }}</p>

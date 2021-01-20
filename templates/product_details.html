@@ -101,7 +101,7 @@
                             <img src="{% static 'images/avatar-icon.png' %}" alt="avatar icon" class="img-fluid product-tool-icons mx-2 py-1">
                         </div>
                         <div class="col-auto">
-                            <a href="#" class="text-uppercase text-underline">Test On Avatar</a>
+                            <a href="#" class="text-uppercase text-underline">Try On Avatar</a>
                         </div>
                     </div>
 
@@ -210,7 +210,10 @@
 <!-- Try on Avatar button -->
 <div class="d-flex justify-content-center my-5">
     <!-- Add t-shirt icon -->
-    <button class="btn btn-secondary shadow text-white"><img src="{% static 'images/avatar-icon.png' %}" alt="avatar icon" class="img-fluid col-md-1 px-2">Try on Avatar</button>
+    <button class="btn btn-secondary shadow text-white d-flex">
+        <img src="{% static 'images/avatar-icon.png' %}" alt="avatar icon" class="img-fluid product-tool-icons mx-2 align-self-center">
+        Try on Avatar
+    </button>
 </div>  
 
 {% endblock %}

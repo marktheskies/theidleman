@@ -21,8 +21,10 @@
     <div class="container">
         <div class="row">
             <!-- Main Image -->
-            <div class="col-md-6">
-                <img src="{{ product.image.url }}" class="card-img-top">
+            <div class="col-md-6 p-5">
+                <div class="p-5">
+                    <img src="{{ product.image.url }}" class="img-fluid">
+                </div>
             </div>
                 <div class="col-md-2">
                     {% comment %} Additional Product Images {% endcomment %}
@@ -32,7 +34,7 @@
                     {% endfor %}
                 </div>
             <!-- Right side product info -->
-            <div class="col-md-4 mt-3">
+            <div class="col-md-4 mt-3 pe-md-5">
                 <p class="fs-4 py-1">{{ product.name }}</p>
                 <h4 class="fw-bolder py-1">${{ product.price }}</h4>
                 <p class="py-2">

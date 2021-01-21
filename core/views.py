@@ -4,15 +4,16 @@ from core.models import Product
 
 
 def products(request):
-    context = {
-        "products": Product.objects.all()
-    }
+    context = {"products": Product.objects.all()}
     return render(request, "products.html", context)
 
 
 def product_details(request, id):
     context = {
         "product": Product.objects.get(id=id),
+        "first_three_additional_images": Product.objects.get(
+            id=id
+        ).productadditionalimage_set.all()[:3],
     }
     return render(request, "product_details.html", context)
 

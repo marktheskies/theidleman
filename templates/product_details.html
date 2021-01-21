@@ -25,12 +25,11 @@
                 <img src="{{ product.image.url }}" class="card-img-top">
             </div>
                 <div class="col-md-2">
+                    {% comment %} Additional Product Images {% endcomment %}
                     {% load static %}
-                    <!-- Need to pull additional product images from database which can be clicked through as main (largest) image -->
-                    <!-- Using placeholder images for now -->
-                    <img src="{% static 'images/idleman-hoodie-blue1.jpg' %}" alt="..." class="img-fluid py-2">
-                    <img src="{% static 'images/idleman-hoodie-blue3.jpeg' %}" alt="..." class="img-fluid py-2">
-                    <img src="{% static 'images/idleman-hoodie-blue4.jpeg' %}" alt="..." class="img-fluid py-2">
+                    {% for image in first_three_additional_images %}
+                        <img src="{{ image.image.url }}" class="img-fluid py-2">
+                    {% endfor %}
                 </div>
             <!-- Right side product info -->
             <div class="col-md-4 mt-3">

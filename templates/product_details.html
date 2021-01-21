@@ -183,6 +183,29 @@
                 </div>
                 <!-- Colour selection -->
                 <h6 class="fw-bolder text-uppercase py-3">Colour:</h6>
+
+                <div>
+                    {% for ps in product.productstock_set.all %}
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="color" id="{{ ps.color_hex }}" value="{{ ps.color_hex }}">
+                            <label class="btn" style="background-color: {{ ps.color_hex }}" for="{{ ps.color_hex }}">&nbsp;</label>
+                        </div>
+                    {% endfor %}
+                </div>
+
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
+                    <label class="form-check-label" for="inlineRadio1">1</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+                    <label class="form-check-label" for="inlineRadio2">2</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3" disabled>
+                    <label class="form-check-label" for="inlineRadio3">3 (disabled)</label>
+                </div>
+
                 <div class="row g-2">
                     <div class="col-1 p-3 mb-2 mt-1 mx-1 bg-light shadow"></div><!-- Colour A -->
                     <div class="col-1 p-3 mb-2 mt-1 mx-1 bg-secondary shadow border border-2 border-dark"></div><!-- Colour B -->

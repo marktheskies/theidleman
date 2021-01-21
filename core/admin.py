@@ -1,5 +1,12 @@
 from django.contrib import admin
-from .models import Product, ProductCategory, ProductAdditionalImage, ProductStock
+
+from .models import (
+    Color,
+    Product,
+    ProductAdditionalImage,
+    ProductCategory,
+    Size,
+)
 
 
 @admin.register(Product)
@@ -25,13 +32,11 @@ class ProductAdditionalImageAdmin(admin.ModelAdmin):
     pass
 
 
-@admin.register(ProductStock)
-class ProductStockAdmin(admin.ModelAdmin):
-    list_display = (
-        "size_code",
-        "size_name",
-        "quantity",
-        "color_name",
-        "color_hex",
-        "product",
-    )
+@admin.register(Size)
+class SizeAdmin(admin.ModelAdmin):
+    pass
+
+
+@admin.register(Color)
+class ColorAdmin(admin.ModelAdmin):
+    pass

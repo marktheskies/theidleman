@@ -3,6 +3,8 @@
 from django.db import models
 from django.core.validators import MaxValueValidator, MinValueValidator
 
+import json
+
 
 class ProductCategory(models.Model):
     """A category for products, such as Hoodies, Trousers, etc."""
@@ -11,6 +13,24 @@ class ProductCategory(models.Model):
         verbose_name_plural = "product categories"
 
     name = models.CharField(max_length=255, unique=True)
+
+    def __str__(self):
+        return self.name
+
+
+class Color(models.Model):
+    """A color for a product"""
+
+    hex_value = models.CharField(max_length=7)
+
+    def __str__(self):
+        return self.hex_value
+
+
+class Size(models.Model):
+    """A size for a product"""
+
+    name = models.CharField(max_length=255)
 
     def __str__(self):
         return self.name
@@ -40,6 +60,9 @@ class Product(models.Model):
 
     care_instructions = models.TextField(null=True, blank=True)
 
+    sizes = models.ManyToManyField(Size)
+    colors = models.ManyToManyField(Color)
+
     def __str__(self):
         return self.name
 
@@ -48,18 +71,4 @@ class ProductAdditionalImage(models.Model):
     """An additional image of a product"""
 
     image = models.ImageField(null=True, blank=True)
-    product = models.ForeignKey(Product, models.CASCADE)
-
-
-class ProductStock(models.Model):
-    """A size and availability of a product"""
-
-    class Meta:
-        verbose_name_plural = "product stock"
-
-    size_code = models.CharField(max_length=255)
-    size_name = models.CharField(max_length=255)
-    quantity = models.IntegerField()
-    color_name = models.CharField(max_length=255, default="Whisper")
-    color_hex = models.CharField(max_length=7, default="#EEEEEE")
     product = models.ForeignKey(Product, models.CASCADE)

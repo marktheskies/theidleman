@@ -35,7 +35,13 @@
             <div class="col-md-4 mt-3">
                 <p class="fs-4 py-1">{{ product.name }}</p>
                 <h4 class="fw-bolder py-1">${{ product.price }}</h4>
-                <p class="py-2"><u>Free delivery & returns*</u></p>
+                <p class="py-2">
+                {% if product.free_delivery %}
+                    <u>Free delivery & returns*</u>
+                {% else %}
+                    <u>$15 fixed-rate delivery</u>
+                {% endif %}
+                </p>
                 <!-- Star rating -->
                 <div class="row g-2">
                     <div class="col-auto">

@@ -26,4 +26,11 @@ class ProductAdditionalImageAdmin(admin.ModelAdmin):
 
 @admin.register(ProductStock)
 class ProductStockAdmin(admin.ModelAdmin):
-    pass
+    list_display = (
+        "size_code",
+        "size_name",
+        "quantity",
+        "color_name",
+        "color_hex",
+        "product",
+    )

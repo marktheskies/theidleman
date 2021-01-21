@@ -5,6 +5,7 @@ from .models import Product, ProductCategory, ProductAdditionalImage, ProductSto
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
     list_display = (
+        "id",
         "name",
         "description",
         "price",

@@ -54,6 +54,9 @@ class ProductAdditionalImage(models.Model):
 class ProductStock(models.Model):
     """A size and availability of a product"""
 
+    class Meta:
+        verbose_name_plural = "product stock"
+
     size_code = models.CharField(max_length=255)
     size_name = models.CharField(max_length=255)
     quantity = models.IntegerField()

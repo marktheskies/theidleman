@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Abel&family=Oswald&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Abel&family=Oswald&display=swap");
 
 $font-family-sans-serif: "Abel";
 $headings-font-family: "Oswald";
@@ -7,11 +7,13 @@ $headings-font-family: "Oswald";
 $light: #ece8e5;
 $primary: #89a9c3;
 $secondary: #ddc167;
+$dark: #000;
+$success: #c7daa8;
 
 $navbar-nav-link-padding-x: 2rem;
 
 // Buttons
-$input-btn-padding-y: .7rem;
+$input-btn-padding-y: 0.7rem;
 $input-btn-padding-x: 1.5rem;
 
 @import "../../../node_modules/bootstrap/scss/bootstrap";
@@ -40,7 +42,7 @@ body {
 }
 
 .homepage-blogposts-section {
-  background: linear-gradient(#FFFFFF, $light);
+  background: linear-gradient(#ffffff, $light);
 }
 
 .homepage-top .carousel-caption {
@@ -53,4 +55,17 @@ body {
 .brand-img {
   max-width: 6rem;
   filter: grayscale(100%);
+}
+
+.product-star-rating {
+  max-width: 6rem;
+}
+
+.product-tool-icons {
+  max-width: 1rem;
+}
+
+.darken {
+  filter: brightness(90%);
+  border: 1px solid rgba($dark, 0.4);
 }

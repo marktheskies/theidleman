@@ -182,3 +182,4 @@ As you contribute to the codebase, please add your name and role to this list.
 
 * **Mark Harris** - *Backend/Frontend Developer & Initial Setup*
 * **Jessica Matterson-Jones** - *Frontend Developer*
+* **Scott Lockett** - *Information Architect/UX/Front-End/Project Manager*

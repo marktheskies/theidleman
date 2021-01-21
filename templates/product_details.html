@@ -184,7 +184,36 @@
                 <!-- Colour selection -->
                 <h6 class="fw-bolder text-uppercase py-3">Colour:</h6>
 
-                <div>
+                <div class="p-1 ps-4">
+                    {% for color in product.colors.all %}
+                        <style>
+                            .btn-{{ color.hex_value|slice:"1:" }} {
+                                color: {{ color.hex_value }};
+                                border-color: {{ color.hex_value }};
+                            }
+
+                            .btn-{{ color.hex_value|slice:"1:" }}:hover {
+                                color: black;
+                                background-color: {{ color.hex_value }};
+                            }
+
+                            .btn-check:checked + .btn-{{ color.hex_value|slice:"1:" }},
+                            .btn-check:active + .btn-{{ color.hex_value|slice:"1:" }},
+                            .btn-{{ color.hex_value|slice:"1:" }}:active,
+                            .btn-{{ color.hex_value|slice:"1:" }}.active,
+                            .btn-{{ color.hex_value|slice:"1:" }}.dropdown-toggle.show {
+                                color: black;
+                                background-color: {{ color.hex_value }};
+                            }
+                        </style>
+                        <div class="form-check ps-0 me-0 form-check-inline d-inline-block">
+                            <input {% if forloop.first %}checked{% endif %} type="radio" class="btn-check" name="color" id="{{ color.hex_value }}" autocomplete="off">
+                            <label class="btn btn-{{ color.hex_value|slice:"1:" }}" for="{{ color.hex_value }}">&nbsp;</label>
+                        </div>
+                    {% endfor %}
+                </div>
+
+                {% comment %} <div>
                     {% for color in product.colors.all %}
                         <div class="form-check form-check-inline">
                             <input type="radio" class="btn-check" name="color" id="{{ color.hex_value }}" autocomplete="off">
@@ -222,7 +251,7 @@
                             });
                         {% endfor %}
                     </script>
-                </div>
+                </div> {% endcomment %}
 
                 <!-- Size label -->
                 <div class="row pt-4 d-flex justify-content-between">

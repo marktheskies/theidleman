@@ -7,6 +7,9 @@ from django.core.validators import MaxValueValidator, MinValueValidator
 class ProductCategory(models.Model):
     """A category for products, such as Hoodies, Trousers, etc."""
 
+    class Meta:
+        verbose_name_plural = "product categories"
+
     name = models.CharField(max_length=255, unique=True)
 
     def __str__(self):

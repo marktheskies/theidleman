@@ -213,46 +213,6 @@
                     {% endfor %}
                 </div>
 
-                {% comment %} <div>
-                    {% for color in product.colors.all %}
-                        <div class="form-check form-check-inline">
-                            <input type="radio" class="btn-check" name="color" id="{{ color.hex_value }}" autocomplete="off">
-                            <label class="btn color-btn-check-label" style="background-color: {{ color.hex_value }}" for="{{ color.hex_value }}">&nbsp;</label>
-                        </div>
-                    {% endfor %}
-
-                    <script>
-                        const labels = document.getElementsByClassName("color-btn-check-label");
-                        for (let i = 0; i < labels.length; i ++) {
-                            if (i === 0) {
-                                const parent = labels[i].parentElement;
-                                const radio = parent.getElementsByTagName("input")[0]
-                                radio.checked = true;
-                                labels[i].classList.add("darken");
-                            } else {
-                                labels[i].classList.add("shadow-sm");
-                            }   
-                        }
-
-                        {% for color in product.colors.all %}
-                            document.getElementById('{{ color.hex_value }}').addEventListener("click", event => {
-                                const radio = event.target;
-                                const parent = radio.parentElement; 
-                                const label = parent.getElementsByTagName("label")[0];
-
-                                const labels = document.getElementsByClassName("color-btn-check-label");
-                                for (let i = 0; i < labels.length; i ++) {
-                                    labels[i].classList.add("shadow-sm");
-                                    labels[i].classList.remove("darken");
-                                }
-
-                                label.classList.remove("shadow-sm");
-                                label.classList.add("darken");
-                            });
-                        {% endfor %}
-                    </script>
-                </div> {% endcomment %}
-
                 <!-- Size label -->
                 <div class="row pt-4 d-flex justify-content-between">
                     <div class="col-md-3">

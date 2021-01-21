@@ -185,32 +185,50 @@
                 <h6 class="fw-bolder text-uppercase py-3">Colour:</h6>
 
                 <div>
-                    {% for ps in product.productstock_set.all %}
+                    {% for color in product.colors.all %}
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="color" id="{{ ps.color_hex }}" value="{{ ps.color_hex }}">
-                            <label class="btn" style="background-color: {{ ps.color_hex }}" for="{{ ps.color_hex }}">&nbsp;</label>
+                            <input type="radio" class="btn-check" name="options" id="{{ color.hex_value }}" autocomplete="off">
+                            <label class="btn color-btn-check-label" style="background-color: {{ color.hex_value }}" for="{{ color.hex_value }}">&nbsp;</label>
                         </div>
                     {% endfor %}
+
+                    <script>
+                        const labels = document.getElementsByClassName("color-btn-check-label");
+                        for (let i = 0; i < labels.length; i ++) {
+                            if (i === 0) {
+                                const parent = labels[i].parentElement;
+                                const radio = parent.getElementsByTagName("input")[0]
+                                radio.checked = true;
+                                labels[i].classList.add("darken");
+                            } else {
+                                labels[i].classList.add("shadow-sm");
+                            }   
+                        }
+
+                        {% for color in product.colors.all %}
+                            document.getElementById('{{ color.hex_value }}').addEventListener("click", event => {
+                                const radio = event.target;
+                                const parent = radio.parentElement; 
+                                const label = parent.getElementsByTagName("label")[0];
+
+                                const labels = document.getElementsByClassName("color-btn-check-label");
+                                for (let i = 0; i < labels.length; i ++) {
+                                    labels[i].classList.add("shadow-sm");
+                                    labels[i].classList.remove("darken");
+                                }
+
+                                label.classList.remove("shadow-sm");
+                                label.classList.add("darken");
+                            });
+                        {% endfor %}
+                    </script>
                 </div>
 
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
-                    <label class="form-check-label" for="inlineRadio1">1</label>
-                </div>
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
-                    <label class="form-check-label" for="inlineRadio2">2</label>
-                </div>
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3" disabled>
-                    <label class="form-check-label" for="inlineRadio3">3 (disabled)</label>
-                </div>
-
-                <div class="row g-2">
+                {% comment %} <div class="row g-2">
                     <div class="col-1 p-3 mb-2 mt-1 mx-1 bg-light shadow"></div><!-- Colour A -->
                     <div class="col-1 p-3 mb-2 mt-1 mx-1 bg-secondary shadow border border-2 border-dark"></div><!-- Colour B -->
                     <div class="col-1 p-3 mb-2 mt-1 mx-1 bg-primary shadow"></div><!-- Colour C -->
-                </div>
+                </div> {% endcomment %}
                 <!-- Size label -->
                 <div class="row pt-4">
                     <div class="col-md-3">

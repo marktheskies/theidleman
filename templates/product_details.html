@@ -187,7 +187,7 @@
                 <div>
                     {% for color in product.colors.all %}
                         <div class="form-check form-check-inline">
-                            <input type="radio" class="btn-check" name="options" id="{{ color.hex_value }}" autocomplete="off">
+                            <input type="radio" class="btn-check" name="color" id="{{ color.hex_value }}" autocomplete="off">
                             <label class="btn color-btn-check-label" style="background-color: {{ color.hex_value }}" for="{{ color.hex_value }}">&nbsp;</label>
                         </div>
                     {% endfor %}
@@ -225,31 +225,37 @@
                 </div>
 
                 <!-- Size label -->
-                <div class="row pt-4">
+                <div class="row pt-4 d-flex justify-content-between">
                     <div class="col-md-3">
                         <h6 class="fw-bolder text-uppercase">Size:</h6>
                     </div>
-                    <div class="col-md-3 offset-md-3">
-                        <a href="#" class="text-uppercase">Size Guide</a>
+                    <div class="col-md-4">
+                        {% comment %} Size Guide Modal {% endcomment %}
+                        <button class="text-uppercase btn btn-link pt-0 pe-0" data-bs-toggle="modal" data-bs-target="#sizeGuideModal">Size Guide</button>
+                        <div class="modal fade" id="sizeGuideModal" tabindex="-1" aria-labelledby="sizeGuideModal" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="sizeGuideModalLabel">Size Guide</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        ...
+                                        {% comment %} TODO: Add size guide {% endcomment %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <!-- Size selection -->
-                <div class="row p-1">
-                    <div class="col-auto px-3 py-2">
-                        <span class="align-middle">S</span>
-                    </div>
-                    <div class="col-auto px-3 py-2 bg-light shadow">
-                        <span class="align-middle">M</span>
-                    </div>
-                    <div class="col-auto px-3 py-2">
-                        <span class="align-middle">L</span>
-                    </div>
-                    <div class="col-auto px-3 py-2">
-                        <span class="align-middle">XL</span>
-                    </div>
-                    <div class="col-auto px-3 py-2">
-                        <span class="align-middle">XXL</span>
-                    </div>
+                <div class="p-1 ps-4">
+                    {% for size in product.sizes.all %}
+                        <div class="form-check ps-0 me-0 form-check-inline d-inline-block">
+                            <input {% if forloop.first %}checked{% endif %} type="radio" class="btn-check" name="size" id="{{ size.name }}" autocomplete="off">
+                            <label class="btn btn-outline-primary" for="{{ size.name }}">{{ size.name }}</label>
+                        </div>
+                    {% endfor %}
                 </div>
 
                 <!-- Quantity selection dropdown -->

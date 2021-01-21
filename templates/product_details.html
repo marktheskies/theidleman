@@ -289,18 +289,23 @@
 <div class="container-fluid bg-light mt-5 py-3 border border-1" data-bs-toggle="collapse" data-bs-target="#productDescription">
     <button class="btn container-fluid">Product Description  +</button>
     <div class="collapse" id="productDescription">
-        <div class="card card-body">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.                </div>
-        </div>      
+        <div class="card">
+            <div class="card-body">
+                {{ product.description }}
+            </div>
+        </div>
+    </div>      
 </div>  
 
 <!-- Details and Care Collapsible -->
 <div class="container-fluid bg-light py-3 border border-1" data-bs-toggle="collapse" data-bs-target="#detailsAndCare">
     <button class="btn bg-light container-fluid">Details And Care  +</button>
     <div class="collapse" id="detailsAndCare">
-        <div class="card card-body">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.                </div>
-        </div>      
+        <div class="card">
+            <div class="card-body">
+                {{ product.care_instructions }}
+            </div>
+        </div>    
 </div>  
 
 <!-- Shipping and Returns Collapsible -->

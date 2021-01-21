@@ -323,10 +323,40 @@
 <!-- Will need further products entered to link -->
 <div class="d-flex justify-content-center">
     <h3 class="text-uppercase my-5">You Might Also Like...</h3>
-</div>    
+</div>
 
-<div class="container-fluid bg-light d-flex justify-content-center">
-    <div id="carouselExampleIndicators" class="carousel">
+<div class="container px-md-5">
+<div id="youMightAlsoLikeCarousel" class="carousel slide carousel-dark" data-bs-ride="carousel">
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+    <div class="row">
+    {% for product in product.get_related_products.all %}
+        {% if forloop.counter|divisibleby:5 %}
+            </div>
+            </div>
+            <div class="carousel-item">
+            <div class="row">
+        {% else %}
+            <div class="col">
+                <div class="card border-0 shadow" style="max-width: 288px">
+                    <img src="{{ product.image.url }}" class="card-img-top">
+                    <div class="card-body text-center">
+                        <h6 class="card-title">{{ product.name }}</h6>
+                        <span class="h5"><strong>${{ product.price }}</strong></span>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+        
+    {% endfor %}
+    </div>
+    </div>
+  </div>
+</div>
+</div>
+
+{% comment %} <div class="container-fluid bg-light d-flex justify-content-center">
+    <div id="carouselExampleIndicators" class="carousel slide">
         <div class="carousel-inner">
             <div class="carousel-item active">
                 <a class="card d-inline-block py-5 mx-5">Product 1</a>
@@ -356,9 +386,9 @@
             <span class="visually-hidden">Next</span>
         </a>
     </div>
-</div>
+</div> {% endcomment %}
 
-    <div class="container">
+    <div class="container py-5">
         <hr>
     </div>
 

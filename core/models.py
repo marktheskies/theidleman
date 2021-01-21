@@ -66,6 +66,9 @@ class Product(models.Model):
     def __str__(self):
         return self.name
 
+    def get_related_products(self):
+        return Product.objects.filter(category=self.category)
+
 
 class ProductAdditionalImage(models.Model):
     """An additional image of a product"""

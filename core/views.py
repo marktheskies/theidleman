@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 import json
 
 from core.models import Product
@@ -29,13 +29,17 @@ def home(request):
 
 def add_to_cart(request):
     if "cart" not in request.session:
-        request.session["cart"] = []
+        cart = []
+    else:
+        cart = request.session["cart"]
 
-    request.session["cart"].append({
+    cart.append({
         "product_id": request.POST["product_id"],
         "color": request.POST["color"],
         "size": request.POST["size"],
         "quantity": request.POST["quantity"],
     })
 
-    return product_details(request, request.POST["product_id"])
+    request.session["cart"] = cart
+
+    return redirect("/products")

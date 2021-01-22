@@ -41,7 +41,10 @@
                         <tr>
                             <td>
                                 {{ item.product.name }}<br>
-                                <img src="{{ item.product.image.url }}" class="img-fluid" style="max-width: 10rem;">
+                                <img src="{{ item.product.image.url }}" class="img-fluid" style="max-width: 10rem;"><br>
+                                Colour: <span class="badge rounded-pill"
+                                              style="background-color: {{ item.color }}">&nbsp;</span><br>
+                                Size: {{ item.size }}
                             </td>
                             <td class="text-center align-middle">
                                 ${{ item.product.price|floatformat:2|intcomma }}
@@ -54,7 +57,7 @@
                 </table>
 
                 <div class="row py-5 mb-5 mb-md-0 bg-success">
-                    <p class="mb-0">* Free shipping onn orders over $100 AUD</p>
+                    <p class="mb-0 text-center text-md-start">* Free shipping onn orders over $100 AUD</p>
                 </div>
             </div>
 
@@ -118,8 +121,11 @@
                 <div class="row py-5">
                     <h2 class="mb-5">Got a question before you checkout?</h2>
                     <div class="d-grid gap-3">
+                        {# TODO: Popup style guide #}
                         <a href="" class="btn btn-primary shadow text-white text-uppercase">Size Guide</a>
+                        {# TODO: Link to FAQs #}
                         <a href="" class="btn btn-primary shadow text-white text-uppercase">FAQs</a>
+                        {# TODO: Link to contact page #}
                         <a href="" class="btn btn-primary shadow text-white text-uppercase">Contact Us</a>
                     </div>
                 </div>

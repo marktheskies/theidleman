@@ -69,6 +69,8 @@ def shopping_cart(request):
                 "product": product,
                 "quantity": item["quantity"],
                 "total": item_total_cost,
+                "color": item["color"],
+                "size": item["size"],
             })
             context["subtotal"] += item_total_cost
             if not product.free_delivery:

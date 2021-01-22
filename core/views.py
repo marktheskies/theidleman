@@ -82,3 +82,7 @@ def shopping_cart(request):
             context["total"] = context["subtotal"] + 15
 
     return render(request, "shopping_cart.html", context)
+
+
+def checkout(request):
+    return render(request, "checkout.html")

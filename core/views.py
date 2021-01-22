@@ -1,4 +1,5 @@
 from django.shortcuts import render
+import json
 
 from core.models import Product
 
@@ -24,3 +25,17 @@ def home(request):
         "products": first_three_products,
     }
     return render(request, "home.html", context)
+
+
+def add_to_cart(request):
+    if "cart" not in request.session:
+        request.session["cart"] = []
+
+    request.session["cart"].append({
+        "product_id": request.POST["product_id"],
+        "color": request.POST["color"],
+        "size": request.POST["size"],
+        "quantity": request.POST["quantity"],
+    })
+
+    return product_details(request, request.POST["product_id"])

@@ -186,6 +186,10 @@
 
                     {# Purchase form #}
                     <form action="/add-to-cart/" method="post">
+                        {% csrf_token %}
+
+                        <input type="hidden" name="product_id" value="{{ product.id }}">
+
                         <!-- Colour selection -->
                         <h6 class="fw-bolder text-uppercase py-3">Colour:</h6>
                         <div class="p-1 ps-4">
@@ -212,7 +216,7 @@
                                 </style>
                                 <div class="form-check ps-0 me-0 form-check-inline d-inline-block">
                                     <input {% if forloop.first %}checked{% endif %} type="radio" class="btn-check"
-                                           name="color" id="{{ color.hex_value }}" autocomplete="off">
+                                           name="color" id="{{ color.hex_value }}" autocomplete="off" value="{{ color.hex_value }}">
                                     <label class="btn btn-{{ color.hex_value|slice:"1:" }}" for="{{ color.hex_value }}">&nbsp;</label>
                                 </div>
                             {% endfor %}
@@ -251,7 +255,7 @@
                             {% for size in product.sizes.all %}
                                 <div class="form-check ps-0 me-0 form-check-inline d-inline-block">
                                     <input {% if forloop.first %}checked{% endif %} type="radio" class="btn-check"
-                                           name="size" id="{{ size.name }}" autocomplete="off">
+                                           name="size" id="{{ size.name }}" autocomplete="off" value="{{ size.name }}">
                                     <label class="btn btn-outline-primary" for="{{ size.name }}">{{ size.name }}</label>
                                 </div>
                             {% endfor %}

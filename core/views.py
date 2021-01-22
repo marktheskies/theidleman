@@ -1,5 +1,4 @@
 from django.shortcuts import render, redirect
-import json
 
 from core.models import Product
 
@@ -53,3 +52,31 @@ def empty_cart(request):
     # Redirect to the last page (HTTP_REFERRER). If HTTP_REFERER is empty, for example, if the user hits "back",
     # or navigates to the page directly, redirect to the homepage.
     return redirect(request.META.get("HTTP_REFERER", '/'))
+
+
+def shopping_cart(request):
+    context = {
+        "items": [],
+        "subtotal": 0.0,
+        "free_delivery": True,
+        "total": 0
+    }
+    if "cart" in request.session:
+        for item in request.session["cart"]:
+            product = Product.objects.get(id=item["product_id"])
+            item_total_cost = product.price * float(item["quantity"])
+            context["items"].append({
+                "product": product,
+                "quantity": item["quantity"],
+                "total": item_total_cost,
+            })
+            context["subtotal"] += item_total_cost
+            if not product.free_delivery:
+                context["free_delivery"] = False
+
+        if context["free_delivery"]:
+            context["total"] = context["subtotal"]
+        else:
+            context["total"] = context["subtotal"] + 15
+
+    return render(request, "shopping_cart.html", context)

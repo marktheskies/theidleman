@@ -52,7 +52,8 @@
                             </td>
                             <td class="text-center align-middle">{{ item.quantity }}</td>
                             <td class="text-center align-middle">${{ item.total|floatformat:2|intcomma }}</td>
-                            <td class="text-center align-middle"><a href="/shopping-cart/remove-item/{{ item.session_item_id }}">Remove Item</a></td>
+                            <td class="text-center align-middle"><a
+                                    href="/shopping-cart/remove-item/{{ item.session_item_id }}">Remove Item</a></td>
                         </tr>
                     {% endfor %}
                     </tbody>
@@ -81,7 +82,8 @@
                 <p class="h2 text-uppercase my-5">ORDER TOTAL: ${{ total|floatformat:2|intcomma }}</p>
 
                 <div class="d-grid">
-                    <a href="/checkout" class="btn btn-secondary text-uppercase block btn-lg text-white shadow py-3">Proceed to
+                    <a href="/checkout" class="btn btn-secondary text-uppercase block btn-lg text-white shadow py-3">Proceed
+                        to
                         Checkout</a>
                 </div>
 
@@ -124,7 +126,25 @@
                     <h2 class="mb-5">Got a question before you checkout?</h2>
                     <div class="d-grid gap-3">
                         {# TODO: Popup style guide #}
-                        <a href="" class="btn btn-primary shadow text-white text-uppercase">Size Guide</a>
+                        <button class="btn btn-primary shadow text-white text-uppercase" data-bs-toggle="modal"
+                                data-bs-target="#sizeGuideModal">Size Guide
+                        </button>
+                        <div class="modal fade" id="sizeGuideModal" tabindex="-1" aria-labelledby="sizeGuideModal"
+                             aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="sizeGuideModalLabel">Size Guide</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        ...
+                                        {% comment %} TODO: Add size guide {% endcomment %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         {# TODO: Link to FAQs #}
                         <a href="" class="btn btn-primary shadow text-white text-uppercase">FAQs</a>
                         {# TODO: Link to contact page #}

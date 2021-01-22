@@ -2,6 +2,8 @@ from django.shortcuts import render, redirect
 
 from core.models import Product
 
+import uuid
+
 
 def products(request):
     context = {"products": Product.objects.all()}
@@ -33,6 +35,7 @@ def add_to_cart(request):
         cart = request.session["cart"]
 
     cart.append({
+        "session_item_id": str(uuid.uuid4()),
         "product_id": request.POST["product_id"],
         "color": request.POST["color"],
         "size": request.POST["size"],
@@ -67,6 +70,7 @@ def cart_context(request):
             product = Product.objects.get(id=item["product_id"])
             item_total_cost = product.price * float(item["quantity"])
             context["items"].append({
+                "session_item_id": item["session_item_id"],
                 "product": product,
                 "quantity": item["quantity"],
                 "total": item_total_cost,
@@ -83,6 +87,23 @@ def cart_context(request):
             context["total"] = context["subtotal"] + 15
 
     return context
+
+
+def remove_shopping_cart_item(request, session_item_id):
+    """Removes an item from the session shopping cart, by its unique ID in the session."""
+
+    # If the cart is empty, just redirect to the home page.
+    if "cart" not in request.session:
+        return redirect("/")
+
+    new_items = []
+    for item in request.session["cart"]:
+        if item["session_item_id"] != session_item_id:
+            new_items.append(item)
+
+    request.session["cart"] = new_items
+
+    return redirect("/shopping-cart")
 
 
 def shopping_cart(request):

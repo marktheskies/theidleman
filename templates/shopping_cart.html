@@ -34,6 +34,7 @@
                         <th>Price</th>
                         <th>Quantity</th>
                         <th>Total</th>
+                        <th></th>
                     </tr>
                     </thead>
                     <tbody>
@@ -51,6 +52,7 @@
                             </td>
                             <td class="text-center align-middle">{{ item.quantity }}</td>
                             <td class="text-center align-middle">${{ item.total|floatformat:2|intcomma }}</td>
+                            <td class="text-center align-middle"><a href="/shopping-cart/remove-item/{{ item.session_item_id }}">Remove Item</a></td>
                         </tr>
                     {% endfor %}
                     </tbody>

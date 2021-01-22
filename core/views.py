@@ -54,7 +54,8 @@ def empty_cart(request):
     return redirect(request.META.get("HTTP_REFERER", '/'))
 
 
-def shopping_cart(request):
+def cart_context(request):
+    """Creates a context suitable for cart and checkout pages, containing products, subtotal, shipping and total."""
     context = {
         "items": [],
         "subtotal": 0.0,
@@ -81,8 +82,14 @@ def shopping_cart(request):
         else:
             context["total"] = context["subtotal"] + 15
 
+    return context
+
+
+def shopping_cart(request):
+    context = cart_context(request)
     return render(request, "shopping_cart.html", context)
 
 
 def checkout(request):
-    return render(request, "checkout.html")
+    context = cart_context(request)
+    return render(request, "checkout.html", context)

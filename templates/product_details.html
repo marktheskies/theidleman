@@ -4,28 +4,28 @@
 
 {% block content %}
 
-<div class="container-fluid bg-light py-3">
-    <div class="container">
-        <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
-            <ol class="breadcrumb mb-0">
-                <li class="breadcrumb-item"><a href="/">Home</a></li>
-                <li class="breadcrumb-item active"><a href="/products">Products</a></li>
-                <li class="breadcrumb-item active">{{ product.name }}</li>
-            </ol>
-        </nav>
+    <div class="container-fluid bg-light py-3">
+        <div class="container">
+            <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+                <ol class="breadcrumb mb-0">
+                    <li class="breadcrumb-item"><a href="/">Home</a></li>
+                    <li class="breadcrumb-item active"><a href="/products">Products</a></li>
+                    <li class="breadcrumb-item active">{{ product.name }}</li>
+                </ol>
+            </nav>
+        </div>
     </div>
-</div>
 
-{# Main Product Details/Selection #}
-<div class="container-fluid py-4">
-    <div class="container">
-        <div class="row">
-            <!-- Main Image -->
-            <div class="col-md-6 p-5">
-                <div class="p-5">
-                    <img src="{{ product.image.url }}" class="img-fluid">
+    {# Main Product Details/Selection #}
+    <div class="container-fluid py-4">
+        <div class="container">
+            <div class="row">
+                <!-- Main Image -->
+                <div class="col-md-6 p-5">
+                    <div class="p-5">
+                        <img src="{{ product.image.url }}" class="img-fluid">
+                    </div>
                 </div>
-            </div>
                 <div class="col-md-2">
                     {% comment %} Additional Product Images {% endcomment %}
                     {% load static %}
@@ -33,285 +33,299 @@
                         <img src="{{ image.image.url }}" class="img-fluid py-2">
                     {% endfor %}
                 </div>
-            <!-- Right side product info -->
-            <div class="col-md-4 mt-3 pe-md-5">
-                <p class="fs-4 py-1">{{ product.name }}</p>
-                <h4 class="fw-bolder py-1">${{ product.price }}</h4>
-                <p class="py-2">
-                {% if product.free_delivery %}
-                    <u>Free delivery & returns*</u>
-                {% else %}
-                    <u>$15 fixed-rate delivery</u>
-                {% endif %}
-                </p>
-                <!-- Star rating -->
-                <div class="row g-2">
-                    <div class="col-auto">
-                        {% load static %}
-                        {% if product.rating == 0 %}
-                            <div class="row">
-                                <div class="col-6">
-                                    <div class="row">
-                                        <div class="col px-1">
-                                            <img src="{% static 'images/star-unfilled.png' %}" class="img-fluid">
-                                        </div>
-                                        <div class="col px-1">
-                                            <img src="{% static 'images/star-unfilled.png' %}" class="img-fluid">
-                                        </div>
-                                        <div class="col px-1">
-                                            <img src="{% static 'images/star-unfilled.png' %}" class="img-fluid">
-                                        </div>
-                                        <div class="col px-1">
-                                            <img src="{% static 'images/star-unfilled.png' %}" class="img-fluid">
-                                        </div>
-                                        <div class="col px-1">
-                                            <img src="{% static 'images/star-unfilled.png' %}" class="img-fluid">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        {% elif product.rating == 1 %}
-                            <div class="row">
-                                <div class="col-6">
-                                    <div class="row">
-                                        <div class="col px-1">
-                                            <img src="{% static 'images/star.png' %}" class="img-fluid">
-                                        </div>
-                                        <div class="col px-1">
-                                            <img src="{% static 'images/star-unfilled.png' %}" class="img-fluid">
-                                        </div>
-                                        <div class="col px-1">
-                                            <img src="{% static 'images/star-unfilled.png' %}" class="img-fluid">
-                                        </div>
-                                        <div class="col px-1">
-                                            <img src="{% static 'images/star-unfilled.png' %}" class="img-fluid">
-                                        </div>
-                                        <div class="col px-1">
-                                            <img src="{% static 'images/star-unfilled.png' %}" class="img-fluid">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        {% elif product.rating == 2 %}
-                            <div class="row">
-                                <div class="col-6">
-                                    <div class="row">
-                                        <div class="col px-1">
-                                            <img src="{% static 'images/star.png' %}" class="img-fluid">
-                                        </div>
-                                        <div class="col px-1">
-                                            <img src="{% static 'images/star.png' %}" class="img-fluid">
-                                        </div>
-                                        <div class="col px-1">
-                                            <img src="{% static 'images/star-unfilled.png' %}" class="img-fluid">
-                                        </div>
-                                        <div class="col px-1">
-                                            <img src="{% static 'images/star-unfilled.png' %}" class="img-fluid">
-                                        </div>
-                                        <div class="col px-1">
-                                            <img src="{% static 'images/star-unfilled.png' %}" class="img-fluid">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        {% elif product.rating == 3 %}
-                            <div class="row">
-                                <div class="col-6">
-                                    <div class="row">
-                                        <div class="col px-1">
-                                            <img src="{% static 'images/star.png' %}" class="img-fluid">
-                                        </div>
-                                        <div class="col px-1">
-                                            <img src="{% static 'images/star.png' %}" class="img-fluid">
-                                        </div>
-                                        <div class="col px-1">
-                                            <img src="{% static 'images/star.png' %}" class="img-fluid">
-                                        </div>
-                                        <div class="col px-1">
-                                            <img src="{% static 'images/star-unfilled.png' %}" class="img-fluid">
-                                        </div>
-                                        <div class="col px-1">
-                                            <img src="{% static 'images/star-unfilled.png' %}" class="img-fluid">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        {% elif product.rating == 4 %}
-                            <div class="row">
-                                <div class="col-6">
-                                    <div class="row">
-                                        <div class="col px-1">
-                                            <img src="{% static 'images/star.png' %}" class="img-fluid">
-                                        </div>
-                                        <div class="col px-1">
-                                            <img src="{% static 'images/star.png' %}" class="img-fluid">
-                                        </div>
-                                        <div class="col px-1">
-                                            <img src="{% static 'images/star.png' %}" class="img-fluid">
-                                        </div>
-                                        <div class="col px-1">
-                                            <img src="{% static 'images/star.png' %}" class="img-fluid">
-                                        </div>
-                                        <div class="col px-1">
-                                            <img src="{% static 'images/star-unfilled.png' %}" class="img-fluid">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        {% elif product.rating == 5 %}
-                            <div class="row">
-                                <div class="col-6">
-                                    <div class="row">
-                                        <div class="col px-1">
-                                            <img src="{% static 'images/star.png' %}" class="img-fluid">
-                                        </div>
-                                        <div class="col px-1">
-                                            <img src="{% static 'images/star.png' %}" class="img-fluid">
-                                        </div>
-                                        <div class="col px-1">
-                                            <img src="{% static 'images/star.png' %}" class="img-fluid">
-                                        </div>
-                                        <div class="col px-1">
-                                            <img src="{% static 'images/star.png' %}" class="img-fluid">
-                                        </div>
-                                        <div class="col px-1">
-                                            <img src="{% static 'images/star.png' %}" class="img-fluid">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                <!-- Right side product info -->
+                <div class="col-md-4 mt-3 pe-md-5">
+                    <p class="fs-4 py-1">{{ product.name }}</p>
+                    <h4 class="fw-bolder py-1">${{ product.price }}</h4>
+                    <p class="py-2">
+                        {% if product.free_delivery %}
+                            <u>Free delivery & returns*</u>
+                        {% else %}
+                            <u>$15 fixed-rate delivery</u>
                         {% endif %}
-                    </div>
-                </div>
-                <!-- Colour selection -->
-                <h6 class="fw-bolder text-uppercase py-3">Colour:</h6>
-
-                <div class="p-1 ps-4">
-                    {% for color in product.colors.all %}
-                        <style>
-                            .btn-{{ color.hex_value|slice:"1:" }} {
-                                color: {{ color.hex_value }};
-                                border-color: {{ color.hex_value }};
-                            }
-
-                            .btn-{{ color.hex_value|slice:"1:" }}:hover {
-                                color: black;
-                                background-color: {{ color.hex_value }};
-                            }
-
-                            .btn-check:checked + .btn-{{ color.hex_value|slice:"1:" }},
-                            .btn-check:active + .btn-{{ color.hex_value|slice:"1:" }},
-                            .btn-{{ color.hex_value|slice:"1:" }}:active,
-                            .btn-{{ color.hex_value|slice:"1:" }}.active,
-                            .btn-{{ color.hex_value|slice:"1:" }}.dropdown-toggle.show {
-                                color: black;
-                                background-color: {{ color.hex_value }};
-                            }
-                        </style>
-                        <div class="form-check ps-0 me-0 form-check-inline d-inline-block">
-                            <input {% if forloop.first %}checked{% endif %} type="radio" class="btn-check" name="color" id="{{ color.hex_value }}" autocomplete="off">
-                            <label class="btn btn-{{ color.hex_value|slice:"1:" }}" for="{{ color.hex_value }}">&nbsp;</label>
-                        </div>
-                    {% endfor %}
-                </div>
-
-                <!-- Size label -->
-                <div class="row pt-4 d-flex justify-content-between">
-                    <div class="col-md-3">
-                        <h6 class="fw-bolder text-uppercase">Size:</h6>
-                    </div>
-                    <div class="col-md-4">
-                        {% comment %} Size Guide Modal {% endcomment %}
-                        <button class="text-uppercase btn btn-link pt-0 pe-0" data-bs-toggle="modal" data-bs-target="#sizeGuideModal">Size Guide</button>
-                        <div class="modal fade" id="sizeGuideModal" tabindex="-1" aria-labelledby="sizeGuideModal" aria-hidden="true">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="sizeGuideModalLabel">Size Guide</h5>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </p>
+                    <!-- Star rating -->
+                    <div class="row g-2">
+                        <div class="col-auto">
+                            {% load static %}
+                            {% if product.rating == 0 %}
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div class="row">
+                                            <div class="col px-1">
+                                                <img src="{% static 'images/star-unfilled.png' %}" class="img-fluid">
+                                            </div>
+                                            <div class="col px-1">
+                                                <img src="{% static 'images/star-unfilled.png' %}" class="img-fluid">
+                                            </div>
+                                            <div class="col px-1">
+                                                <img src="{% static 'images/star-unfilled.png' %}" class="img-fluid">
+                                            </div>
+                                            <div class="col px-1">
+                                                <img src="{% static 'images/star-unfilled.png' %}" class="img-fluid">
+                                            </div>
+                                            <div class="col px-1">
+                                                <img src="{% static 'images/star-unfilled.png' %}" class="img-fluid">
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="modal-body">
-                                        ...
-                                        {% comment %} TODO: Add size guide {% endcomment %}
+                                </div>
+                            {% elif product.rating == 1 %}
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div class="row">
+                                            <div class="col px-1">
+                                                <img src="{% static 'images/star.png' %}" class="img-fluid">
+                                            </div>
+                                            <div class="col px-1">
+                                                <img src="{% static 'images/star-unfilled.png' %}" class="img-fluid">
+                                            </div>
+                                            <div class="col px-1">
+                                                <img src="{% static 'images/star-unfilled.png' %}" class="img-fluid">
+                                            </div>
+                                            <div class="col px-1">
+                                                <img src="{% static 'images/star-unfilled.png' %}" class="img-fluid">
+                                            </div>
+                                            <div class="col px-1">
+                                                <img src="{% static 'images/star-unfilled.png' %}" class="img-fluid">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% elif product.rating == 2 %}
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div class="row">
+                                            <div class="col px-1">
+                                                <img src="{% static 'images/star.png' %}" class="img-fluid">
+                                            </div>
+                                            <div class="col px-1">
+                                                <img src="{% static 'images/star.png' %}" class="img-fluid">
+                                            </div>
+                                            <div class="col px-1">
+                                                <img src="{% static 'images/star-unfilled.png' %}" class="img-fluid">
+                                            </div>
+                                            <div class="col px-1">
+                                                <img src="{% static 'images/star-unfilled.png' %}" class="img-fluid">
+                                            </div>
+                                            <div class="col px-1">
+                                                <img src="{% static 'images/star-unfilled.png' %}" class="img-fluid">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% elif product.rating == 3 %}
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div class="row">
+                                            <div class="col px-1">
+                                                <img src="{% static 'images/star.png' %}" class="img-fluid">
+                                            </div>
+                                            <div class="col px-1">
+                                                <img src="{% static 'images/star.png' %}" class="img-fluid">
+                                            </div>
+                                            <div class="col px-1">
+                                                <img src="{% static 'images/star.png' %}" class="img-fluid">
+                                            </div>
+                                            <div class="col px-1">
+                                                <img src="{% static 'images/star-unfilled.png' %}" class="img-fluid">
+                                            </div>
+                                            <div class="col px-1">
+                                                <img src="{% static 'images/star-unfilled.png' %}" class="img-fluid">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% elif product.rating == 4 %}
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div class="row">
+                                            <div class="col px-1">
+                                                <img src="{% static 'images/star.png' %}" class="img-fluid">
+                                            </div>
+                                            <div class="col px-1">
+                                                <img src="{% static 'images/star.png' %}" class="img-fluid">
+                                            </div>
+                                            <div class="col px-1">
+                                                <img src="{% static 'images/star.png' %}" class="img-fluid">
+                                            </div>
+                                            <div class="col px-1">
+                                                <img src="{% static 'images/star.png' %}" class="img-fluid">
+                                            </div>
+                                            <div class="col px-1">
+                                                <img src="{% static 'images/star-unfilled.png' %}" class="img-fluid">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% elif product.rating == 5 %}
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div class="row">
+                                            <div class="col px-1">
+                                                <img src="{% static 'images/star.png' %}" class="img-fluid">
+                                            </div>
+                                            <div class="col px-1">
+                                                <img src="{% static 'images/star.png' %}" class="img-fluid">
+                                            </div>
+                                            <div class="col px-1">
+                                                <img src="{% static 'images/star.png' %}" class="img-fluid">
+                                            </div>
+                                            <div class="col px-1">
+                                                <img src="{% static 'images/star.png' %}" class="img-fluid">
+                                            </div>
+                                            <div class="col px-1">
+                                                <img src="{% static 'images/star.png' %}" class="img-fluid">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+
+                    {# Purchase form #}
+                    <form action="/add-to-cart/" method="post">
+                        <!-- Colour selection -->
+                        <h6 class="fw-bolder text-uppercase py-3">Colour:</h6>
+                        <div class="p-1 ps-4">
+                            {% for color in product.colors.all %}
+                                <style>
+                                    .btn-{{ color.hex_value|slice:"1:" }} {
+                                        color: {{ color.hex_value }};
+                                        border-color: {{ color.hex_value }};
+                                    }
+
+                                    .btn-{{ color.hex_value|slice:"1:" }}:hover {
+                                        color: black;
+                                        background-color: {{ color.hex_value }};
+                                    }
+
+                                    .btn-check:checked + .btn-{{ color.hex_value|slice:"1:" }},
+                                    .btn-check:active + .btn-{{ color.hex_value|slice:"1:" }},
+                                    .btn-{{ color.hex_value|slice:"1:" }}:active,
+                                    .btn-{{ color.hex_value|slice:"1:" }}.active,
+                                    .btn-{{ color.hex_value|slice:"1:" }}.dropdown-toggle.show {
+                                        color: black;
+                                        background-color: {{ color.hex_value }};
+                                    }
+                                </style>
+                                <div class="form-check ps-0 me-0 form-check-inline d-inline-block">
+                                    <input {% if forloop.first %}checked{% endif %} type="radio" class="btn-check"
+                                           name="color" id="{{ color.hex_value }}" autocomplete="off">
+                                    <label class="btn btn-{{ color.hex_value|slice:"1:" }}" for="{{ color.hex_value }}">&nbsp;</label>
+                                </div>
+                            {% endfor %}
+                        </div>
+
+                        <!-- Size label -->
+                        <div class="row pt-4 d-flex justify-content-between">
+                            <div class="col-md-3">
+                                <h6 class="fw-bolder text-uppercase">Size:</h6>
+                            </div>
+                            <div class="col-md-4">
+                                {% comment %} Size Guide Modal {% endcomment %}
+                                <button class="text-uppercase btn btn-link pt-0 pe-0" data-bs-toggle="modal"
+                                        data-bs-target="#sizeGuideModal">Size Guide
+                                </button>
+                                <div class="modal fade" id="sizeGuideModal" tabindex="-1" aria-labelledby="sizeGuideModal"
+                                     aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="sizeGuideModalLabel">Size Guide</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                        aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                ...
+                                                {% comment %} TODO: Add size guide {% endcomment %}
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-                <!-- Size selection -->
-                <div class="p-1 ps-4">
-                    {% for size in product.sizes.all %}
-                        <div class="form-check ps-0 me-0 form-check-inline d-inline-block">
-                            <input {% if forloop.first %}checked{% endif %} type="radio" class="btn-check" name="size" id="{{ size.name }}" autocomplete="off">
-                            <label class="btn btn-outline-primary" for="{{ size.name }}">{{ size.name }}</label>
+                        <!-- Size selection -->
+                        <div class="p-1 ps-4">
+                            {% for size in product.sizes.all %}
+                                <div class="form-check ps-0 me-0 form-check-inline d-inline-block">
+                                    <input {% if forloop.first %}checked{% endif %} type="radio" class="btn-check"
+                                           name="size" id="{{ size.name }}" autocomplete="off">
+                                    <label class="btn btn-outline-primary" for="{{ size.name }}">{{ size.name }}</label>
+                                </div>
+                            {% endfor %}
                         </div>
-                    {% endfor %}
-                </div>
 
-                <!-- Quantity selection dropdown -->
-                <h6 class="fw-bolder text-uppercase py-3 mt-2">Quantity:</h6>
+                        <!-- Quantity selection dropdown -->
+                        <h6 class="fw-bolder text-uppercase py-3 mt-2">Quantity:</h6>
 
-                <div class="row">
-                    <div class="col-md-6">
-                        <input type="number" name="quantity" id="quantity" class="form-control" value="1">
-                    </div>
-                </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <input type="number" name="quantity" id="quantity" class="form-control" value="1">
+                            </div>
+                        </div>
 
-                <!-- Test on avatar link -->
+                    <!-- Test on avatar link -->
                     <div class="d-flex justify-content-end align-items-center pt-3">
                         <div class="col-auto">
-                            <img src="{% static 'images/avatar-icon.png' %}" alt="avatar icon" class="img-fluid product-tool-icons mx-2 py-1">
+                            <img src="{% static 'images/avatar-icon.png' %}" alt="avatar icon"
+                                 class="img-fluid product-tool-icons mx-2 py-1">
                         </div>
                         <div class="col-auto">
                             <a href="#" class="text-uppercase text-underline">Try On Avatar</a>
                         </div>
                     </div>
 
-                <!-- Add to wishlist link -->
-                <div class="d-flex justify-content-end align-items-center py-2">
-                    <div class="col-auto">
-                        <img src="{% static 'images/heart-icon.png' %}" alt="wishlist icon" class="img-fluid product-tool-icons mx-2 py-1">
+                    <!-- Add to wishlist link -->
+                    <div class="d-flex justify-content-end align-items-center py-2">
+                        <div class="col-auto">
+                            <img src="{% static 'images/heart-icon.png' %}" alt="wishlist icon"
+                                 class="img-fluid product-tool-icons mx-2 py-1">
+                        </div>
+                        <div class="col-auto">
+                            <a href="#" class="text-uppercase text-underline">Add to Wishlist</a>
+                        </div>
                     </div>
-                    <div class="col-auto">
-                        <a href="#" class="text-uppercase text-underline">Add to Wishlist</a>
-                    </div>
-                </div>
-                                                  
-                <!-- Add to Cart Button -->
-                <div class="row py-4">
+
+                    <!-- Add to Cart Button -->
+                    <div class="row py-4">
                         <button class="btn btn-secondary shadow text-white py-3">Add To Cart</button>
-                </div>             
+                    </div>
+
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
-</div>
-</div>
- 
-<!-- Product Description Collapsible -->
-<div class="container-fluid bg-light mt-5 py-3 border border-1" data-bs-toggle="collapse" data-bs-target="#productDescription">
-    <button class="btn container-fluid">Product Description  +</button>
-    <div class="collapse" id="productDescription">
-        <div class="card">
-            <div class="card-body">
-                {{ product.description }}
+
+    <!-- Product Description Collapsible -->
+    <div class="container-fluid bg-light mt-5 py-3 border border-1" data-bs-toggle="collapse"
+         data-bs-target="#productDescription">
+        <button class="btn container-fluid">Product Description +</button>
+        <div class="collapse" id="productDescription">
+            <div class="card">
+                <div class="card-body">
+                    {{ product.description }}
+                </div>
             </div>
         </div>
-    </div>      
-</div>  
+    </div>
 
-<!-- Details and Care Collapsible -->
-<div class="container-fluid bg-light py-3 border border-1" data-bs-toggle="collapse" data-bs-target="#detailsAndCare">
-    <button class="btn bg-light container-fluid">Details And Care  +</button>
-    <div class="collapse" id="detailsAndCare">
-        <div class="card">
-            <div class="card-body">
-                {{ product.care_instructions }}
+    <!-- Details and Care Collapsible -->
+    <div class="container-fluid bg-light py-3 border border-1" data-bs-toggle="collapse"
+         data-bs-target="#detailsAndCare">
+        <button class="btn bg-light container-fluid">Details And Care +</button>
+        <div class="collapse" id="detailsAndCare">
+            <div class="card">
+                <div class="card-body">
+                    {{ product.care_instructions }}
+                </div>
             </div>
-        </div>  
-    </div>  
-</div>  
+        </div>
+    </div>
 
-{% comment %} <!-- Customer Reviews Collapsible -->
+    {% comment %} <!-- Customer Reviews Collapsible -->
 <div class="container-fluid bg-light py-3 border border-1" data-bs-toggle="collapse" data-bs-target="#customerReviews">
     <button class="btn bg-light container-fluid" >Customer Reviews  +</button>
     <div class="collapse" id="customerReviews">
@@ -320,61 +334,64 @@
         </div>      
 </div>  {% endcomment %}
 
-<!-- You May Also Like Carousel -->
-<!-- Work in progress, needs more formatting -->
-<!-- Will need further products entered to link -->
-<div class="d-flex justify-content-center">
-    <h3 class="text-uppercase my-5">You Might Also Like...</h3>
-</div>
-
-<div class="container px-md-5">
-<div id="youMightAlsoLikeCarousel" class="carousel slide carousel-dark" data-bs-ride="carousel">
-  <div class="carousel-inner">
-    <div class="carousel-item active">
-    <div class="row">
-    {% for product in product.get_related_products.all %}
-        {% if forloop.counter|divisibleby:5 %}
-            </div>
-            </div>
-            <div class="carousel-item">
-            <div class="row">
-        {% else %}
-            <div class="col">
-                <div class="card border-0 shadow" style="max-width: 288px">
-                    <img src="{{ product.image.url }}" class="card-img-top">
-                    <div class="card-body text-center">
-                        <h6 class="card-title">{{ product.name }}</h6>
-                        <span class="h5"><strong>${{ product.price }}</strong></span>
-                    </div>
-                </div>
-            </div>
-        {% endif %}
-        
-    {% endfor %}
+    <!-- You May Also Like Carousel -->
+    <!-- Work in progress, needs more formatting -->
+    <!-- Will need further products entered to link -->
+    <div class="d-flex justify-content-center">
+        <h3 class="text-uppercase my-5">You Might Also Like...</h3>
     </div>
+
+    <div class="container px-md-5">
+        <div id="youMightAlsoLikeCarousel" class="carousel slide carousel-dark" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <div class="row">
+                        {% for product in product.get_related_products.all %}
+                            {% if forloop.counter|divisibleby:5 %}
+                                </div>
+                                </div>
+                                <div class="carousel-item">
+                                <div class="row">
+                            {% else %}
+                                <div class="col">
+                                    <div class="card border-0 shadow" style="max-width: 288px">
+                                        <img src="{{ product.image.url }}" class="card-img-top">
+                                        <div class="card-body text-center">
+                                            <h6 class="card-title">{{ product.name }}</h6>
+                                            <span class="h5"><strong>${{ product.price }}</strong></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endif %}
+
+                        {% endfor %}
+                        </div>
+                        </div>
+            </div>
+        </div>
     </div>
-  </div>
-</div>
-</div>
 
-<div class="container py-5">
-    <hr>
-</div>
+    <div class="container py-5">
+        <hr>
+    </div>
 
-<!-- Test the Look Section -->
-<div class="d-flex justify-content-center mt-3 py-3">
-    <h3 class="text-uppercase">Want to test the look?</h3>
-</div>  
-<div class="d-flex justify-content-center">
-    <p class="text w-50 text-center">We know online shopping isn't always easy, especially when it comes to matching clothing pieces. Ever done an online clothing haul and realised you can't wear any of it together? Yeah, us too.</p>
-</div>
-<!-- Try on Avatar button -->
-<div class="d-flex justify-content-center py-3 mb-5 pb-4">
-    <!-- Add t-shirt icon -->
-    <button class="btn btn-success shadow text-white d-flex">
-        <img src="{% static 'images/avatar-icon.png' %}" alt="avatar icon" class="img-fluid product-tool-icons mx-2 align-self-center">
-        Try on Avatar
-    </button>
-</div>  
+    <!-- Test the Look Section -->
+    <div class="d-flex justify-content-center mt-3 py-3">
+        <h3 class="text-uppercase">Want to test the look?</h3>
+    </div>
+    <div class="d-flex justify-content-center">
+        <p class="text w-50 text-center">We know online shopping isn't always easy, especially when it comes to matching
+            clothing pieces. Ever done an online clothing haul and realised you can't wear any of it together? Yeah, us
+            too.</p>
+    </div>
+    <!-- Try on Avatar button -->
+    <div class="d-flex justify-content-center py-3 mb-5 pb-4">
+        <!-- Add t-shirt icon -->
+        <button class="btn btn-success shadow text-white d-flex">
+            <img src="{% static 'images/avatar-icon.png' %}" alt="avatar icon"
+                 class="img-fluid product-tool-icons mx-2 align-self-center">
+            Try on Avatar
+        </button>
+    </div>
 
 {% endblock %}

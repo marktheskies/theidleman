@@ -43,3 +43,13 @@ def add_to_cart(request):
     request.session["cart"] = cart
 
     return redirect("/products")
+
+
+def empty_cart(request):
+    """Removes all items in cart. If the cart session variable does not exist, does nothing."""
+    if "cart" in request.session:
+        request.session["cart"] = []
+
+    # Redirect to the last page (HTTP_REFERRER). If HTTP_REFERER is empty, for example, if the user hits "back",
+    # or navigates to the page directly, redirect to the homepage.
+    return redirect(request.META.get("HTTP_REFERER", '/'))

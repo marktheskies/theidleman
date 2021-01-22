@@ -81,6 +81,9 @@ def cart_context(request):
             if not product.free_delivery:
                 context["free_delivery"] = False
 
+        if context["subtotal"] > 100:
+            context["free_delivery"] = True
+
         if context["free_delivery"]:
             context["total"] = context["subtotal"]
         else:

@@ -222,34 +222,64 @@
                             {% endfor %}
                         </div>
 
-                        <!-- Size label -->
-                        <div class="row pt-4 d-flex justify-content-between">
-                            <div class="col-md-3">
-                                <h6 class="fw-bolder text-uppercase">Size:</h6>
-                            </div>
-                            <div class="col-md-4">
-                                {% comment %} Size Guide Modal {% endcomment %}
-                                <button class="text-uppercase btn btn-link pt-0 pe-0" data-bs-toggle="modal"
-                                        data-bs-target="#sizeGuideModal">Size Guide
-                                </button>
-                                <div class="modal fade" id="sizeGuideModal" tabindex="-1" aria-labelledby="sizeGuideModal"
-                                     aria-hidden="true">
-                                    <div class="modal-dialog">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title" id="sizeGuideModalLabel">Size Guide</h5>
-                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                        aria-label="Close"></button>
-                                            </div>
-                                            <div class="modal-body">
-                                                ...
-                                                {% comment %} TODO: Add size guide {% endcomment %}
-                                            </div>
+                <!-- Size label -->
+                <div class="row pt-4 d-flex justify-content-between">
+                    <div class="col-md-3">
+                        <h6 class="fw-bolder text-uppercase">Size:</h6>
+                    </div>
+                    <div class="col-md-4">
+                        {% comment %} Size Guide Modal {% endcomment %}
+                        <button type="button" class="text-uppercase btn btn-link pt-0 pe-0" data-bs-toggle="modal" data-bs-target="#sizeGuideModal">Size Guide</button>
+                        <div class="modal fade" id="sizeGuideModal" tabindex="-1" aria-labelledby="sizeGuideModal" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="sizeGuideModalLabel">Size Guide</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                            <table class="table p-5 text-center table-bordered">
+                                                <tr class="table-primary">
+                                                    <th class="text-uppercase">Size</th>
+                                                    <th class="text-uppercase">Chest</th>
+                                                    <th class="text-uppercase">Waist</th>
+                                                    <th class="text-uppercase">Hips</th>
+                                                </tr>
+                                                <tr>
+                                                    <td>S</td>
+                                                    <td>100 cm (39 in)</td>
+                                                    <td>79 cm (31 in)</td>
+                                                    <td>90 cm (35 in)</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>M</td>
+                                                    <td>105 cm (41 in)</td>
+                                                    <td>84 cm (33 in)</td>
+                                                    <td>95 cm (37 in)</td>
+                                                </tr>
+                                                    <td>L</td>
+                                                    <td>110 cm (43 in)</td>
+                                                    <td>89 cm (35 in)</td>
+                                                    <td>100 cm (39 in)</td>
+                                                </tr>
+                                                    <td>XL</td>
+                                                    <td>115 cm (45 in)</td>
+                                                    <td>94 cm (37 in)</td>
+                                                    <td>105 cm (41 in)</td>
+                                                </tr>
+                                                    <td>XXL</td>
+                                                    <td>120 cm (37 in)</td>
+                                                    <td>99 cm (39 in)</td>
+                                                    <td>110 cm (43 in)</td>
+                                                </tr>
+                                            </table>
+                                          </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                  
                         <!-- Size selection -->
                         <div class="p-1 ps-4">
                             {% for size in product.sizes.all %}
@@ -271,6 +301,7 @@
                         </div>
 
                     <!-- Test on avatar link -->
+                    {% comment %} TODO: Implement {% endcomment %}
                     <div class="d-flex justify-content-end align-items-center pt-3">
                         <div class="col-auto">
                             <img src="{% static 'images/avatar-icon.png' %}" alt="avatar icon"
@@ -282,6 +313,7 @@
                     </div>
 
                     <!-- Add to wishlist link -->
+                    {% comment %} TODO: Implement {% endcomment %}
                     <div class="d-flex justify-content-end align-items-center py-2">
                         <div class="col-auto">
                             <img src="{% static 'images/heart-icon.png' %}" alt="wishlist icon"
@@ -338,18 +370,27 @@
         </div>      
 </div>  {% endcomment %}
 
-    <!-- You May Also Like Carousel -->
-    <!-- Work in progress, needs more formatting -->
-    <!-- Will need further products entered to link -->
-    <div class="d-flex justify-content-center">
-        <h3 class="text-uppercase my-5">You Might Also Like...</h3>
-    </div>
+    <!-- You May Also Like Area -->
+<div class="d-flex justify-content-center">
+    <h3 class="text-uppercase my-5">You Might Also Like...</h3>
+</div>    
 
-    <div class="container px-md-5">
-        <div id="youMightAlsoLikeCarousel" class="carousel slide carousel-dark" data-bs-ride="carousel">
-            <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <div class="row">
+<!-- You May Also Like Carousel -->
+<!-- Work in progress, needs more formatting -->
+<!-- Will need further products entered to link -->
+<div class="container-fluid d-flex w-75 align-items-center">
+    <!--Arrow Icon images need to be editted to remove white background so shadows can be added -->
+    <a class="justify-content-start pe-5" href="#youMightAlsoLikeCarousel" role="button" data-bs-slide="prev">
+        <span class="product-carousel-control-prev-icon" aria-hidden="true">
+            <i class="fas fa-arrow-alt-circle-left fa-3x text-dark"></i>
+        </span>
+        <span class="visually-hidden">Previous</span>
+    </a>
+    <div id="youMightAlsoLikeCarousel" class="carousel slide mx-auto">
+        <div class="carousel-inner">
+            <!--Placeholder items only: Elements within the carousel should be pulling from database -->
+            <div class="carousel-item active">
+                <div class="row">
                         {% for product in product.get_related_products.all %}
                             {% if forloop.counter|divisibleby:5 %}
                                 </div>
@@ -358,7 +399,7 @@
                                 <div class="row">
                             {% else %}
                                 <div class="col">
-                                    <div class="card border-0 shadow" style="max-width: 288px">
+                                    <div class="card border-0 shadow" style="max-width: 214px">
                                         <img src="{{ product.image.url }}" class="card-img-top" alt="product secondary image">
                                         <div class="card-body text-center">
                                             <h6 class="card-title">{{ product.name }}</h6>
@@ -369,11 +410,17 @@
                             {% endif %}
 
                         {% endfor %}
+                         </div>
                         </div>
-                        </div>
-            </div>
         </div>
     </div>
+    <a class="justify-content-end ps-5" href="#youMightAlsoLikeCarousel" role="button" data-bs-slide="next">
+        <span class="product-carousel-control-next-icon" aria-hidden="true">
+            <i class="fas fa-arrow-alt-circle-right fa-3x text-dark"></i>
+        </span>
+        <span class="visually-hidden">Next</span>
+    </a>
+</div>
 
     <div class="container py-5">
         <hr>
@@ -388,6 +435,8 @@
             clothing pieces. Ever done an online clothing haul and realised you can't wear any of it together? Yeah, us
             too.</p>
     </div>
+
+    {% comment %} TODO: Implement avatar {% endcomment %}
     <!-- Try on Avatar button -->
     <div class="d-flex justify-content-center py-3 mb-5 pb-4">
         <!-- Add t-shirt icon -->

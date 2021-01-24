@@ -4,11 +4,11 @@
 
 {% block content %}
     <div class="container-fluid homepage-top px-0">
-        <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+        <div id="homepageHeroCarousel" class="carousel slide" data-bs-ride="carousel">
             <ol class="carousel-indicators">
-                <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"></li>
-                <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"></li>
-                <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"></li>
+                <li data-bs-target="#homepageHeroCarousel" data-bs-slide-to="0" class="active"></li>
+                <li data-bs-target="#homepageHeroCarousel" data-bs-slide-to="1"></li>
+                <li data-bs-target="#homepageHeroCarousel" data-bs-slide-to="2"></li>
             </ol>
             <div class="carousel-inner">
                 <div class="carousel-item active">
@@ -18,7 +18,7 @@
                         <h1 class="display-3">Discover our latest <br>collection</h1>
                         <p class="lead">Click below to see our latest collection and always look your best,<br>day or
                             night.</p>
-                        <button class="btn btn-primary shadow text-white">See More</button>
+                        <a href="/products" class="btn btn-primary shadow text-white">See More</a>
                     </div>
                 </div>
                 <div class="carousel-item">
@@ -30,11 +30,11 @@
                     <img src="{% static 'images/homepage-feature3.jpg' %}" alt="feature item 3" class="d-block w-100">
                 </div>
             </div>
-            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-bs-slide="prev">
+            <a class="carousel-control-prev" href="#homepageHeroCarousel" role="button" data-bs-slide="prev">
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                 <span class="visually-hidden">Previous</span>
             </a>
-            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-bs-slide="next">
+            <a class="carousel-control-next" href="#homepageHeroCarousel" role="button" data-bs-slide="next">
                 <span class="carousel-control-next-icon" aria-hidden="true"></span>
                 <span class="visually-hidden">Next</span>
             </a>
@@ -76,8 +76,10 @@
                         <h2 class="text-uppercase">Discover Our Latest Trends</h2>
                         <p>Refresh your wardrobe with our new summer styles.<br>
                             Click below to view more of our modeled outfits.</p>
-                        <button class="btn btn-primary text-white shadow mb-4">New Styles</button>
+                        {% comment %} TODO: Link to products with filter for NEW {% endcomment %}
+                        <a href="/products" class="btn btn-primary text-white shadow mb-4">New Styles</a>
                         <div class="row mt-3">
+                            {% comment %} TODO: Link to products on the model and implement touchpoint icons {% endcomment %}
                             {% for product in products %}
                                 <div class="col">
                                     <div class="product-card card border-0 cursor-pointer"
@@ -85,7 +87,8 @@
                                         <img src="{{ product.image.url }}" class="card-img-top shadow" alt="main page product">
                                         <div class="card-body text-center">
                                             <h6 class="card-title">{{ product.name }}</h6>
-                                            <span class="h5"><strong>${{ product.price }}</strong></span>
+                                            <span class="h5"><strong>${{ product.price }}</strong></span><br>
+                                            <a href="/products/{{ product.id }}" class="stretched-link" style="opacity: 0;"></a>
                                         </div>
                                     </div>
                                 </div>
@@ -99,7 +102,7 @@
 
     {# Blogpost section #}
     <div class="container-fluid text-center py-4 homepage-blogposts-section">
-        <!-- Would load recent/chosen blog post snippets from database ? Using dummy content for now -->
+        {% comment %} <!-- TODO: Would load recent/chosen blog post snippets from database ? Using dummy content for now --> {% endcomment %}
         <div class="container">
             <div class="row">
                 <div class="col-md-4">
@@ -120,7 +123,7 @@
                     <p>So you've just invested in a new wardrobe. You've got the shoes, the suit, and the...</p>
                 </div>
             </div>
-            <button class="btn btn-primary text-white text-uppercase shadow">See More</button>
+            {% comment %} TODO: Implement <button class="btn btn-primary text-white text-uppercase shadow">See More</button> {% endcomment %}
         </div>
     </div>
 
@@ -180,11 +183,11 @@
                     <p class="my-auto">Sign up to be notified of promos and style advice</p>
                 </div>
                 <div class="col-md-4">
-                    <input type="email" class="form-control bg-light border-0 text-uppercase" id="exampleInputEmail1"
+                    <input type="email" class="form-control bg-light border-0 text-uppercase" id="InputEmail"
                            placeholder="Email Address">
                 </div>
                 <div class="col-auto">
-                    <button type="submit" class="btn btn-secondary text-uppercase text-white shadow">Join</button>
+                    <button type="button" class="btn btn-secondary text-uppercase text-white shadow" data-bs-toggle="modal" data-bs-target="#mailingListSignupModalFake">Join</button>
                     <!-- button needs to be gold rather than blue -->
                 </div>
             </div>

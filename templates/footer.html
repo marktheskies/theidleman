@@ -3,6 +3,7 @@
         <div class="row">
             <div class="col-md-3 text-center">
                 <h2 class="h5 text-decoration-underline mb-4">Quick Links</h2>
+                {% comment %} TODO: Implement the below pages {% endcomment %}
                 <p><a class="footer-link" href="#">About Us</a></p>
                 <p><a class="footer-link" href="#">Careers</a></p>
                 <p><a class="footer-link" href="#">Privacy Policy</a></p>
@@ -10,6 +11,7 @@
             </div>
             <div class="col-md-3 text-center">
                 <h2 class="h5 text-decoration-underline mb-4">Help & Support</h2>
+                {% comment %} TODO: Implement the below pages {% endcomment %}
                 <p><a class="footer-link" href="#">Contact Us</a></p>
                 <p><a class="footer-link" href="#">Size Guide</a></p>
                 <p><a class="footer-link" href="#">Delivery</a></p>
@@ -24,15 +26,16 @@
                             <input type="email" class="form-control" placeholder="email@example.com">
                         </div>
                         <div class="col">
-                            <div class="btn btn-primary shadow text-white">Join Now</div>
+                            <button type="button" class="btn btn-primary text-uppercase text-white shadow" data-bs-toggle="modal" data-bs-target="#mailingListSignupModalFake">Join Now</button>
+                            {% include 'mailing_list_signup_fake_modal.html' %}
                         </div>
                     </div>
                 </form>
 
                 <div class="row mt-5">
-                    <div class="col"><a href="#"><i class="fab fa-facebook-square fa-4x"></i></a></div>
-                    <div class="col"><a href="#"><i class="fab fa-instagram-square fa-4x"></i></a></div>
-                    <div class="col"><a href="#"><i class="fab fa-twitter-square fa-4x"></i></a></div>
+                    <div class="col"><a target="_blank" href="https://www.facebook.com/Idle/"><i class="fab fa-facebook-square fa-4x"></i></a></div>
+                    <div class="col"><a target="_blank" href="https://www.instagram.com/idle/?hl=en"><i class="fab fa-instagram-square fa-4x"></i></a></div>
+                    <div class="col"><a target="_blank" href="https://twitter.com/idle?lang=en"><i class="fab fa-twitter-square fa-4x"></i></a></div>
                     <div class="col"></div>
                 </div>
             </div>

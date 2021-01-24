@@ -35,16 +35,14 @@
         </div>
         <!--The shopping cart icon has an attached counter which will update when items are added or removed from the cart-->
         <div class="d-flex">
-            {% comment %} TODO: Implement user accounts <a href="#"><i class="fas fa-user-circle"></i></a> {% endcomment
-            %}
+            {% comment %} TODO: Implement user accounts <a href="#"><i class="fas fa-user-circle"></i></a> {% endcomment %}
             <a href="/shopping-cart" class="ms-5 d-flex">
                 <i class="fas fa-shopping-cart"></i>
                 {% if "cart" in request.session %}
                 <span class="badge rounded-pill bg-danger">{{ request.session.cart|length }}</span>
                 {% endif %}
             </a>
-            {% comment %} TODO: Implement search <a href="#" class="ms-5"><i class="fas fa-search"></i></a> {%
-            endcomment %}
+            {% comment %} TODO: Implement search <a href="#" class="ms-5"><i class="fas fa-search"></i></a> {% endcomment %}
         </div>
     </div>
 </nav>

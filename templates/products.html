@@ -40,7 +40,7 @@
             {% for product in products %}
                 <div class="col-lg-3 col-md-6">
                     <div class="product-card card border-0 cursor-pointer" data-product-id="{{ product.id }}">
-                        <img src="{{ product.image.url }}" class="card-img-top" alt="...">
+                        <img src="{{ product.image.url }}" class="card-img-top" alt="product image">
                         <div class="card-body text-center">
                             <h6 class="card-title">{{ product.name }}</h6>
                             <span class="h5"><strong>${{ product.price }}</strong></span>
@@ -48,7 +48,7 @@
                     </div>
                 </div>
             {% endfor %}
-            <script type="text/javascript">
+            <script>
                 const productCards = document.getElementsByClassName("product-card");
                 for (const productCard of productCards) {
                     productCard.onclick = function() {

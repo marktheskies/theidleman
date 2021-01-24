@@ -13,7 +13,7 @@
             <div class="carousel-inner">
                 <div class="carousel-item active">
                     {% load static %}
-                    <img src="{% static 'images/homepage-feature.jpg' %}" class="d-block w-100">
+                    <img src="{% static 'images/homepage-feature.jpg' %}" alt="feature item 1" class="d-block w-100">
                     <div class="carousel-caption d-none d-md-block text-start text-dark">
                         <h1 class="display-3">Discover our latest <br>collection</h1>
                         <p class="lead">Click below to see our latest collection and always look your best,<br>day or
@@ -23,11 +23,11 @@
                 </div>
                 <div class="carousel-item">
                     {% load static %}
-                    <img src="{% static 'images/homepage-feature2.jpg' %}" class="d-block w-100">
+                    <img src="{% static 'images/homepage-feature2.jpg' %}" alt="feature item 2" class="d-block w-100">
                 </div>
                 <div class="carousel-item">
                     {% load static %}
-                    <img src="{% static 'images/homepage-feature3.jpg' %}" class="d-block w-100">
+                    <img src="{% static 'images/homepage-feature3.jpg' %}" alt="feature item 3" class="d-block w-100">
                 </div>
             </div>
             <a class="carousel-control-prev" href="#homepageHeroCarousel" role="button" data-bs-slide="prev">
@@ -46,19 +46,19 @@
             <div class="row">
                 <div class="col-3 d-flex">
                     {% load static %}
-                    <img class="img-fluid brand-img my-auto mx-auto" src="{% static 'images/brand-fossil.png' %}">
+                    <img class="img-fluid brand-img my-auto mx-auto" src="{% static 'images/brand-fossil.png' %}" alt="fossil logo">
                 </div>
                 <div class="col-3 d-flex">
                     {% load static %}
-                    <img class="img-fluid brand-img my-auto mx-auto" src="{% static 'images/brand-taikan.png' %}">
+                    <img class="img-fluid brand-img my-auto mx-auto" src="{% static 'images/brand-taikan.png' %}" alt="taikan logo">
                 </div>
                 <div class="col-3 d-flex">
                     {% load static %}
-                    <img class="img-fluid brand-img my-auto mx-auto" src="{% static 'images/brand-topman.png' %}">
+                    <img class="img-fluid brand-img my-auto mx-auto" src="{% static 'images/brand-topman.png' %}" alt="topman logo">
                 </div>
                 <div class="col-3 d-flex">
                     {% load static %}
-                    <img class="img-fluid brand-img my-auto mx-auto" src="{% static 'images/brand-vans.png' %}">
+                    <img class="img-fluid brand-img my-auto mx-auto" src="{% static 'images/brand-vans.png' %}" alt="vans logo">
                 </div>
             </div>
         </div>
@@ -69,7 +69,7 @@
             <div class="row">
                 <div class="col-md-4">
                     {% load static %}
-                    <img class="img-fluid" src="{% static 'images/stylish-dude.png' %}">
+                    <img class="img-fluid" src="{% static 'images/stylish-dude.png' %}" alt="style model">
                 </div>
                 <div class="col-md-8 p-4 d-flex">
                     <div class="my-auto">
@@ -82,8 +82,9 @@
                             {% comment %} TODO: Link to products on the model and implement touchpoint icons {% endcomment %}
                             {% for product in products %}
                                 <div class="col">
-                                    <div class="product-card card border-0">
-                                        <img src="{{ product.image.url }}" class="card-img-top shadow">
+                                    <div class="product-card card border-0 cursor-pointer"
+                                         data-product-id="{{ product.id }}">
+                                        <img src="{{ product.image.url }}" class="card-img-top shadow" alt="main page product">
                                         <div class="card-body text-center">
                                             <h6 class="card-title">{{ product.name }}</h6>
                                             <span class="h5"><strong>${{ product.price }}</strong></span><br>
@@ -105,19 +106,19 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-4">
-                    <img class="img-fluid py-1" src="{% static 'images/blog-christmasgifts.jpg' %}">
+                    <img class="img-fluid py-1" src="{% static 'images/blog-christmasgifts.jpg' %}" alt="christmas gift image">
                     <h5 class="text-uppercase">Christmas Gift Ideas</h5>
                     <p>Christmas is just around the corner and you're fresh out of ideas. Don't panic. We've built an
                         entire...</p>
                 </div>
                 <div class="col-md-4">
-                    <img class="img-fluid py-1" src="{% static 'images/blog-winterstyles.jpg' %}">
+                    <img class="img-fluid py-1" src="{% static 'images/blog-winterstyles.jpg' %}" alt="winter clothes image">
                     <h5 class="text-uppercase">5 Best Winter Styles</h5>
                     <p>Cold weather doesn't automatically mean you need to reach for your big coat. We've got some
                         fresh...</p>
                 </div>
                 <div class="col-md-4">
-                    <img class="img-fluid py-1" src="{% static 'images/blog-wardrobehacks.jpg' %}">
+                    <img class="img-fluid py-1" src="{% static 'images/blog-wardrobehacks.jpg' %}" alt="wardrobe image">
                     <h5 class="text-uppercase">Our Top Wardrobe Hacks</h5>
                     <p>So you've just invested in a new wardrobe. You've got the shoes, the suit, and the...</p>
                 </div>

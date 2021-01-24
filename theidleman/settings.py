@@ -26,7 +26,8 @@ SECRET_KEY = '5o$z!6_1#)#)#idi%_gvw(gqicdzbwq8349*=6ags)ccrhx9qk'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = [os.environ.get("THEIDLEMAN_SERVER_HOST")]
+ALLOWED_HOSTS = [os.environ.get(
+    "THEIDLEMAN_SERVER_HOST"), "localhost", "127.0.0.1"]
 
 # Application definition
 
@@ -57,8 +58,7 @@ ROOT_URLCONF = 'theidleman.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'templates']
-        ,
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

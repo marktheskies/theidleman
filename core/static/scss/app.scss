@@ -69,3 +69,14 @@ body {
   filter: brightness(90%);
   border: 1px solid rgba($dark, 0.4);
 }
+
+// Formatting for products page carousel icons
+.product-carousel-control-prev-icon,
+.product-carousel-control-next-icon {
+  display: inline-block;
+  width: 4rem;
+  height: 5rem;
+  background-repeat: no-repeat;
+  background-position: 50%;
+  background-size: 100% 100%;
+}

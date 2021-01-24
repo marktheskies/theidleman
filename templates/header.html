@@ -1,8 +1,8 @@
 <nav class="navbar fixed-top shadow navbar-expand-lg navbar-light bg-white py-4">
     <div class="container">
-        <a class="navbar-brand me-0" href="#">
+        <a class="navbar-brand me-0" href="/">
             {% load static %}
-            <img src="{% static 'images/logo.png' %}" alt="The Ilde Man logo" width="150">
+            <img src="{% static 'images/logo.png' %}" alt="The Idle Man logo" width="150">
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
             <span class="navbar-toggler-icon"></span>
@@ -10,28 +10,33 @@
         <div class="collapse navbar-collapse" id="navbarContent">
             <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link" href="#">New</a>
+                    {% comment %} TODO: Link to products page with filter for new products {% endcomment %}
+                    <a class="nav-link" href="/products">New</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Clothing</a>
+                    {% comment %} TODO: Link to products page with filter for clothing {% endcomment %}
+                    <a class="nav-link" href="/products">Clothing</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Accessories</a>
+                    {% comment %} TODO: Link to products page with filter for accessories {% endcomment %}
+                    <a class="nav-link" href="/products">Accessories</a>
                 </li>
+                {% comment %} 
+                TODO: Implement Blog
                 <li class="nav-item">
                     <a class="nav-link" href="#">Style Guide</a>
-                </li>
+                </li> {% endcomment %}
             </ul>
         </div>
         <div class="d-flex">
-            <a href="#"><i class="fas fa-user-circle"></i></a>
+            {% comment %} TODO: Implement user accounts <a href="#"><i class="fas fa-user-circle"></i></a> {% endcomment %}
             <a href="/shopping-cart" class="ms-5 d-flex">
                 <i class="fas fa-shopping-cart"></i>
                 {% if "cart" in request.session %}
                     <span class="badge rounded-pill bg-danger">{{ request.session.cart|length }}</span>
                 {% endif %}
             </a>
-            <a href="#" class="ms-5"><i class="fas fa-search"></i></a>
+            {% comment %} TODO: Implement search <a href="#" class="ms-5"><i class="fas fa-search"></i></a> {% endcomment %}
         </div>
     </div>
 </nav>

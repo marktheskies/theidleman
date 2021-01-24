@@ -88,8 +88,22 @@
                     </div>
 
                     <div class="d-grid">
-                        <button type="submit" class="btn btn-secondary btn-lg text-uppercase text-white shadow">Pay
+                        <button type="button" class="btn btn-secondary btn-lg text-uppercase text-white shadow" data-bs-toggle="modal" data-bs-target="#thanksForOrderModal">Pay
                             ${{ total|floatformat:2|intcomma }}</button>
+                        <!-- Modal -->
+                        <div class="modal fade" id="thanksForOrderModal" tabindex="-1" aria-labelledby="thanksForOrderModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="thanksForOrderModalLabel">Thank you for your order</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        It's on its way! Please check your email for your receipt. If you have any questions, please email support@theidleman.com.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </form>
             </div>

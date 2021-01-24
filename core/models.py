@@ -22,6 +22,7 @@ class Color(models.Model):
     """A color for a product"""
 
     hex_value = models.CharField(max_length=7, unique=True)
+    name = models.CharField(max_length=255, blank=True, null=True)
 
     def __str__(self):
         return self.hex_value

@@ -18,7 +18,7 @@
                         <h1 class="display-3">Discover our latest <br>collection</h1>
                         <p class="lead">Click below to see our latest collection and always look your best,<br>day or
                             night.</p>
-                        <button class="btn btn-primary shadow text-white">See More</button>
+                        <a href="/products" class="btn btn-primary shadow text-white">See More</a>
                     </div>
                 </div>
                 <div class="carousel-item">
@@ -76,16 +76,18 @@
                         <h2 class="text-uppercase">Discover Our Latest Trends</h2>
                         <p>Refresh your wardrobe with our new summer styles.<br>
                             Click below to view more of our modeled outfits.</p>
-                        <button class="btn btn-primary text-white shadow mb-4">New Styles</button>
+                        {% comment %} TODO: Link to products with filter for NEW {% endcomment %}
+                        <a href="/products" class="btn btn-primary text-white shadow mb-4">New Styles</a>
                         <div class="row mt-3">
+                            {% comment %} TODO: Link to products on the model and implement touchpoint icons {% endcomment %}
                             {% for product in products %}
                                 <div class="col">
-                                    <div class="product-card card border-0 cursor-pointer"
-                                         data-product-id="{{ product.id }}">
+                                    <div class="product-card card border-0">
                                         <img src="{{ product.image.url }}" class="card-img-top shadow">
                                         <div class="card-body text-center">
                                             <h6 class="card-title">{{ product.name }}</h6>
-                                            <span class="h5"><strong>${{ product.price }}</strong></span>
+                                            <span class="h5"><strong>${{ product.price }}</strong></span><br>
+                                            <a href="/products/{{ product.id }}" class="stretched-link" style="opacity: 0;"></a>
                                         </div>
                                     </div>
                                 </div>
@@ -99,7 +101,7 @@
 
     {# Blogpost section #}
     <div class="container-fluid text-center py-4 homepage-blogposts-section">
-        <!-- Would load recent/chosen blog post snippets from database ? Using dummy content for now -->
+        {% comment %} <!-- TODO: Would load recent/chosen blog post snippets from database ? Using dummy content for now --> {% endcomment %}
         <div class="container">
             <div class="row">
                 <div class="col-md-4">
@@ -120,7 +122,7 @@
                     <p>So you've just invested in a new wardrobe. You've got the shoes, the suit, and the...</p>
                 </div>
             </div>
-            <button class="btn btn-primary text-white text-uppercase shadow">See More</button>
+            {% comment %} TODO: Implement <button class="btn btn-primary text-white text-uppercase shadow">See More</button> {% endcomment %}
         </div>
     </div>
 

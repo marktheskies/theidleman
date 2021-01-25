@@ -1,5 +1,8 @@
+<!--Overall Header Nav Bar, will appear on every page of the site and will responsively adjust to fit the page width. 
+    Nav bar is fixed in place when scrolling-->
 <nav class="navbar fixed-top shadow navbar-expand-lg navbar-light bg-white py-4">
     <div class="container">
+        <!--Nav Bar contains the Idle Man logo which will return to the home page when clicked-->
         <a class="navbar-brand me-0" href="/">
             {% load static %}
             <img src="{% static 'images/logo.png' %}" alt="The Idle Man logo" width="150">
@@ -7,6 +10,8 @@
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
             <span class="navbar-toggler-icon"></span>
         </button>
+        <!--Nav Bar content will link to the relevant pages when clicked. 
+            This will be updated in the final delivery-->
         <div class="collapse navbar-collapse" id="navbarContent">
             <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
                 <li class="nav-item">
@@ -21,19 +26,20 @@
                     {% comment %} TODO: Link to products page with filter for accessories {% endcomment %}
                     <a class="nav-link" href="/products">Accessories</a>
                 </li>
-                {% comment %} 
+                {% comment %}
                 TODO: Implement Blog
                 <li class="nav-item">
                     <a class="nav-link" href="#">Style Guide</a>
                 </li> {% endcomment %}
             </ul>
         </div>
+        <!--The shopping cart icon has an attached counter which will update when items are added or removed from the cart-->
         <div class="d-flex">
             {% comment %} TODO: Implement user accounts <a href="#"><i class="fas fa-user-circle"></i></a> {% endcomment %}
             <a href="/shopping-cart" class="ms-5 d-flex">
                 <i class="fas fa-shopping-cart"></i>
                 {% if "cart" in request.session %}
-                    <span class="badge rounded-pill bg-danger">{{ request.session.cart|length }}</span>
+                <span class="badge rounded-pill bg-danger">{{ request.session.cart|length }}</span>
                 {% endif %}
             </a>
             {% comment %} TODO: Implement search <a href="#" class="ms-5"><i class="fas fa-search"></i></a> {% endcomment %}

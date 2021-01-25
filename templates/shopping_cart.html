@@ -1,34 +1,52 @@
+<!--Denotes that the checkout template is a child of the layout template, and will inherit it's properties-->
 {% extends "layout.html" %}
 
+<!--Overrides the title of the Layout template for the checkout page-->
 {% block title %}Shopping Cart | TheIdleMan{% endblock %}
 
+<!--Overrides the body content of the Layout templat for the chekout page-->
 {% block content %}
-    {% load humanize %}
-    {% load static %}
+<!--Loads a customized tags library to simplify number text/number conventions-->
+{% load humanize %}
+<!--Loads style library-->
+{% load static %}
 
-    <div class="container-fluid bg-light py-3">
-        <div class="container">
-            <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
-                <ol class="breadcrumb mb-0">
-                    <li class="breadcrumb-item"><a href="/">Home</a></li>
-                    <li class="breadcrumb-item active">Shopping Cart</li>
-                    <li class="ms-auto">
-                        <a href="/products" class="d-flex justify-content-between text-dark">
-                            <i class="fas fa-arrow-circle-left fa-2x"></i><span class="my-auto text-uppercase ms-2">Continue Shopping</span>
-                        </a>
-                    </li>
-                </ol>
-            </nav>
-        </div>
+<!--Breadcrumbs section of the page which display the parent pages leading to current page.
+    Separated by > symbol.
+    Continure Shopping button links to Products Page-->
+<div class="container-fluid bg-light py-3">
+    <div class="container">
+        <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+            <ol class="breadcrumb mb-0">
+                <li class="breadcrumb-item"><a href="/">Home</a></li>
+                <li class="breadcrumb-item active">Shopping Cart</li>
+                <li class="ms-auto">
+                    <a href="/products" class="d-flex justify-content-between text-dark">
+                        <i class="fas fa-arrow-circle-left fa-2x"></i><span class="my-auto text-uppercase ms-2">Continue
+                            Shopping</span>
+                    </a>
+                </li>
+            </ol>
+        </nav>
     </div>
+</div>
 
-    <div class="container pt-5">
-        <div class="row">
-            {# Cart column #}
-            <div class="col-md-7">
-                <h2 class="text-uppercase text-center mb-5">Your Cart</h2>
-                <table class="table">
-                    <thead class="text-center text-uppercase">
+<!--Shopping Cart main content.
+    Contains details of all products selected. 
+    Order summary subtotal and total is calculated dynamically.
+    Checkout button links to chekout page.
+    Items can be removed from cart which will update the page.
+    Size Guide displays a modal with different size selections.
+    Information links will direct to relevant pages on final submission.
+    -->
+<div class="container pt-5">
+    <div class="row">
+        {# Cart column #}
+        <!--Item details-->
+        <div class="col-md-7">
+            <h2 class="text-uppercase text-center mb-5">Your Cart</h2>
+            <table class="table">
+                <thead class="text-center text-uppercase">
                     <tr>
                         <th>Product</th>
                         <th>Price</th>
@@ -36,122 +54,128 @@
                         <th>Total</th>
                         <th></th>
                     </tr>
-                    </thead>
-                    <tbody>
+                </thead>
+                <tbody>
                     {% for item in items %}
-                        <tr>
-                            <td>
-                                {{ item.product.name }}<br>
-                                <img src="{{ item.product.image.url }}" class="img-fluid" style="max-width: 10rem;"><br>
-                                Colour: <span class="badge rounded-pill"
-                                              style="background-color: {{ item.color }}">&nbsp;</span><br>
-                                Size: {{ item.size }}
-                            </td>
-                            <td class="text-center align-middle">
-                                ${{ item.product.price|floatformat:2|intcomma }}
-                            </td>
-                            <td class="text-center align-middle">{{ item.quantity }}</td>
-                            <td class="text-center align-middle">${{ item.total|floatformat:2|intcomma }}</td>
-                            <td class="text-center align-middle"><a
-                                    href="/shopping-cart/remove-item/{{ item.session_item_id }}">Remove Item</a></td>
-                        </tr>
+                    <tr>
+                        <td>
+                            {{ item.product.name }}<br>
+                            <img src="{{ item.product.image.url }}" class="img-fluid" style="max-width: 10rem;"><br>
+                            Colour: <span class="badge rounded-pill"
+                                style="background-color: {{ item.color }}">&nbsp;</span><br>
+                            Size: {{ item.size }}
+                        </td>
+                        <td class="text-center align-middle">
+                            ${{ item.product.price|floatformat:2|intcomma }}
+                        </td>
+                        <td class="text-center align-middle">{{ item.quantity }}</td>
+                        <td class="text-center align-middle">${{ item.total|floatformat:2|intcomma }}</td>
+                        <td class="text-center align-middle"><a
+                                href="/shopping-cart/remove-item/{{ item.session_item_id }}">Remove Item</a></td>
+                    </tr>
                     {% endfor %}
-                    </tbody>
-                </table>
+                </tbody>
+            </table>
 
-                <div class="row py-5 mb-5 mb-md-0 bg-success">
-                    <p class="mb-0 text-center text-md-start">* Free shipping onn orders over $100 AUD</p>
+            <div class="row py-5 mb-5 mb-md-0 bg-success">
+                <p class="mb-0 text-center text-md-start">* Free shipping onn orders over $100 AUD</p>
+            </div>
+        </div>
+
+        {# Order summary column #}
+        <!--Order summary -->
+        <div class="col-md-5 text-center">
+            <h2 class="text-uppercase mb-5">Order Summary</h2>
+            <p class="lead text-uppercase mb-5">Subtotal: <span class="fw-bold">${{ subtotal|floatformat:2|intcomma
+                    }}</span></p>
+            <p class="lead text-uppercase mb-5">
+                Shipping:
+                {% if free_delivery %}
+                <span class="fw-bold">FREE</span>
+                {% else %}
+                <span class="fw-bold">$15.00</span>
+                {% endif %}
+            </p>
+            <hr>
+
+            <p class="h2 text-uppercase my-5">ORDER TOTAL: ${{ total|floatformat:2|intcomma }}</p>
+
+            <div class="d-grid">
+                <a href="/checkout" class="btn btn-secondary text-uppercase block btn-lg text-white shadow py-3">Proceed
+                    to
+                    Checkout</a>
+            </div>
+
+            <!--Payment Methods-->
+            <div class="row row-cols-2 g-4 py-5 px-5">
+                <div class="col">
+                    <div class="card h-100 border-0 bg-light p-4 d-flex">
+                        <img src="{% static 'images/afterpay.png' %}" class="card-img-top my-auto" alt="afterpay logo">
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card h-100 border-0 bg-light p-4 d-flex">
+                        <img src="{% static 'images/paypal.png' %}" class="card-img-top my-auto" alt="paypal logo">
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card h-100 border-0 bg-light p-4 d-flex">
+                        <img src="{% static 'images/visa.png' %}" class="card-img-top my-auto" alt="visa logo">
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card h-100 border-0 bg-light p-4 d-flex">
+                        <img src="{% static 'images/mastercard.png' %}" class="card-img-top my-auto"
+                            alt="mastercard logo">
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card h-100 border-0 bg-light p-4 d-flex">
+                        <img src="{% static 'images/amex.png' %}" class="card-img-top my-auto" alt="amex logo">
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card h-100 border-0 bg-light p-4 d-flex">
+                        <img src="{% static 'images/zip.png' %}" class="card-img-top my-auto" alt="zip pay logo">
+                    </div>
                 </div>
             </div>
 
-            {# Order summary column #}
-            <div class="col-md-5 text-center">
-                <h2 class="text-uppercase mb-5">Order Summary</h2>
-                <p class="lead text-uppercase mb-5">Subtotal: <span
-                        class="fw-bold">${{ subtotal|floatformat:2|intcomma }}</span></p>
-                <p class="lead text-uppercase mb-5">
-                    Shipping:
-                    {% if free_delivery %}
-                        <span class="fw-bold">FREE</span>
-                    {% else %}
-                        <span class="fw-bold">$15.00</span>
-                    {% endif %}
-                </p>
-                <hr>
+            <hr>
 
-                <p class="h2 text-uppercase my-5">ORDER TOTAL: ${{ total|floatformat:2|intcomma }}</p>
-
-                <div class="d-grid">
-                    <a href="/checkout" class="btn btn-secondary text-uppercase block btn-lg text-white shadow py-3">Proceed
-                        to
-                        Checkout</a>
-                </div>
-
-                <div class="row row-cols-2 g-4 py-5 px-5">
-                    <div class="col">
-                        <div class="card h-100 border-0 bg-light p-4 d-flex">
-                            <img src="{% static 'images/afterpay.png' %}" class="card-img-top my-auto" alt="afterpay logo">
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="card h-100 border-0 bg-light p-4 d-flex">
-                            <img src="{% static 'images/paypal.png' %}" class="card-img-top my-auto" alt="paypal logo">
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="card h-100 border-0 bg-light p-4 d-flex">
-                            <img src="{% static 'images/visa.png' %}" class="card-img-top my-auto" alt="visa logo">
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="card h-100 border-0 bg-light p-4 d-flex">
-                            <img src="{% static 'images/mastercard.png' %}" class="card-img-top my-auto" alt="mastercard logo">
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="card h-100 border-0 bg-light p-4 d-flex">
-                            <img src="{% static 'images/amex.png' %}" class="card-img-top my-auto" alt="amex logo">
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="card h-100 border-0 bg-light p-4 d-flex">
-                            <img src="{% static 'images/zip.png' %}" class="card-img-top my-auto" alt="zip pay logo">
-                        </div>
-                    </div>
-                </div>
-
-                <hr>
-
-                <div class="row py-5">
-                    <h2 class="mb-5">Got a question before you checkout?</h2>
-                    <div class="d-grid gap-3">
-                        {# TODO: Popup style guide #}
-                        <button class="btn btn-primary shadow text-white text-uppercase" data-bs-toggle="modal"
-                                data-bs-target="#sizeGuideModal">Size Guide
-                        </button>
-                        <div class="modal fade" id="sizeGuideModal" tabindex="-1" aria-labelledby="sizeGuideModal"
-                             aria-hidden="true">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="sizeGuideModalLabel">Size Guide</h5>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                aria-label="Close"></button>
-                                    </div>
-                                    <div class="modal-body">
-                                        ...
-                                        {% comment %} TODO: Add size guide {% endcomment %}
-                                    </div>
+            <!--Information area-->
+            <div class="row py-5">
+                <h2 class="mb-5">Got a question before you checkout?</h2>
+                <div class="d-grid gap-3">
+                    {# TODO: Popup style guide #}
+                    <!--Size Guide-->
+                    <button class="btn btn-primary shadow text-white text-uppercase" data-bs-toggle="modal"
+                        data-bs-target="#sizeGuideModal">Size Guide
+                    </button>
+                    <div class="modal fade" id="sizeGuideModal" tabindex="-1" aria-labelledby="sizeGuideModal"
+                        aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="sizeGuideModalLabel">Size Guide</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    ...
+                                    {% comment %} TODO: Add size guide {% endcomment %}
                                 </div>
                             </div>
                         </div>
-                        {# TODO: Link to FAQs #}
-                        <a href="" class="btn btn-primary shadow text-white text-uppercase">FAQs</a>
-                        {# TODO: Link to contact page #}
-                        <a href="" class="btn btn-primary shadow text-white text-uppercase">Contact Us</a>
                     </div>
+                    <!--Information Links-->
+                    {# TODO: Link to FAQs #}
+                    <a href="" class="btn btn-primary shadow text-white text-uppercase">FAQs</a>
+                    {# TODO: Link to contact page #}
+                    <a href="" class="btn btn-primary shadow text-white text-uppercase">Contact Us</a>
                 </div>
             </div>
         </div>
     </div>
+</div>
 {% endblock %}

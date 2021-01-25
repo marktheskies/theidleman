@@ -1,6 +1,9 @@
+<!--Overall Footer, will appear on every page of the site and will responsively adjust to fit the page width-->
 <div class="container-fluid bg-light py-5" id="#footer">
     <div class="container">
         <div class="row">
+            <!--Quick links to minor pages of the website. 
+                These pages will be implemented in the final delivery-->
             <div class="col-md-3 text-center">
                 <h2 class="h5 text-decoration-underline mb-4">Quick Links</h2>
                 {% comment %} TODO: Implement the below pages {% endcomment %}
@@ -9,6 +12,9 @@
                 <p><a class="footer-link" href="#">Privacy Policy</a></p>
                 <p><a class="footer-link" href="#">Terms & Conditions</a></p>
             </div>
+
+            <!--Links to details information pages of the website. 
+                These pages will be implemented in the final delivery-->
             <div class="col-md-3 text-center">
                 <h2 class="h5 text-decoration-underline mb-4">Help & Support</h2>
                 {% comment %} TODO: Implement the below pages {% endcomment %}
@@ -18,6 +24,8 @@
                 <p><a class="footer-link" href="#">Returns</a></p>
                 <p><a class="footer-link" href="#">FAQs</a></p>
             </div>
+
+            <!--Newsletter signup area including text entry input field and "Join Now" button which will pop up a modal overlay when clicked-->
             <div class="col-md-6">
                 <p>Sign up to be notified of promotions and style advice</p>
                 <form>
@@ -26,16 +34,22 @@
                             <input type="email" class="form-control" placeholder="email@example.com">
                         </div>
                         <div class="col">
-                            <button type="button" class="btn btn-primary text-uppercase text-white shadow" data-bs-toggle="modal" data-bs-target="#mailingListSignupModalFake">Join Now</button>
+                            <!--The "Join Now" button is linked to another page containing the Modal so it can be used in different pages of the site-->
+                            <button type="button" class="btn btn-primary text-uppercase text-white shadow"
+                                data-bs-toggle="modal" data-bs-target="#mailingListSignupModalFake">Join Now</button>
                             {% include 'mailing_list_signup_fake_modal.html' %}
                         </div>
                     </div>
                 </form>
 
+                <!--Icon links to Social Media Sites for The Idle Man using pre-existing social media accounts-->
                 <div class="row mt-5">
-                    <div class="col"><a target="_blank" href="https://www.facebook.com/Idle/"><i class="fab fa-facebook-square fa-4x"></i></a></div>
-                    <div class="col"><a target="_blank" href="https://www.instagram.com/idle/?hl=en"><i class="fab fa-instagram-square fa-4x"></i></a></div>
-                    <div class="col"><a target="_blank" href="https://twitter.com/idle?lang=en"><i class="fab fa-twitter-square fa-4x"></i></a></div>
+                    <div class="col"><a target="_blank" href="https://www.facebook.com/Idle/"><i
+                                class="fab fa-facebook-square fa-4x"></i></a></div>
+                    <div class="col"><a target="_blank" href="https://www.instagram.com/idle/?hl=en"><i
+                                class="fab fa-instagram-square fa-4x"></i></a></div>
+                    <div class="col"><a target="_blank" href="https://twitter.com/idle?lang=en"><i
+                                class="fab fa-twitter-square fa-4x"></i></a></div>
                     <div class="col"></div>
                 </div>
             </div>

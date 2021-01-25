@@ -1,113 +1,132 @@
+<!--Denotes that the checkout template is a child of the layout template, and will inherit it's properties-->
 {% extends "layout.html" %}
 
-{% block title %}Shopping Cart | TheIdleMan{% endblock %}
+<!--Overrides the title of the Layout template for the checkout page-->
+{% block title %}Checkout | TheIdleMan{% endblock %}
 
+<!--Overrides the body content of the Layout templat for the chekout page-->
 {% block content %}
-    {% load humanize %}
+<!--Loads a customized tags library to simplify number text/number conventions-->
+{% load humanize %}
 
-    <div class="container-fluid bg-light py-3">
-        <div class="container">
-            <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
-                <ol class="breadcrumb mb-0">
-                    <li class="breadcrumb-item"><a href="/">Home</a></li>
-                    <li class="breadcrumb-item"><a href="/shopping-cart">Shopping Cart</a></li>
-                    <li class="breadcrumb-item active">Checkout</li>
-                </ol>
-            </nav>
-        </div>
+<!--Breadcrumbs section of the page which display the parent pages leading to current page.
+    Separated by > symbol-->
+<div class="container-fluid bg-light py-3">
+    <div class="container">
+        <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+            <ol class="breadcrumb mb-0">
+                <li class="breadcrumb-item"><a href="/">Home</a></li>
+                <li class="breadcrumb-item"><a href="/shopping-cart">Shopping Cart</a></li>
+                <li class="breadcrumb-item active">Checkout</li>
+            </ol>
+        </nav>
     </div>
+</div>
 
-    <div class="container py-5">
-        <div class="row d-flex">
-            <div class="col col-lg-6 mx-auto">
-                <h1 class="text-center mb-4">Checkout</h1>
+<!--Main Checkout content section.
+    Includes Headings and Forms which allow manual text input and checkbox to subscribe to offers.
+    Centred to viewport with maximum width of 960px - responsively adjusts at lower resolutions.
+    "Pay" button includes dynamic price of all products in cart. 
+-->
+<div class="container py-5">
+    <div class="row d-flex">
+        <div class="col col-lg-6 mx-auto">
+            <!--Page Heading-->
+            <h1 class="text-center mb-4">Checkout</h1>
+            <form>
+                {% csrf_token %}
 
-                <form>
-                    {% csrf_token %}
+                <!--Customer details input fields-->
+                <h2 class="text-uppercase h3">Your Details</h2>
+                <div class="row mb-3">
+                    <div class="col">
+                        <input type="text" name="first_name" id="first_name" placeholder="FIRST NAME *"
+                            class="form-control">
+                    </div>
+                    <div class="col">
+                        <input type="text" name="last_name" id="last_name" placeholder="LAST NAME *"
+                            class="form-control">
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <input type="tel" name="phone" id="phone" placeholder="PHONE *" class="form-control">
+                </div>
+                <div class="mb-3">
+                    <input type="email" name="email" id="email" placeholder="EMAIL *" class="form-control">
+                </div>
+                <!--Sign up checkbox-->
+                <div class="mb-4">
+                     <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                        <label class="form-check-label" for="flexCheckDefault">
+                            Sign up to receive new and offers! Unsubscribe at any time.
+                        </label>
+                    </div>
+                </div>
 
-                    <h2 class="text-uppercase h3">Your Details</h2>
-                    <div class="row mb-3">
-                        <div class="col">
-                            <input type="text" name="first_name" id="first_name" placeholder="FIRST NAME *"
-                                   class="form-control">
-                        </div>
-                        <div class="col">
-                            <input type="text" name="last_name" id="last_name" placeholder="LAST NAME *"
-                                   class="form-control">
-                        </div>
+                <!--Delivery details input fields-->
+                <h2 class="text-uppercase h3">Delivery Address</h2>
+                <div class="mb-3">
+                    <input type="text" name="street1" id="street1" placeholder="STREET 1 *" class="form-control">
+                </div>
+                <div class="mb-3">
+                    <input type="text" name="street2" id="street2" placeholder="STREET 2" class="form-control">
+                </div>
+                <div class="mb-3">
+                    <input type="text" name="suburb" id="suburb" placeholder="SUBURB *" class="form-control">
+                </div>
+                <div class="row mb-4">
+                    <div class="col">
+                        <input type="text" name="state" id="state" placeholder="STATE *" class="form-control">
                     </div>
-                    <div class="mb-3">
-                        <input type="tel" name="phone" id="phone" placeholder="PHONE *" class="form-control">
+                    <div class="col">
+                        <input type="text" name="postcode" id="postcode" placeholder="POSTCODE *" class="form-control">
                     </div>
-                    <div class="mb-3">
-                        <input type="email" name="email" id="email" placeholder="EMAIL *" class="form-control">
-                    </div>
-                    <div class="mb-4">
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                            <label class="form-check-label" for="flexCheckDefault">
-                                Sign up to receive new and offers! Unsubscribe at any time.
-                            </label>
-                        </div>
-                    </div>
+                </div>
 
-                    <h2 class="text-uppercase h3">Delivery Address</h2>
-                    <div class="mb-3">
-                        <input type="text" name="street1" id="street1" placeholder="STREET 1 *" class="form-control">
+                <!--Payment Details input fields-->
+                <h2 class="text-uppercase h3">Payment Details</h2>
+                <div class="mb-3">
+                    <input type="text" name="cc_number" id="cc_number" placeholder="CREDIT CARD NUMBER"
+                        class="form-control">
+                </div>
+                <div class="row mb-4">
+                    <div class="col">
+                        <input type="text" name="cc_expiry" id="cc_expiry" placeholder="EXPIRY MM/YY"
+                            class="form-control">
                     </div>
-                    <div class="mb-3">
-                        <input type="text" name="street2" id="street2" placeholder="STREET 2" class="form-control">
+                    <div class="col">
+                        <input type="text" name="cc_cvv" id="cc_cvv" placeholder="CVV/CVC" class="form-control">
                     </div>
-                    <div class="mb-3">
-                        <input type="text" name="suburb" id="suburb" placeholder="SUBURB *" class="form-control">
-                    </div>
-                    <div class="row mb-4">
-                        <div class="col">
-                            <input type="text" name="state" id="state" placeholder="STATE *"
-                                   class="form-control">
-                        </div>
-                        <div class="col">
-                            <input type="text" name="postcode" id="postcode" placeholder="POSTCODE *"
-                                   class="form-control">
-                        </div>
-                    </div>
+                </div>
 
-                    <h2 class="text-uppercase h3">Payment Details</h2>
-                    <div class="mb-3">
-                        <input type="text" name="cc_number" id="cc_number" placeholder="CREDIT CARD NUMBER"
-                               class="form-control">
-                    </div>
-                    <div class="row mb-4">
-                        <div class="col">
-                            <input type="text" name="cc_expiry" id="cc_expiry" placeholder="EXPIRY MM/YY"
-                                   class="form-control">
-                        </div>
-                        <div class="col">
-                            <input type="text" name="cc_cvv" id="cc_cvv" placeholder="CVV/CVC" class="form-control">
-                        </div>
-                    </div>
-
-                    <div class="d-grid">
-                        <button type="button" class="btn btn-secondary btn-lg text-uppercase text-white shadow" data-bs-toggle="modal" data-bs-target="#thanksForOrderModal">Pay
-                            ${{ total|floatformat:2|intcomma }}</button>
-                        <!-- Modal -->
-                        <div class="modal fade" id="thanksForOrderModal" tabindex="-1" aria-labelledby="thanksForOrderModalLabel" aria-hidden="true">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="thanksForOrderModalLabel">Thank you for your order</h5>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                    </div>
-                                    <div class="modal-body">
-                                        It's on its way! Please check your email for your receipt. If you have any questions, please email support@theidleman.com.
-                                    </div>
+                <!--Payment Button. 
+                    Clicking will display modal with confimation message-->
+                <div class="d-grid">
+                    <button type="button" class="btn btn-secondary btn-lg text-uppercase text-white shadow"
+                        data-bs-toggle="modal" data-bs-target="#thanksForOrderModal">Pay
+                        ${{ total|floatformat:2|intcomma }}</button>
+                    
+                    <!--Modal overlay which will appear when "Pay" button is clicked-->
+                    <div class="modal fade" id="thanksForOrderModal" tabindex="-1"
+                        aria-labelledby="thanksForOrderModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="thanksForOrderModalLabel">Thank you for your order</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    It's on its way! Please check your email for your receipt. If you have any
+                                    questions, please email support@theidleman.com.
                                 </div>
                             </div>
                         </div>
                     </div>
-                </form>
-            </div>
+                </div>
+            </form>
         </div>
-
     </div>
+</div>
 {% endblock %}

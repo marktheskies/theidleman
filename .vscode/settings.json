@@ -2,7 +2,9 @@
   "python.formatting.provider": "autopep8",
   "python.linting.pylintArgs": [
     "--load-plugins",
-    "pylint_django"
+    "pylint_django",
+    "--django-settings-module",
+    "theidleman.settings"
   ],
   "python.pythonPath": "venv/bin/python",
   "python.linting.pylintEnabled": true,

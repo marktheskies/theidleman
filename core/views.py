@@ -6,7 +6,7 @@ import uuid
 
 
 def products(request):
-    context = {"products": Product.objects.all()}
+    context = {"products": Product.objects.all(), "category": request.GET.get()}
     return render(request, "products.html", context)
 
 

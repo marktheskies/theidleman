@@ -6,7 +6,12 @@ from core.models import Product
 
 
 def products(request):
-    context = {"products": Product.objects.all(), "category": request.GET.get()}
+    """Renders the products page"""
+    context = {
+        "products": Product.objects.all(),
+        "category": request.GET.get("category"),
+        "color": request.GET.get("color"),
+    }
     return render(request, "products.html", context)
 
 

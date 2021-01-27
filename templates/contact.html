@@ -7,6 +7,22 @@
 <!--Overrides the body content of the Layout template for the contact page-->
 {% block content %}
 
-<h2>Hello</h2>
+<!--Breadcrumbs section of the page which display the parent pages leading to current page.
+    Separated by > symbol -->
+    <div class="container-fluid bg-light py-3">
+        <div class="container">
+            <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+                <ol class="breadcrumb mb-0">
+                    <li class="breadcrumb-item"><a href="/">Home</a></li>
+                    <li class="breadcrumb-item active">Contact Us</li>
+                    <li class="ms-auto">
+                        </a>
+                    </li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+
+    
 
 {% endblock %}

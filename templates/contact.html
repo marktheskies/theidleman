@@ -27,20 +27,21 @@
         <h2 class="text-uppercase text-center mb-5">Contact Us</h2>
     </div>
 
-    <div class="container-fluid bg-light">
-        <div class="p-4 text-center">
-            <h4 class="text-uppercase">General Enquiries</h4>
-            <p class="pt-3">1800 435 362</p>
-            <p>info@theidleman.com</p>
-            <p>Weekdays 9am-5pm AEST</p>
+    <div class="container-fluid text-center">
+        <div class="py-md-4 row px-md-5">
+            <div class="col-md-5">
+                <div class="bg-success pb-2 pt-2">
+                <h4 class="text-uppercase pt-2">General Enquiries</h4>
+                <p class="pt-3">1800 435 362</p>
+                <p>info@theidleman.com</p>
+                <p>Weekdays 9am-5pm AEST</p>
 
-            {% comment %} TODO: Implement contact form {% endcomment %}
-
+                {% comment %} TODO: Implement contact form {% endcomment %}
+            </div>
         </div>
-    </div>
 
-    <div class="text-center py-3">
-        <h4 class="text-uppercase py-4">How Can We Help?</h4>
+        <div class="col-md-7">
+            <h4 class="text-uppercase pt-3 pb-2 pt-md-0 pb-md-4">How Can We Help?</h4>
 
                 {% comment %} TODO: Implement dropdown menus {% endcomment %}
                 <!-- Delivery Collapsible.
@@ -139,15 +140,16 @@
                     <div class="container-fluid bg-light border border-1" data-bs-toggle="collapse"
                     data-bs-target="#sizingDetails">
                     <button class="btn container-fluid">Sizing +</button>
-                    <div class="collapse" id="sizingDetails">
-                        <div class="card">
-                            <div class="card-body">
-                                <p>Sizing information goes here.</p>
-                            </div>
+                        <div class="collapse" id="sizingDetails">
+                            <div class="card">
+                                <div class="card-body">
+                                    <p>Sizing information goes here.</p>
+                                </div>
+                        </div>
                         </div>
                     </div>
-                    </div>
+                    <p class="p-2 py-4">We're here to help. If your question hasn't been answered here, fill out the form and we will get back to you within 24hrs.</p>
+        </div>
     </div>
-            <p class="p-2 py-4">We're here to help. If your question hasn't been answered here, fill out the form and we will get back to you within 24hrs.</p>
-
+</div>
 {% endblock %}

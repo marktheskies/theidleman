@@ -1,8 +1,8 @@
-from django.shortcuts import render, redirect
+import uuid
+
+from django.shortcuts import redirect, render
 
 from core.models import Product
-
-import uuid
 
 
 def products(request):

@@ -41,12 +41,113 @@
 
     <div class="text-center py-3">
         <h4 class="text-uppercase py-4">How Can We Help?</h4>
-            <div class="container-fluid bg-light">
 
                 {% comment %} TODO: Implement dropdown menus {% endcomment %}
-                <p class="text-uppercase py-2">Helpful dropdown infos here</p>
-
-            </div>
+                <!-- Delivery Collapsible.
+                    Expands when clicked to display information about delivery policies from the database 
+                    Responsively adjusts to suit viewport width -->
+                <div class="container-fluid bg-light border border-1" data-bs-toggle="collapse"
+                data-bs-target="#deliveryInfo">
+                <button class="btn container-fluid">Delivery +</button>
+                <div class="collapse" id="deliveryInfo">
+                    <div class="card">
+                        <div class="card-body">
+                            {% comment %} TODO: Add delivery info to database {% endcomment %}
+                            <p>Some delivery information here.</p>
+                        </div>
+                    </div>
+                </div>
+                </div>
+                <!-- Returns and Refunds Collapsible.
+                    Expands when clicked to display information about returns and refund policies from the database 
+                    Responsively adjusts to suit viewport width-->
+                <div class="container-fluid bg-light border border-1" data-bs-toggle="collapse"
+                data-bs-target="#returnsAndRefunds">
+                <button class="btn container-fluid">Returns & Refunds +</button>
+                <div class="collapse" id="returnsAndRefunds">
+                    <div class="card">
+                        <div class="card-body">
+                            {% comment %} TODO: Add returns and refunds info to database {% endcomment %}
+                            <p>Some returns/refunds information here.</p>
+                        </div>
+                    </div>
+                </div>
+                </div>
+                <!-- Order Issues Collapsible.
+                    Expands when clicked to display information about order issues processes from the database 
+                    Responsively adjusts to suit viewport width-->
+                    <div class="container-fluid bg-light border border-1" data-bs-toggle="collapse"
+                    data-bs-target="#orderIssues">
+                    <button class="btn container-fluid">Order Issues +</button>
+                    <div class="collapse" id="orderIssues">
+                        <div class="card">
+                            <div class="card-body">
+                                {% comment %} TODO: Add order issues info to database {% endcomment %}
+                                <p>Some order issues information here.</p>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                    <!-- Payment and Coupons Collapsible.
+                    Expands when clicked to display information about payment and coupons from the database 
+                    Responsively adjusts to suit viewport width-->
+                    <div class="container-fluid bg-light border border-1" data-bs-toggle="collapse"
+                    data-bs-target="#paymentAndCoupons">
+                    <button class="btn container-fluid">Payment & Coupons +</button>
+                    <div class="collapse" id="paymentAndCoupons">
+                        <div class="card">
+                            <div class="card-body">
+                                {% comment %} TODO: Add payment and coupon info to database {% endcomment %}
+                                <p>Some payment/coupon information here.</p>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                    <!-- Technical Issues Collapsible.
+                    Expands when clicked to display information about technical issues from the database 
+                    Responsively adjusts to suit viewport width-->
+                    <div class="container-fluid bg-light border border-1" data-bs-toggle="collapse"
+                    data-bs-target="#technicalIssues">
+                    <button class="btn container-fluid">Technical Issues +</button>
+                    <div class="collapse" id="technicalIssues">
+                        <div class="card">
+                            <div class="card-body">
+                                {% comment %} TODO: Add techincal issue info to database {% endcomment %}
+                                <p>Some technical issues information here.</p>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                    <!-- Product Stock Collapsible.
+                    Expands when clicked to display information about product stock from the database 
+                    Responsively adjusts to suit viewport width-->
+                    <div class="container-fluid bg-light border border-1" data-bs-toggle="collapse"
+                    data-bs-target="#productStock">
+                    <button class="btn container-fluid">Product Stock +</button>
+                    <div class="collapse" id="productStock">
+                        <div class="card">
+                            <div class="card-body">
+                                {% comment %} TODO: Add product stock info to database {% endcomment %}
+                                <p>Some product stock information here.</p>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                    <!-- Sizing Collapsible.
+                    Expands when clicked to display information about sizing
+                    Responsively adjusts to suit viewport width-->
+                    <div class="container-fluid bg-light border border-1" data-bs-toggle="collapse"
+                    data-bs-target="#sizingDetails">
+                    <button class="btn container-fluid">Sizing +</button>
+                    <div class="collapse" id="sizingDetails">
+                        <div class="card">
+                            <div class="card-body">
+                                <p>Sizing information goes here.</p>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+    </div>
             <p class="p-2 py-4">We're here to help. If your question hasn't been answered here, fill out the form and we will get back to you within 24hrs.</p>
 
 {% endblock %}

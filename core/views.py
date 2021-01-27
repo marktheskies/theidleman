@@ -117,3 +117,9 @@ def shopping_cart(request):
 def checkout(request):
     context = cart_context(request)
     return render(request, "checkout.html", context)
+
+
+def contact(request):
+    return render(request, "contact.html")
+
+    

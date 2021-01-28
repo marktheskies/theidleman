@@ -44,8 +44,18 @@
     Placeholder only - will be functional in final submission-->
 <div class="container-fluid bg-light py-3 shadow-sm">
     <div class="container">
-        {% comment %} TODO: Implement {% endcomment %}
-        <a href="#" class="btn btn-link">Filter <i class="fas fa-filter"></i></a>
+        <!-- Filter Dropdown. Allows the user to filter products. -->
+        <span class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="filterDropdownButton" data-bs-toggle="dropdown" aria-expanded="false">
+                Filter <i class="fas fa-filter"></i>
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="filterDropdownButton">
+                <li><h6 class="dropdown-header">Categories</h6></li>
+                {% for category in categories %}
+                    <li><a class="dropdown-item" href="/products/categories/{{ category.name }}">{{ category.name }}</a></li>
+                {% endfor %}
+            </ul>
+        </span>
 
         {% comment %} TODO: Implement {% endcomment %}
         <a href="#" class="btn btn-link">Sort <i class="fas fa-sort"></i></a>

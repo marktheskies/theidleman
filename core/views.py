@@ -2,7 +2,7 @@ import uuid
 
 from django.shortcuts import redirect, render
 
-from core.models import Product
+from core.models import Product, ProductCategory
 
 
 def products(request, category=None):
@@ -11,9 +11,13 @@ def products(request, category=None):
         context = {
             "products": Product.objects.filter(category__name=category),
             "category": category,
+            "categories": ProductCategory.objects.all(),
         }
     else:
-        context = {"products": Product.objects.all()}
+        context = {
+            "products": Product.objects.all(),
+            "categories": ProductCategory.objects.all(),
+        }
     return render(request, "products.html", context)
 
 

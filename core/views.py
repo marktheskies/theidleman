@@ -1,5 +1,6 @@
 import uuid
 
+from django.core.exceptions import FieldError
 from django.shortcuts import redirect
 from django.template.response import TemplateResponse
 
@@ -17,6 +18,16 @@ def products(request, category=None):
         context = {
             "products": Product.objects.all(),
         }
+
+    # Product sorting
+    if request.GET.get("sort"):
+        try:
+            context["products"] = context["products"].order_by(
+                request.GET.get("sort"))
+        except FieldError:
+            # The give field does not exist on the Product, thus we must skip sorting.
+            pass
+
     return TemplateResponse(request, "products.html", context)
 
 

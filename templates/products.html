@@ -54,6 +54,12 @@
                 {% for category in categories %}
                     <li><a class="dropdown-item" href="/products/categories/{{ category.name }}">{{ category.name }}</a></li>
                 {% endfor %}
+
+                {% if category %}
+                    <!-- Clear filter button -->
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item text-warning" href="/products">Clear filter</a></li>
+                {% endif %}
             </ul>
         </span>
 

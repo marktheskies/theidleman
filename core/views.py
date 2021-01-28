@@ -119,7 +119,24 @@ def checkout(request):
     return render(request, "checkout.html", context)
 
 
-def contact(request):
-    return render(request, "contact.html")
+from django.shortcuts import render, redirect, get_object_or_404, HttpResponseRedirect
+from django.core.mail import send_mail
+from .forms import ContactForm
 
+
+def contact(request):
+        form_class = ContactForm
+        form = form_class(request.POST or None)
+        if request.method == 'POST':
+
+            if form.is_valid():
+                name = request.POST.get('name')
+                email = request.POST.get('email')
+                number = request.POST.get('number')
+                message = request.POST.get('message')
+
+                send_mail('Subject here', message, email, ['testmail@gmail.com'], fail_silently=False) 
+                return HttpResponseRedirect('/contact')
     
+        return render(request, "contact.html", {'form': form})
+

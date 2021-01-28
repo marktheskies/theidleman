@@ -37,6 +37,13 @@
                 <p>Weekdays 9am-5pm AEST</p>
 
                 {% comment %} TODO: Implement contact form {% endcomment %}
+
+                    <form method="post">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                        <input type="submit" value="Submit" />
+                    </form>
+                    
             </div>
         </div>
 

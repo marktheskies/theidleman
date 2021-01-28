@@ -67,8 +67,22 @@
             </ul>
         </span>
 
-        {% comment %} TODO: Implement {% endcomment %}
-        <a href="#" class="btn btn-link">Sort <i class="fas fa-sort"></i></a>
+        <!-- Sort Dropdown. Allows the user to sort products. -->
+        <span class="dropdown">
+            <button class="btn btn-link dropdown-toggle text-decoration-none" type="button" id="filterDropdownButton" data-bs-toggle="dropdown" aria-expanded="false">
+                Sort 
+                {% if request.GET.sort %}&nbsp;({{ request.GET.sort }}){% endif %}
+                &nbsp;<i class="fas fa-sort"></i>
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="filterDropdownButton">
+                <li><a class="dropdown-item" href="/products/{% if category %}categories/{{ category }}{% endif %}?sort=-id">Newest First</a></li>
+                <li><a class="dropdown-item" href="/products/{% if category %}categories/{{ category }}{% endif %}?sort=id">Oldest First</a></li>
+                <li><a class="dropdown-item" href="/products/{% if category %}categories/{{ category }}{% endif %}?sort=price">Price - Lowest First</a></li>
+                <li><a class="dropdown-item" href="/products/{% if category %}categories/{{ category }}{% endif %}?sort=-price">Price - Highest First</a></li>
+                <li><a class="dropdown-item" href="/products/{% if category %}categories/{{ category }}{% endif %}?sort=category">Category</a></li>
+                <li><a class="dropdown-item" href="/products/{% if category %}categories/{{ category }}{% endif %}?sort=name">Name</a></li>
+            </ul>
+        </span>
     </div>
 </div>
 

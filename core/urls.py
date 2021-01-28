@@ -4,7 +4,7 @@ from core.views import products, home, product_details, add_to_cart, empty_cart,
 
 urlpatterns = [
     path("products/", products, name="products"),
-    path("products/categories/<str:category>",
+    path("products/categories/<str:category>/",
          products, name="products_with_category"),
     path("", home, name="home"),
     path("products/<int:id>", product_details, name="product_details"),

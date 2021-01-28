@@ -5,9 +5,12 @@ from django.shortcuts import redirect, render
 from core.models import Product
 
 
-def products(request):
+def products(request, category=None):
     """Renders the products page"""
-    context = {"products": Product.objects.all()}
+    if category:
+        context = {"products": Product.objects.filter(category__name=category)}
+    else:
+        context = {"products": Product.objects.all()}
     return render(request, "products.html", context)
 
 

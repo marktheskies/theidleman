@@ -8,7 +8,10 @@ from core.models import Product
 def products(request, category=None):
     """Renders the products page"""
     if category:
-        context = {"products": Product.objects.filter(category__name=category)}
+        context = {
+            "products": Product.objects.filter(category__name=category),
+            "category": category,
+        }
     else:
         context = {"products": Product.objects.all()}
     return render(request, "products.html", context)

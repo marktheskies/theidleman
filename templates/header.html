@@ -18,9 +18,19 @@
                     {% comment %} TODO: Link to products page with filter for new products {% endcomment %}
                     <a class="nav-link" href="/products">New</a>
                 </li>
-                <li class="nav-item">
-                    {% comment %} TODO: Link to products page with filter for clothing {% endcomment %}
-                    <a class="nav-link" href="/products">Clothing</a>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Categories
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        {% for category in categories %}
+                            <li>
+                                <a class="dropdown-item" href="/products/categories/{{ category.name }}">
+                                    {{ category.name }}
+                                </a>
+                            </li>
+                        {% endfor %}
+                    </ul>
                 </li>
                 <li class="nav-item">
                     {% comment %} TODO: Link to products page with filter for accessories {% endcomment %}

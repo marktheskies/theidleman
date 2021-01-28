@@ -1,6 +1,7 @@
 import uuid
 
-from django.shortcuts import redirect, render
+from django.shortcuts import redirect
+from django.template.response import TemplateResponse
 
 from core.models import Product, ProductCategory
 
@@ -11,14 +12,12 @@ def products(request, category=None):
         context = {
             "products": Product.objects.filter(category__name=category),
             "category": category,
-            "categories": ProductCategory.objects.all(),
         }
     else:
         context = {
             "products": Product.objects.all(),
-            "categories": ProductCategory.objects.all(),
         }
-    return render(request, "products.html", context)
+    return TemplateResponse(request, "products.html", context)
 
 
 def product_details(request, id):
@@ -28,7 +27,7 @@ def product_details(request, id):
             id=id
         ).productadditionalimage_set.all()[:3],
     }
-    return render(request, "product_details.html", context)
+    return TemplateResponse(request, "product_details.html", context)
 
 
 def home(request):
@@ -36,7 +35,7 @@ def home(request):
     context = {
         "products": first_three_products,
     }
-    return render(request, "home.html", context)
+    return TemplateResponse(request, "home.html", context)
 
 
 def add_to_cart(request):
@@ -122,9 +121,9 @@ def remove_shopping_cart_item(request, session_item_id):
 
 def shopping_cart(request):
     context = cart_context(request)
-    return render(request, "shopping_cart.html", context)
+    return TemplateResponse(request, "shopping_cart.html", context)
 
 
 def checkout(request):
     context = cart_context(request)
-    return render(request, "checkout.html", context)
+    return TemplateResponse(request, "checkout.html", context)

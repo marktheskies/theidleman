@@ -7,17 +7,7 @@ from core.models import Product
 
 def products(request):
     """Renders the products page"""
-    category = request.GET.get("category")
-
-    products = Product.objects
-
-    if category:
-        products = products.filter(category=category)
-
-    context = {
-        "products": products.all(),
-        "category": category,
-    }
+    context = {"products": Product.objects.all()}
     return render(request, "products.html", context)
 
 

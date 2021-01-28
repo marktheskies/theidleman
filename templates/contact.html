@@ -36,12 +36,28 @@
                 <p>info@theidleman.com</p>
                 <p>Weekdays 9am-5pm AEST</p>
 
-                {% comment %} TODO: Implement contact form {% endcomment %}
-
-                    <form method="post">
+                {# TODO: Style contact form #}
+                
+                    <form action="contact.html" method="post" class="p-3">
                         {% csrf_token %}
                         {{ form.as_p }}
-                        <input type="submit" value="Submit" />
+                        <button type="button" class="btn btn-secondary text-uppercase shadow" data-bs-toggle="modal"
+                        data-bs-target="#contactUsModal">Submit</button>
+                        <div class="modal fade" id="contactUsModal" tabindex="-1" aria-labelledby="contactUsModal"
+                        aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="contactUsModalLabel">Thank you for contacting us!</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    A member of our customer care team will get back to you within 24hrs.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     </form>
 
             </div>

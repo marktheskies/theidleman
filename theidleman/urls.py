@@ -23,4 +23,7 @@ from theidleman import settings
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include(core.urls)),
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    path('', TemplateView.as_view(template_name='instagram_feed.html', extra_context={
+        "instagram_profile_name": "idle"})),
+    + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+]

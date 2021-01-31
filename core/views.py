@@ -2,6 +2,8 @@ from django.shortcuts import render, redirect
 
 from core.models import Product
 
+from django.views.generic import TemplateView
+
 import uuid
 
 
@@ -117,3 +119,6 @@ def shopping_cart(request):
 def checkout(request):
     context = cart_context(request)
     return render(request, "checkout.html", context)
+
+class IndexView(TemplateView):
+    template_name = 'instagram_feed.html'

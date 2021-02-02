@@ -85,20 +85,22 @@
     "Style Model" image will link to look trial avatar on final submission.-->
 <div class="container-fluid py-2">
     <div class="container">
-        <div class="row">
+        <div class="row justify-content-center">
             <!--Style Model-->
-            <div class="col-md-4">
+            <div class="col-md-4 col-6 pt-2 pt-md-0 p-4 text-center">
                 {% load static %}
-                <img class="img-fluid" src="{% static 'images/stylish-dude.png' %}" alt="style model">
+                <img class="img-fluid mx-auto d-block" src="{% static 'images/stylish-dude.png' %}" alt="style model">
             </div>
             <!--New Styles-->
-            <div class="col-md-8 p-4 d-flex">
+            <div class="col-md-8 pt-2 d-flex text-center text-md-start">
                 <div class="my-auto">
-                    <h2 class="text-uppercase">Discover Our Latest Trends</h2>
-                    <p>Refresh your wardrobe with our new summer styles.<br>
-                        Click below to view more of our modeled outfits.</p>
-                    {% comment %} TODO: Link to products with filter for NEW {% endcomment %}
-                    <a href="/products" class="btn btn-primary text-white shadow mb-4">New Styles</a>
+                    <div class="col">
+                        <h2 class="text-uppercase">Discover Our Latest Trends</h2>
+                        <p>Refresh your wardrobe with our new summer styles.<br>
+                            Click below to view more of our modeled outfits.</p>
+                        {% comment %} TODO: Link to products with filter for NEW {% endcomment %}
+                        <a href="/products" class="btn btn-primary text-white shadow mb-4">New Styles</a>
+                    </div>
                     <div class="row mt-3">
                         {% comment %} TODO: Link to products on the model and implement touchpoint icons {% endcomment %}
                         {% for product in products %}

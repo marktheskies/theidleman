@@ -2,9 +2,9 @@
 {% extends "layout.html" %}
 
 <!--Overrides the title of the Layout template for the checkout page-->
-{% block title %}Home | TheIdleMan{% endblock %}
+{% block title %}Instagram Feed | TheIdleMan{% endblock %}
 
-<!--Overrides the body content of the Layout templat for the checkout page-->
+<!--Overrides the body content of the Layout template for the checkout page-->
 {% block content %}
 
 <!DOCTYPE html>
@@ -14,12 +14,12 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8">
-        <title>{{ instagram_profile_name|capfirst }} Instagram feed</title>
+        <title>{{ idle|capfirst }} Instagram feed</title>
     </head>
     <body>
-        <h1>{{ instagram_profile_name|capfirst }} Instagram Feed</h1>
+        <h1>{{ idle|capfirst }} Instagram Feed</h1>
         <div id="django_recent_media_wall">
-            {% instagram_user_recent_media instagram_profile_name %}
+            {% instagram_user_recent_media idle %}
             {% for media in recent_media %}
             <div class="django_instagram_media_wall_item">
                 <a href="//instagram.com/p/{{ media.shortcode }}" target="_blank">

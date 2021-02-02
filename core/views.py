@@ -120,5 +120,8 @@ def checkout(request):
     context = cart_context(request)
     return render(request, "checkout.html", context)
 
-class IndexView(TemplateView):
+class InstagramFeed(TemplateView):
     template_name = 'instagram_feed.html'
+    
+def instagram_feed(request):
+    return render(request, "instagram_feed.html")

@@ -18,12 +18,11 @@ from django.contrib import admin
 from django.urls import include, path
 
 import core.urls
+from django.views.generic import TemplateView
 from theidleman import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include(core.urls)),
-    path('', TemplateView.as_view(template_name='instagram_feed.html', extra_context={
-        "instagram_profile_name": "idle"})),
-    + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+

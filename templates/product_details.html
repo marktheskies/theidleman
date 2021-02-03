@@ -58,7 +58,7 @@
                     {% endif %}
                 </p>
                 <!-- Product review rating -->
-                <div class="row g-2">
+                <div class="p-1 row g-2">
                     <div class="col-auto">
                         {% load static %}
                         {% if product.rating == 0 %}
@@ -220,7 +220,7 @@
 
                     <!-- Colour selector -->
                     <h6 class="fw-bolder text-uppercase py-3">Colour:</h6>
-                    <div class="p-1 ps-4">
+                    <div class="p-1">
                         {% for color in product.colors.all %}
                         <style>
                             .btn-{{ color.hex_value|slice:"1:" }} {
@@ -316,7 +316,7 @@
                     </div>
 
                     <!-- Size selector -->
-                    <div class="p-1 ps-4">
+                    <div class="p-1">
                         {% for size in product.sizes.all %}
                         <div class="form-check ps-0 me-0 form-check-inline d-inline-block">
                             <input {% if forloop.first %}checked{% endif %} type="radio" class="btn-check" name="size"
@@ -329,7 +329,7 @@
                     <!-- Quantity input -->
                     <h6 class="fw-bolder text-uppercase py-3 mt-2">Quantity:</h6>
 
-                    <div class="row">
+                    <div class="row p-1">
                         <div class="col-md-6">
                             <input type="number" name="quantity" id="quantity" class="form-control" value="1">
                         </div>

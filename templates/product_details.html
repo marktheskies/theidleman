@@ -416,16 +416,16 @@
 
 <!-- You May Also Like Heading -->
 <div class="d-flex justify-content-center">
-    <h3 class="text-uppercase my-5">You Might Also Like...</h3>
+    <h3 class="text-uppercase my-md-5 my-4">You Might Also Like...</h3>
 </div>
 
 <!--You May Also Like carousel scrolls automatically or when clicked between 4 related products drawn from the database. 
 Carousel and content responsively adjust to fit viewport-->
 <div class="container-fluid d-flex w-75 align-items-center">
     <!--Carousel scroller-->
-    <a class="justify-content-start pe-5" href="#youMightAlsoLikeCarousel" role="button" data-bs-slide="prev">
+    <a class="justify-content-start pe-md-5" href="#youMightAlsoLikeCarousel" role="button" data-bs-slide="prev">
         <span class="product-carousel-control-prev-icon" aria-hidden="true">
-            <i class="fas fa-arrow-alt-circle-left fa-3x text-dark left-arrow"></i>
+            <i class="fas fa-arrow-alt-circle-left fa-3x text-dark d-none d-md-inline-block"></i>
         </span>
         <span class="visually-hidden">Previous</span>
     </a>
@@ -442,8 +442,8 @@ Carousel and content responsively adjust to fit viewport-->
                 <div class="row">
                     {% else %}
                     <div class="col">
-                        <div class="card border-0 shadow" style="max-width: 214px">
-                            <img src="{{ product.image.url }}" class="card-img-top" alt="product secondary image">
+                        <div class="card border-0 shadow mb-3" style="max-width: 214px">
+                            <img src="{{ product.image.url }}" class="card-img-top" alt="product image">
                             <div class="card-body text-center">
                                 <h6 class="card-title">{{ product.name }}</h6>
                                 <span class="h5"><strong>${{ product.price }}</strong></span>
@@ -458,9 +458,9 @@ Carousel and content responsively adjust to fit viewport-->
         </div>
     </div>
     <!--Carousel scroller-->
-    <a class="justify-content-end ps-5" href="#youMightAlsoLikeCarousel" role="button" data-bs-slide="next">
+    <a class="justify-content-end ps-md-5" href="#youMightAlsoLikeCarousel" role="button" data-bs-slide="next">
         <span class="product-carousel-control-next-icon" aria-hidden="true">
-            <i class="fas fa-arrow-alt-circle-right fa-3x text-dark right-arrow"></i>
+            <i class="fas fa-arrow-alt-circle-right fa-3x text-dark d-none d-md-inline-block"></i>
         </span>
         <span class="visually-hidden">Next</span>
     </a>

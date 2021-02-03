@@ -425,7 +425,7 @@ Carousel and content responsively adjust to fit viewport-->
     <!--Carousel scroller-->
     <a class="justify-content-start pe-5" href="#youMightAlsoLikeCarousel" role="button" data-bs-slide="prev">
         <span class="product-carousel-control-prev-icon" aria-hidden="true">
-            <i class="fas fa-arrow-alt-circle-left fa-3x text-dark"></i>
+            <i class="fas fa-arrow-alt-circle-left fa-3x text-dark left-arrow"></i>
         </span>
         <span class="visually-hidden">Previous</span>
     </a>
@@ -460,14 +460,14 @@ Carousel and content responsively adjust to fit viewport-->
     <!--Carousel scroller-->
     <a class="justify-content-end ps-5" href="#youMightAlsoLikeCarousel" role="button" data-bs-slide="next">
         <span class="product-carousel-control-next-icon" aria-hidden="true">
-            <i class="fas fa-arrow-alt-circle-right fa-3x text-dark"></i>
+            <i class="fas fa-arrow-alt-circle-right fa-3x text-dark right-arrow"></i>
         </span>
         <span class="visually-hidden">Next</span>
     </a>
 </div>
 
 <!--Page Separator-->
-<div class="container py-5">
+<div class="container py-md-5">
     <hr>
 </div>
 
@@ -476,14 +476,14 @@ Carousel and content responsively adjust to fit viewport-->
     <h3 class="text-uppercase">Want to test the look?</h3>
 </div>
 <div class="d-flex justify-content-center">
-    <p class="text w-50 text-center">We know online shopping isn't always easy, especially when it comes to matching
+    <p class="text w-md-50 w-75 text-center">We know online shopping isn't always easy, especially when it comes to matching
         clothing pieces. Ever done an online clothing haul and realised you can't wear any of it together? Yeah, us
         too.</p>
 </div>
 
 {% comment %} TODO: Implement avatar {% endcomment %}
 <!-- Try on Avatar button -->
-<div class="d-flex justify-content-center py-3 mb-5 pb-4">
+<div class="d-flex justify-content-center py-3 mb-md-5 mb-3 pb-4">
     <!-- Add t-shirt icon -->
     <button class="btn btn-success shadow text-white d-flex">
         <img src="{% static 'images/avatar-icon.png' %}" alt="avatar icon"

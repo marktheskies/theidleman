@@ -33,8 +33,8 @@
     <div class="container">
         <div class="row">
             <!-- Main Image -->
-            <div class="col-md-6 p-5">
-                <div class="p-5">
+            <div class="col-md-6 p-md-5">
+                <div class="p-md-5">
                     <img src="{{ product.image.url }}" class="img-fluid" alt="product main image">
                 </div>
             </div>
@@ -43,13 +43,13 @@
                 {% comment %} Additional Product Images {% endcomment %}
                 {% load static %}
                 {% for image in first_three_additional_images %}
-                <img src="{{ image.image.url }}" class="img-fluid py-2" alt="product secondary image">
+                <img src="{{ image.image.url }}" class="img-fluid py-2 px-2 additional-images" alt="product secondary image">
                 {% endfor %}
             </div>
             <!-- Product Name, Price and shipping-->
-            <div class="col-md-4 mt-3 pe-md-5">
-                <p class="fs-4 py-1">{{ product.name }}</p>
-                <h4 class="fw-bolder py-1">${{ product.price }}</h4>
+            <div class="col-md-4 mt-md-3 pe-md-5">
+                <p class="fs-4 py-md-1">{{ product.name }}</p>
+                <h4 class="fw-bolder py-md-1">${{ product.price }}</h4>
                 <p class="py-2">
                     {% if product.free_delivery %}
                     <u>Free delivery & returns*</u>

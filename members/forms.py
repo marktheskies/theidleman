@@ -1,9 +1,10 @@
 from django import forms
+
 from members.models import Member
-from django.contrib.auth.models import User
 
 
 class MemberSignupForm(forms.ModelForm):
+    """A Model Form for the creation/update of a Member"""
     first_name = forms.CharField(max_length='150')
     last_name = forms.CharField(max_length='150')
     email = forms.EmailField()
@@ -14,9 +15,17 @@ class MemberSignupForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(MemberSignupForm, self).__init__(*args, **kwargs)
         for visible in self.visible_fields():
-            visible.field.widget.attrs['class'] = 'form-control'
+            visible.field.widget.attrs['class'] = 'form-control mb-3'
 
     class Meta:
         model = Member
         fields = ('phone', 'address_street1', 'address_street2', 'address_suburb',
                   'address_state', 'address_country', 'address_postcode')
+        labels = {
+            'address_street1': 'Street Address 1',
+            'address_street2': 'Street Address 2',
+            'address_suburb': 'Suburb',
+            'address_state': 'State',
+            'address_country': 'Country',
+            'address_postcode': 'Postcode',
+        }

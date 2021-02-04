@@ -3,12 +3,12 @@
 {% block title %}Member Signup | The Idle Man{% endblock title %}
 
 {% block content %}
-<div class="container py-5">
+<div class="container pt-5 pb-4">
     <h1 class="text-center">Member Signup</h1>
     <p class="text-center lead">Sign up to check out faster by saving your delivery and payment details.</p>
 </div>
 
-<div class="container py-5">
+<div class="container pb-5">
     {% if errors %}
     <div class="alert alert-danger" role="alert">
         <ul class="mb-0">
@@ -21,7 +21,9 @@
     <form action="{% url 'member_signup' %}" method="post">
         {% csrf_token %}
         {{ form }}
-        <button class="btn btn-primary">Create Account</button>
+        <div class="d-grid mt-3">
+            <button class="btn btn-primary block">Create Account</button>
+        </div>
     </form>
 </div>
 {% endblock content %}

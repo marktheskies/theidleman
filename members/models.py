@@ -16,3 +16,6 @@ class Member(models.Model):
     address_state = models.CharField(max_length=255)
     address_country = models.CharField(max_length=255)
     address_postcode = models.CharField(max_length=255)
+
+    def __str__(self):
+        return self.user.username

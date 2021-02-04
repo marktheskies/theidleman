@@ -1,7 +1,7 @@
-from django.shortcuts import render
-from django.http import HttpResponseRedirect, JsonResponse
+from django.contrib.auth import authenticate, login as django_login
 from django.contrib.auth.models import User
-from django.db import IntegrityError
+from django.http import HttpResponseNotAllowed, HttpResponseRedirect
+from django.shortcuts import render
 
 from members.forms import MemberSignupForm
 
@@ -22,8 +22,9 @@ def signup(request):
                 last_name=form.cleaned_data['last_name'],
                 username=form.cleaned_data['email'],
                 email=form.cleaned_data['email'],
-                password=form.cleaned_data['password']
             )
+
+            user.set_password(form.cleaned_data['password'])
 
             # Ensure the username is unique.
             if User.objects.filter(username=user.username).exists():
@@ -45,3 +46,27 @@ def signup(request):
                 'errors': form.errors,
                 'form': MemberSignupForm(request.POST)
             })
+
+
+def login(request):
+    if request.method != 'GET' and request.method != 'POST':
+        return HttpResponseNotAllowed(['GET', 'POST'])
+
+    if request.method == 'GET':
+        return render(request, 'member_login.html')
+
+    elif request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+
+        user = authenticate(request, username=username, password=password)
+
+        print(user)
+
+        if user is not None:
+            django_login(request, user)
+            return HttpResponseRedirect('/')
+        else:
+            return render(request, 'member_login.html', {
+                'errors': {'User': 'The provided login credentials are invalid. Please try again.'}
+            }, status=401)

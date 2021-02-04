@@ -1,0 +1,35 @@
+{% extends 'layout.html' %}
+
+{% block title %}Member Login | The Idle Man{% endblock title %}
+
+{% block content %}
+<div class="container py-5 px-5">
+    <h1 class="text-center">Sign In</h1>
+    <p class="lead text-center">Pick up from where you left off, or simply speed up the checkout process.</p>
+
+    {% if errors %}
+    <div class="alert alert-danger" role="alert">
+        <ul class="mb-0">
+            {% for label, error in errors.items %}
+            <li><b>{{ label }}:</b> {{ error }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% endif %}
+
+    <form action="{% url 'member_login' %}" method="POST">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label for="username">Email Address</label>
+            <input type="email" name="username" id="username" class="form-control">
+        </div>
+        <div class="mb-4">
+            <label for="password">Password</label>
+            <input type="password" name="password" id="password" class="form-control">
+        </div>
+        <div class="d-grid mb-4">
+            <button type="submit" class="btn btn-primary">Log In</button>
+        </div>
+    </form>
+</div>
+{% endblock %}

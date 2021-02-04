@@ -1,4 +1,4 @@
-from django.contrib.auth import authenticate, login as django_login
+from django.contrib.auth import authenticate, login as django_login, logout
 from django.contrib.auth.models import User
 from django.http import HttpResponseNotAllowed, HttpResponseRedirect
 from django.shortcuts import render
@@ -70,3 +70,9 @@ def login(request):
             return render(request, 'member_login.html', {
                 'errors': {'User': 'The provided login credentials are invalid. Please try again.'}
             }, status=401)
+
+
+def logout_view(request):
+    """Logs a member out and returns them to the login screen."""
+    logout(request)
+    return login(request)

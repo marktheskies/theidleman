@@ -7,7 +7,14 @@ class MemberSignupForm(forms.ModelForm):
     first_name = forms.CharField(max_length='150')
     last_name = forms.CharField(max_length='150')
     email = forms.EmailField()
-    password = password = forms.CharField(widget=forms.PasswordInput())
+    password = forms.CharField(widget=forms.PasswordInput())
+
+    # Add form-control class to all visible fields in the form.
+    # Reference: Christian Abbott, 2015, https://stackoverflow.com/a/29717314
+    def __init__(self, *args, **kwargs):
+        super(MemberSignupForm, self).__init__(*args, **kwargs)
+        for visible in self.visible_fields():
+            visible.field.widget.attrs['class'] = 'form-control'
 
     class Meta:
         model = Member

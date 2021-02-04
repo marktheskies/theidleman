@@ -3,5 +3,25 @@
 {% block title %}Member Signup | The Idle Man{% endblock title %}
 
 {% block content %}
-<h1>Member Signup Page</h1>
+<div class="container py-5">
+    <h1 class="text-center">Member Signup</h1>
+    <p class="text-center lead">Sign up to check out faster by saving your delivery and payment details.</p>
+</div>
+
+<div class="container py-5">
+    {% if errors %}
+    <div class="alert alert-danger" role="alert">
+        <ul class="mb-0">
+            {% for label, error in errors.items %}
+            <li><b>{{ label }}:</b> {{ error }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% endif %}
+    <form action="{% url 'member_signup' %}" method="post">
+        {% csrf_token %}
+        {{ form }}
+        <button class="btn btn-primary">Create Account</button>
+    </form>
+</div>
 {% endblock content %}

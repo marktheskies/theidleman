@@ -1,9 +1,10 @@
 from django.contrib.auth import authenticate, login as django_login, logout
+from django.contrib.auth.password_validation import validate_password
 from django.contrib.auth.models import User
 from django.http import HttpResponseNotAllowed, HttpResponseRedirect
 from django.shortcuts import render
 
-from members.forms import MemberSignupForm
+from members.forms import MemberSignupForm, MemberProfileForm, UserProfileForm
 
 
 def signup(request):
@@ -27,6 +28,7 @@ def signup(request):
             user.set_password(form.cleaned_data['password'])
 
             # Ensure the username is unique.
+            # TODO: Check if this is actually required. It may be handled by Django natively.
             if User.objects.filter(username=user.username).exists():
                 return render(request, 'member_signup.html', {
                     'errors': {'Username': 'That username has already been taken.'},
@@ -76,3 +78,30 @@ def logout_view(request):
     """Logs a member out and returns them to the login screen."""
     logout(request)
     return login(request)
+
+
+def profile(request):
+    """Shows the member a profile screen with a form to edit details. POST requests will update
+    the account."""
+    if request.method == 'POST':
+        user_form = UserProfileForm(request.POST, instance=request.user)
+        member_form = MemberProfileForm(
+            request.POST, instance=request.user.member)
+
+        if user_form.is_valid() and member_form.is_valid():
+            user_form.save()
+            member_form.save()
+
+            # Sync the username and the email address
+            request.user.email = user_form.cleaned_data['username']
+            request.user.save()
+        else:
+            return render(request, 'member_profile.html', {
+                'errors': {**user_form.errors, **member_form.errors},
+                'user_form': UserProfileForm(request.POST, instance=request.user),
+                'member_form': MemberProfileForm(request.POST, instance=request.user.member),
+            })
+
+    user_form = UserProfileForm(instance=request.user)
+    member_form = MemberProfileForm(instance=request.user.member)
+    return render(request, 'member_profile.html', {'user_form': user_form, 'member_form': member_form})

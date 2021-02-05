@@ -40,7 +40,8 @@ def signup(request):
             member.user = user
             member.save()
 
-            # TODO: Redirect to a "thanks for signing up" page.
+            # Sign the user in and take them to the products page.
+            django_login(request, user)
             return HttpResponseRedirect('/products')
 
         else:

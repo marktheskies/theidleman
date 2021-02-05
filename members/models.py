@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from phonenumber_field.modelfields import PhoneNumberField
+from core.models import Product, Color, Size
 
 
 class Member(models.Model):
@@ -19,3 +20,14 @@ class Member(models.Model):
 
     def __str__(self):
         return self.user.username
+
+
+class CartItem(models.Model):
+    """Represents an item "saved" in a Member's cart, and allows us to load all items into the
+    session when a user logs in, to restore their cart."""
+    member = models.ForeignKey(Member, on_delete=models.CASCADE)
+    item = models.ForeignKey(Product, on_delete=models.CASCADE)
+    session_item_id = models.UUIDField()
+    color = models.ForeignKey(Color, on_delete=models.CASCADE)
+    size = models.ForeignKey(Size, on_delete=models.CASCADE)
+    quantity = models.IntegerField()

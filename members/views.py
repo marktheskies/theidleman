@@ -67,6 +67,19 @@ def login(request):
 
         if user is not None:
             django_login(request, user)
+
+            # Load the user's cart into the session.
+            cart = []
+            for stored_cart_item in user.member.cartitem_set.all():
+                cart.append({
+                    "session_item_id": str(stored_cart_item.session_item_id),
+                    "product_id": stored_cart_item.item.id,
+                    "color": stored_cart_item.color.hex_value,
+                    "size": stored_cart_item.size.name,
+                    "quantity": stored_cart_item.quantity,
+                })
+            request.session['cart'] = cart
+
             return HttpResponseRedirect('/')
         else:
             return render(request, 'member_login.html', {

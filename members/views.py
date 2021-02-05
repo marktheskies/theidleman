@@ -118,4 +118,7 @@ def profile(request):
 
     user_form = UserProfileForm(instance=request.user)
     member_form = MemberProfileForm(instance=request.user.member)
-    return render(request, 'member_profile.html', {'user_form': user_form, 'member_form': member_form})
+    return render(request, 'member_profile.html', {
+        'user_form': user_form,
+        'member_form': member_form
+    })

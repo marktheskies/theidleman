@@ -5,14 +5,16 @@
 {% load humanize %}
 
 <div class="container">
-  <div class="row">
-    <div class="col-md-8 card mb-4 mt-4 p-3">
+  <div class="row d-flex justify-content-center">
+    <div class="col-md-8 mb-4 mt-4 p-3">
       <div>
-        <h1>{% block title %} {{ post_detail.title }} {% endblock title %}</h1>
+        <h1 class="d-flex justify-content-center">{% block title %} {{ post_detail.title }} {% endblock title %}</h1>
+        <img src="{{ post_detail.image.url }}" class="img-fluid" alt="post main image">
         <p class=" text-muted">{{ post_detail.author }} | {{ post_detail.created_on }}</p>
         <p class="card-text ">{{ post_detail.content }}</p>
       </div>
 
+      <br>
       <h2 class="subtitle">Comments</h2>
       {% for comment in post.comments.all %}
         <article class="media">
@@ -32,7 +34,6 @@
         </div>
       {% endfor %}
       
-      
       <h2 class="subtitle">Add Comment</h2>
         
         <form method="post" action=".">
@@ -42,12 +43,12 @@
 
           <div class="field">
             <div class="control">
-                <button class="btn btn-primary">Submit</button>
+                <button class="btn btn-primary text-white text-uppercase shadow">Submit</button>
             </div>
           </div>
         </form>
     </div>    
   </div>
-</div>
+</div> 
 
 {% endblock content %}

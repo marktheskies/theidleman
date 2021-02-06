@@ -15,9 +15,10 @@ class Post(models.Model):
     content = models.TextField()
     created_on = models.DateTimeField(auto_now_add=True)
     status = models.IntegerField(choices=STATUS, default=0)
+    image = models.ImageField(null=True, blank=True)
 
     class Meta:
-        ordering = ['-created_on']
+        ordering = ['created_on']
 
 class Comment(models.Model):
     post = models.ForeignKey(Post, related_name='comments', on_delete= models.CASCADE)
@@ -26,5 +27,5 @@ class Comment(models.Model):
     body = models.TextField()
     created_on = models.DateTimeField(auto_now_add=True)
 
-    class Meta:
-        ordering = ['created_on']
+class Meta:
+    ordering = ['created_on']

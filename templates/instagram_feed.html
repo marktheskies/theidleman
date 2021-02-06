@@ -9,28 +9,18 @@
 
 <!DOCTYPE html>
 
-{% load instagram_client %}
-
 <html lang="en">
     <head>
         <meta charset="UTF-8">
         <title>{{ idle|capfirst }} Instagram feed</title>
     </head>
-    <body>
-        <h1>{{ idle|capfirst }} Instagram Feed</h1>
-        <div id="django_recent_media_wall">
-            {% instagram_user_recent_media idle %}
-            {% for media in recent_media %}
-            <div class="django_instagram_media_wall_item">
-                <a href="//instagram.com/p/{{ media.shortcode }}" target="_blank">
-                    <img src="{{ media.thumbnail_src|standard_size }}"/>
-                    <span>{{ media.edge_media_to_caption.edges.0.node.text }}</span>
-                </a>
-            </div>
-            {% endfor %}
-        </div>
-        <p>Got from instagram</p>
-    </body>
+    <script src="https://assets.juicer.io/embed.js" type="text/javascript"></script>
+<link href="https://assets.juicer.io/embed.css" media="all" rel="stylesheet" type="text/css" />
+<ul class="juicer-feed" data-feed-id="theidleman">
+    <h1 class="referral">
+    <a href="https://www.juicer.io">Powered by Juicer.io</a>
+    </h1>
+</ul>
 </html>
 
 {% endblock %}

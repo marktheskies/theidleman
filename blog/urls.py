@@ -1,8 +1,8 @@
-from . import views
 from django.urls import path
-from blog.views import posts
+
+from blog.views import posts, post_detail
 
 urlpatterns = [
     path('', posts, name='blog'),
-    path('<slug:slug>/', views.PostDetail.as_view(), name='post_detail'),
+    path('<slug:slug>/', post_detail, name='post_detail'),
 ]

@@ -1,0 +1,212 @@
+<!--Denotes that the checkout template is a child of the layout template, and will inherit it's properties-->
+{% extends "layout.html" %}
+
+<!--Overrides the title of the Layout template for the contact page-->
+{% block title %}Contact Us | The Idle Man{% endblock %}
+
+<!--Overrides the body content of the Layout template for the contact page-->
+{% block content %}
+
+<!--Breadcrumbs section of the page which display the parent pages leading to current page.
+    Separated by > symbol -->
+    <div class="container-fluid bg-light py-3">
+        <div class="container">
+            <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+                <ol class="breadcrumb mb-0">
+                    <li class="breadcrumb-item"><a href="/">Home</a></li>
+                    <li class="breadcrumb-item active">Contact Us</li>
+                    <li class="ms-auto">
+                        </a>
+                    </li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+
+    <div class="container pt-5">
+        <h2 class="text-uppercase text-center mb-5">Contact Us</h2>
+    </div>
+
+    <div class="container-fluid text-center">
+        <div class="py-md-4 row px-md-5 d-flex justify-content-center">
+            <div class="col-md-3">
+                <div class="bg-success pb-2 pt-2">
+                <h4 class="text-uppercase pt-2">General Enquiries</h4>
+                <p class="pt-3">1800 435 362</p>
+                <p>info@theidleman.com</p>
+                <p>Weekdays 9am-5pm AEST</p>
+
+                {# TODO: Style contact form #}
+                    <div class="container">
+                            <form action="contact.html" method="post" class="p-3">
+                                {% comment %}
+                                    {% csrf_token %}
+                                    {{ form.as_p }}
+                                {% endcomment %} 
+                                <div class="form-group py-2">
+                                    <input type="text" name="name" id="name" class="col-auto form-control text-uppercase" placeholder="Name *" required>
+                                </div>
+                                <div class="form-group py-2">
+                                    <input type="email" name="email" id="email" class="col-auto form-control text-uppercase" placeholder="Email *" required>
+                                </div>
+                                <div class="form-group py-2">
+                                    <input type="tel" name="number" id="number" class="col-auto form-control text-uppercase" placeholder="Number">
+                                </div>
+                                <div class="form-group py-2 mb-2">
+                                    <textarea class="col-auto form-control text-uppercase" name="message" id="message" rows="5" placeholder="Enquiry *"></textarea>
+                                </div>
+                                <button type="button" class="btn btn-secondary text-uppercase shadow" data-bs-toggle="modal"
+                                data-bs-target="#contactUsModal">Submit</button>
+                                <div class="modal fade" id="contactUsModal" tabindex="-1" aria-labelledby="contactUsModal"
+                                aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="contactUsModalLabel">Thank you for contacting us!</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            A member of our customer care team will get back to you within 24hrs.
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            </form>
+                    </div>
+
+            </div>
+        </div>
+
+        <div class="col-md-7">
+            <h4 class="text-uppercase pt-3 pb-2 pt-md-0 pb-md-4">How Can We Help?</h4>
+
+                {% comment %} TODO: Implement dropdown menus {% endcomment %}
+                <!-- Delivery Collapsible.
+                    Expands when clicked to display information about delivery policies from the database 
+                    Responsively adjusts to suit viewport width -->
+                <div class="container-fluid bg-light border border-1" data-bs-toggle="collapse"
+                data-bs-target="#deliveryInfo">
+                <button class="btn container-fluid">Delivery +</button>
+                <div class="collapse" id="deliveryInfo">
+                    <div class="card">
+                        <div class="card-body">
+                            {% comment %} TODO: Add delivery info to database {% endcomment %}
+                            <p>While we offer free delivery on many of our products, some items require a little extra packaging and care. 
+                                For orders containing such items, we charge a flate rate of $15, Australia-wide.
+                                Please allow 1-2 business days to dispatch and 7-14 business days for delivery.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                </div>
+                <!-- Returns and Refunds Collapsible.
+                    Expands when clicked to display information about returns and refund policies from the database 
+                    Responsively adjusts to suit viewport width-->
+                <div class="container-fluid bg-light border border-1" data-bs-toggle="collapse"
+                data-bs-target="#returnsAndRefunds">
+                <button class="btn container-fluid">Returns & Refunds +</button>
+                <div class="collapse" id="returnsAndRefunds">
+                    <div class="card">
+                        <div class="card-body">
+                            {% comment %} TODO: Add returns and refunds info to database {% endcomment %}
+                            <p>If you are unhappy with any of our products received, we will happily provide you with an exchange or refund within 60 days from purchase.
+                                Returns and exchanges for online orders will be accepted where the product is returned in its original condition. This includes item not to have been worn, altered or washed. 
+                                Your returned product must also have the original packaging and MUST also have the original tags still attached, subject only to the ACL.
+                                Having ensured you meet the above requirements you can exchange your items by filling out the returns section of your online purchase receipt and 
+                                sending the item(s) back to us via post through our online returns portal. 
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                </div>
+                <!-- Order Issues Collapsible.
+                    Expands when clicked to display information about order issues processes from the database 
+                    Responsively adjusts to suit viewport width-->
+                    <div class="container-fluid bg-light border border-1" data-bs-toggle="collapse"
+                    data-bs-target="#orderIssues">
+                    <button class="btn container-fluid">Order Issues +</button>
+                    <div class="collapse" id="orderIssues">
+                        <div class="card">
+                            <div class="card-body">
+                                {% comment %} TODO: Add order issues info to database {% endcomment %}
+                                <p>We're really sorry if there has been an issue with your order.
+                                    If you have received a faulty or damaged item, please return the item to us as soon as possible 
+                                    so we can get this sorted for you. Don't forget to select 'Faulty' as your reason for return.
+                                    If you have received an incorrect item, please send it back to us and we'll refund you as soon as it's arrived back at our warehouse.
+                                    Please fill in the section on the back of your delivery note to indicate that the item is incorrect and put the note in your parcel when you send it back.
+                                    If an item is missing, please contact our Customer Care Team using the form on this page.</p>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                    <!-- Payment and Coupons Collapsible.
+                    Expands when clicked to display information about payment and coupons from the database 
+                    Responsively adjusts to suit viewport width-->
+                    <div class="container-fluid bg-light border border-1" data-bs-toggle="collapse"
+                    data-bs-target="#paymentAndCoupons">
+                    <button class="btn container-fluid">Payment & Coupons +</button>
+                    <div class="collapse" id="paymentAndCoupons">
+                        <div class="card">
+                            <div class="card-body">
+                                {% comment %} TODO: Add payment and coupon info to database {% endcomment %}
+                                <p>We offer a range of payment methods including VISA, Mastercard, American Express, PayPal, Afterpay, and Zippay.
+                                    If you have a promo code or gift card, please enter the code in at the payment stage of the checkout.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                    <!-- Technical Issues Collapsible.
+                    Expands when clicked to display information about technical issues from the database 
+                    Responsively adjusts to suit viewport width-->
+                    <div class="container-fluid bg-light border border-1" data-bs-toggle="collapse"
+                    data-bs-target="#technicalIssues">
+                    <button class="btn container-fluid">Technical Issues +</button>
+                    <div class="collapse" id="technicalIssues">
+                        <div class="card">
+                            <div class="card-body">
+                                {% comment %} TODO: Add techincal issue info to database {% endcomment %}
+                                <p>If you're experiencing issues with the website, please try the following steps before contacting our Customer Care team.<br>
+                                    1. Clear your cache in your browser.<br>
+                                    2. Close and reopen your browser or try a different browser.<br>
+                                    3. Update your operating system.<br>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                    <!-- Product Stock Collapsible.
+                    Expands when clicked to display information about product stock from the database 
+                    Responsively adjusts to suit viewport width-->
+                    <div class="container-fluid bg-light border border-1" data-bs-toggle="collapse"
+                    data-bs-target="#productStock">
+                    <button class="btn container-fluid">Product Stock +</button>
+                    <div class="collapse" id="productStock">
+                        <div class="card">
+                            <div class="card-body">
+                                {% comment %} TODO: Add product stock info to database {% endcomment %}
+                                <p>If you have an item in your saved items or wishlist, you can choose to be notified if the item comes back in stock.</p>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                    <!-- Sizing Collapsible.
+                    Expands when clicked to display information about sizing
+                    Responsively adjusts to suit viewport width-->
+                    <div class="container-fluid bg-light border border-1" data-bs-toggle="collapse"
+                    data-bs-target="#sizingDetails">
+                    <button class="btn container-fluid">Sizing +</button>
+                        <div class="collapse" id="sizingDetails">
+                            <div class="card">
+                                <div class="card-body">
+                                    <p>Just click on the 'Size Guide' button on each product page for measurements - for your convienience, you can also find this in the footer on every page!</p>
+                                </div>
+                        </div>
+                        </div>
+                    </div>
+                    <p class="p-2 py-4">We're here to help. If your question hasn't been answered here, fill out the form and we will get back to you within 24hrs.</p>
+        </div>
+    </div>
+</div>
+{% endblock %}

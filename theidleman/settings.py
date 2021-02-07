@@ -42,6 +42,8 @@ INSTALLED_APPS = [
     'core',
     'fontawesome-free',
     'blog',
+    'members',
+    'phonenumber_field',
 ]
 
 MIDDLEWARE = [
@@ -135,3 +137,7 @@ STATIC_URL = '/static/'
 # This is where model images will be stores
 MEDIA_ROOT = 'media/'
 MEDIA_URL = '/media/'
+
+# Phone number format
+# This specifies the accepted format for PhoneNumberField
+PHONENUMBER_DB_FORMAT = 'E164'

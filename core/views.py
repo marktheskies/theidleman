@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 
-from core.models import Product
+from core.models import Product, Color, Size
+from members.models import CartItem
 
 import uuid
 
@@ -34,8 +35,21 @@ def add_to_cart(request):
     else:
         cart = request.session["cart"]
 
+    session_item_id = str(uuid.uuid4())
+
+    if request.user.is_authenticated:
+        ci = CartItem(
+            member_id=request.user.member.id,
+            item_id=request.POST["product_id"],
+            session_item_id=session_item_id,
+            quantity=request.POST["quantity"]
+        )
+        ci.color = Color.objects.get(hex_value=request.POST["color"])
+        ci.size = Size.objects.get(name=request.POST["size"])
+        ci.save()
+
     cart.append({
-        "session_item_id": str(uuid.uuid4()),
+        "session_item_id": session_item_id,
         "product_id": request.POST["product_id"],
         "color": request.POST["color"],
         "size": request.POST["size"],
@@ -52,13 +66,16 @@ def empty_cart(request):
     if "cart" in request.session:
         request.session["cart"] = []
 
+    request.user.member.cartitem_set.all().delete()
+
     # Redirect to the last page (HTTP_REFERRER). If HTTP_REFERER is empty, for example, if the user hits "back",
     # or navigates to the page directly, redirect to the homepage.
     return redirect(request.META.get("HTTP_REFERER", '/'))
 
 
 def cart_context(request):
-    """Creates a context suitable for cart and checkout pages, containing products, subtotal, shipping and total."""
+    """Creates a context suitable for cart and checkout pages, containing products, subtotal, 
+    shipping and total."""
     context = {
         "items": [],
         "subtotal": 0.0,
@@ -94,6 +111,10 @@ def cart_context(request):
 
 def remove_shopping_cart_item(request, session_item_id):
     """Removes an item from the session shopping cart, by its unique ID in the session."""
+
+    # Remove the item from member db cart storage.
+    request.user.member.cartitem_set.filter(
+        session_item_id=session_item_id).delete()
 
     # If the cart is empty, just redirect to the home page.
     if "cart" not in request.session:

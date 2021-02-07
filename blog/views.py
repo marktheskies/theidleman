@@ -8,7 +8,8 @@ def posts(request):
     return render(request, "blog.html", context)
 
 def post_detail(request, slug):
-    context = {"post_detail": Post.objects.get(slug=slug), "form": CommentForm()}
+    post = Post.objects.get(slug=slug)
+    context = {"post_detail": post, "form": CommentForm()}
 
     if request.method == "POST":
         form = CommentForm(request.POST)

@@ -158,6 +158,28 @@
     </div>
 </div>
 
+{% comment %}
+TODO: Format to match current blog links and merge
+<div class="container">
+    <div class="row d-flex justify-content-center">
+        <!-- Blog Entries Column -->
+        <div class="col-md-8 mt-3 ">
+            {% for post in post_list %}
+            <div class="card mb-4 bg-light">
+                <div class="card-body">
+                    <h2 class="card-title d-flex justify-content-center">{{ post.title }}</h2>
+                    <img src="{{ post.image.url }}" class="img-fluid" alt="post main image">
+                    <p class="card-text text-muted h6">{{ post.author }} | {{ post.created_on}} </p>
+                    <p class="card-text">{{post.content|slice:":200" }}....</p>
+                    <a href="{% url 'post_detail' post.slug  %}" class="btn btn-primary">Read More &rarr;</a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endcomment %}
+
 <!--Page section separator-->
 <div class="container-fluid bg-light">
     <div class="container">
@@ -211,6 +233,10 @@
         </div>
     </div>
 </div>
+
+
+
+
 
 <!--Newsletter signup area. 
     Includes text entry input field and "Join" button which will pop up a modal overlay when clicked-->

@@ -1,0 +1,54 @@
+{% extends 'layout.html' %} 
+
+{% block content %}
+
+{% load humanize %}
+
+<div class="container">
+  <div class="row d-flex justify-content-center">
+    <div class="col-md-8 mb-4 mt-4 p-3">
+      <div>
+        <h1 class="d-flex justify-content-center">{% block title %} {{ post_detail.title }} {% endblock title %}</h1>
+        <img src="{{ post_detail.image.url }}" class="img-fluid" alt="post main image">
+        <p class=" text-muted">{{ post_detail.author }} | {{ post_detail.created_on }}</p>
+        <p class="card-text ">{{ post_detail.content }}</p>
+      </div>
+
+      <br>
+      <h2 class="subtitle">Comments</h2>
+      {% for comment in post_detail.comments.all %}
+        <article class="media">
+          <div class="media-content">
+            <div class="content">
+              <p>
+               <strong>{{ comment.name }}</strong> <small>{{ comment.date_added }}</small>
+               <br>
+               {{ comment.body }}
+              </p>
+            </div>
+          </div>
+        </article>
+      {% empty %}
+        <div class="notification">
+          <p>No comments yet</p>
+        </div>
+      {% endfor %}
+      
+      <h2 class="subtitle">Add Comment</h2>
+        
+        <form method="post" action=".">
+          {% csrf_token %}
+          
+          {{ form.as_p }}
+
+          <div class="field">
+            <div class="control">
+                <button class="btn btn-primary text-white text-uppercase shadow">Submit</button>
+            </div>
+          </div>
+        </form>
+    </div>    
+  </div>
+</div> 
+
+{% endblock content %}

@@ -6,26 +6,36 @@
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
             <span class="navbar-toggler-icon"></span>
         </button>
+      
         <!--Nav Bar contains the Idle Man logo which will return to the home page when clicked-->
-            <a class="navbar-brand me-0" href="/">
-                {% load static %}
-                <img src="{% static 'images/logo.png' %}" alt="The Idle Man logo" width="150">
-            </a>
+        <a class="navbar-brand me-0" href="/">
+            {% load static %}
+            <img src="{% static 'images/logo.png' %}" alt="The Idle Man logo" width="150">
+        </a>
         <!--Nav Bar content will link to the relevant pages when clicked. 
             This will be updated in the final delivery-->
+      
         <div class="collapse navbar-collapse" id="navbarContent">
             <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    {% comment %} TODO: Link to products page with filter for new products {% endcomment %}
-                    <a class="nav-link" href="/products">New</a>
+                    <a class="nav-link" href="/products?sort=-id">New</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Categories
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        {% for category in categories %}
+                            <li>
+                                <a class="dropdown-item" href="/products/categories/{{ category.name }}">
+                                    {{ category.name }}
+                                </a>
+                            </li>
+                        {% endfor %}
+                    </ul>
                 </li>
                 <li class="nav-item">
-                    {% comment %} TODO: Link to products page with filter for clothing {% endcomment %}
-                    <a class="nav-link" href="/products">Clothing</a>
-                </li>
-                <li class="nav-item">
-                    {% comment %} TODO: Link to products page with filter for accessories {% endcomment %}
-                    <a class="nav-link" href="/products">Accessories</a>
+                    <a class="nav-link" href="/products/categories/Accessories">Accessories</a>
                 </li>
 
                 {% if not request.user.is_authenticated %}

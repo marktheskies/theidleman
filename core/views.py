@@ -1,16 +1,38 @@
-from django.shortcuts import render, redirect
+import uuid
+
+from django.core.exceptions import FieldError
+from django.shortcuts import redirect
+from django.template.response import TemplateResponse
 
 from core.models import Product, Color, Size
 from members.models import CartItem
 
 from blog.models import Post
+from core.models import Product, ProductCategory
 
-import uuid
 
+def products(request, category=None):
+    """Renders the products page"""
+    if category:
+        context = {
+            "products": Product.objects.filter(category__name=category),
+            "category": category,
+        }
+    else:
+        context = {
+            "products": Product.objects.all(),
+        }
 
-def products(request):
-    context = {"products": Product.objects.all()}
-    return render(request, "products.html", context)
+    # Product sorting
+    if request.GET.get("sort"):
+        try:
+            context["products"] = context["products"].order_by(
+                request.GET.get("sort"))
+        except FieldError:
+            # The give field does not exist on the Product, thus we must skip sorting.
+            pass
+
+    return TemplateResponse(request, "products.html", context)
 
 
 def product_details(request, id):
@@ -20,7 +42,7 @@ def product_details(request, id):
             id=id
         ).productadditionalimage_set.all()[:3],
     }
-    return render(request, "product_details.html", context)
+    return TemplateResponse(request, "product_details.html", context)
 
 
 def home(request):
@@ -29,7 +51,7 @@ def home(request):
         "products": first_three_products,
         "post_list": Post.objects.all()[:3]
     }
-    return render(request, "home.html", context)
+    return TemplateResponse(request, "home.html", context)
 
 
 def add_to_cart(request):
@@ -135,32 +157,12 @@ def remove_shopping_cart_item(request, session_item_id):
 
 def shopping_cart(request):
     context = cart_context(request)
-    return render(request, "shopping_cart.html", context)
+    return TemplateResponse(request, "shopping_cart.html", context)
 
 
 def checkout(request):
     context = cart_context(request)
-    return render(request, "checkout.html", context)
+    return TemplateResponse(request, "checkout.html", context)
 
-
-from django.shortcuts import render, redirect, get_object_or_404, HttpResponseRedirect
-from django.core.mail import send_mail
-from .forms import ContactForm
-
-
-def contact(request):
-        form_class = ContactForm
-        form = form_class(request.POST or None)
-        if request.method == 'POST':
-
-            if form.is_valid():
-                name = request.POST.get('name')
-                email = request.POST.get('email')
-                number = request.POST.get('number')
-                message = request.POST.get('message')
-
-                send_mail('Subject here', message, email, ['testmail@gmail.com'], fail_silently=False) 
-                return HttpResponseRedirect('/contact')
-    
-        return render(request, "contact.html", {'form': form})
-
+def contact(request):    
+    return render(request, "contact.html")

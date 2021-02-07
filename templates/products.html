@@ -13,8 +13,14 @@
     <div class="container">
         <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
             <ol class="breadcrumb mb-0">
-                <li class="breadcrumb-item"><a href="/">Home</a></li>
-                <li class="breadcrumb-item active">Products</li>
+                {% if category %}
+                    <li class="breadcrumb-item"><a href="/">Home</a></li>
+                    <li class="breadcrumb-item"><a href="/products">Products</a></li>
+                    <li class="breadcrumb-item active">{{ category }}</li>
+                {% else %}
+                    <li class="breadcrumb-item"><a href="/">Home</a></li>
+                    <li class="breadcrumb-item active">Products</li>
+                {% endif %}
             </ol>
         </nav>
     </div>
@@ -24,7 +30,11 @@
 <div class="container text-center py-5">
     <div class="row">
         <div class="col-md-7 mx-auto">
-            <h1>Menswear</h1>
+            {% if category %}
+                <h1>{{ category }}</h1>
+            {% else %}
+                <h1>Menswear</h1>
+            {% endif %}
             <p class="lead">Browse the latest in men's clothing and fashion with The Idle Man. Offering modern fits
                 and
                 premium fabrics, you'll discover the perfect outfit for any occasion.</p>
@@ -38,11 +48,41 @@
     Placeholder only - will be functional in final submission-->
 <div class="container-fluid bg-light py-3 shadow-sm">
     <div class="container">
-        {% comment %} TODO: Implement {% endcomment %}
-        <a href="#" class="btn btn-link">Filter <i class="fas fa-filter"></i></a>
+        <!-- Filter Dropdown. Allows the user to filter products. -->
+        <span class="dropdown">
+            <button class="btn btn-link dropdown-toggle text-decoration-none" type="button" id="filterDropdownButton" data-bs-toggle="dropdown" aria-expanded="false">
+                Filter <i class="fas fa-filter"></i>
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="filterDropdownButton">
+                <li><h6 class="dropdown-header">Categories</h6></li>
+                {% for category in categories %}
+                    <li><a class="dropdown-item" href="/products/categories/{{ category.name }}">{{ category.name }}</a></li>
+                {% endfor %}
 
-        {% comment %} TODO: Implement {% endcomment %}
-        <a href="#" class="btn btn-link">Sort <i class="fas fa-sort"></i></a>
+                {% if category %}
+                    <!-- Clear filter button -->
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item text-warning" href="/products">Clear filter</a></li>
+                {% endif %}
+            </ul>
+        </span>
+
+        <!-- Sort Dropdown. Allows the user to sort products. -->
+        <span class="dropdown">
+            <button class="btn btn-link dropdown-toggle text-decoration-none" type="button" id="filterDropdownButton" data-bs-toggle="dropdown" aria-expanded="false">
+                Sort 
+                {% if request.GET.sort %}&nbsp;({{ request.GET.sort }}){% endif %}
+                &nbsp;<i class="fas fa-sort"></i>
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="filterDropdownButton">
+                <li><a class="dropdown-item" href="/products/{% if category %}categories/{{ category }}{% endif %}?sort=-id">Newest First</a></li>
+                <li><a class="dropdown-item" href="/products/{% if category %}categories/{{ category }}{% endif %}?sort=id">Oldest First</a></li>
+                <li><a class="dropdown-item" href="/products/{% if category %}categories/{{ category }}{% endif %}?sort=price">Price - Lowest First</a></li>
+                <li><a class="dropdown-item" href="/products/{% if category %}categories/{{ category }}{% endif %}?sort=-price">Price - Highest First</a></li>
+                <li><a class="dropdown-item" href="/products/{% if category %}categories/{{ category }}{% endif %}?sort=category">Category</a></li>
+                <li><a class="dropdown-item" href="/products/{% if category %}categories/{{ category }}{% endif %}?sort=name">Name</a></li>
+            </ul>
+        </span>
     </div>
 </div>
 

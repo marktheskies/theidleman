@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.humanize',
     'core',
     'fontawesome-free',
+    'blog',
     'members',
     'phonenumber_field',
 ]

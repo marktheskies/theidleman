@@ -3,6 +3,8 @@ from django.shortcuts import render, redirect
 from core.models import Product, Color, Size
 from members.models import CartItem
 
+from blog.models import Post
+
 import uuid
 
 
@@ -25,6 +27,7 @@ def home(request):
     first_three_products = Product.objects.all()[:3]
     context = {
         "products": first_three_products,
+        "post_list": Post.objects.all()[:3]
     }
     return render(request, "home.html", context)
 

@@ -27,6 +27,7 @@
                     {% comment %} TODO: Link to products page with filter for accessories {% endcomment %}
                     <a class="nav-link" href="/products">Accessories</a>
                 </li>
+
                 {% if not request.user.is_authenticated %}
                 <li class="nav-item">
                     <a href="{% url 'member_login' %}" class="nav-link">Login</a>
@@ -42,11 +43,10 @@
                     <li class="nav-item"><a href="{% url 'shopping_cart' %}" class="nav-link">Cart</a></li>
                 </div>
                 {% endif %}
-                {% comment %}
-                TODO: Implement Blog
+
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Style Guide</a>
-                </li> {% endcomment %}
+                    <a class="nav-link" href="/blog">Style Guide</a>
+                </li> 
             </ul>
 
         </div>

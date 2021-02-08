@@ -101,11 +101,16 @@
 
             <p class="h2 text-uppercase my-5">ORDER TOTAL: ${{ total|floatformat:2|intcomma }}</p>
 
+            <!--Checkout button will only appear when cart has items-->
+            {% if request.session.cart|length != 0 %}
             <div class="d-grid">
                 <a href="/checkout" class="btn btn-secondary text-uppercase block btn-lg text-white shadow py-3">Proceed
                     to
                     Checkout</a>
             </div>
+            {% else %}
+            <p class="lead text-uppercase my-5">add items to cart to proceed to checkout</p>
+            {% endif %}
 
             <!--Payment Methods-->
             <div class="row row-cols-2 g-4 py-5 px-5">

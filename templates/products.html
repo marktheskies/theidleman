@@ -91,7 +91,7 @@
     As more products are added there will be multiple pages of products-->
 <div class="container py-5">
     <div class="row g-4">
-        {% for product in products %}
+        {% for product in page.object_list %}
         <div class="col-lg-3 col-md-6">
             <div class="product-card card border-0 cursor-pointer" data-product-id="{{ product.id }}">
                 <img src="{{ product.image.url }}" class="card-img-top" alt="product image">
@@ -112,4 +112,18 @@
         </script>
     </div>
 </div>
+
+<div class="container py-3 text-center">
+    <p> {{ count }} items total</p>
+    <div class="page-links">
+        {% if page.has_previous %}
+        <a href="{% url 'products' %}?page={{ page.previous_page_number }}">Previous Page</a>
+        {% endif %}
+        <p> {{ page }} </p>
+        {% if page.has_next %}
+        <a href="{% url 'products' %}?page={{ page.next_page_number }}">Next Page</a>
+        {% endif %}
+    </div>
+</div>
+
 {% endblock %}

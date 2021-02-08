@@ -3,6 +3,7 @@ import uuid
 from django.core.exceptions import FieldError
 from django.shortcuts import redirect
 from django.template.response import TemplateResponse
+from django.core.paginator import Paginator
 
 from core.models import Product, Color, Size
 from members.models import CartItem
@@ -19,8 +20,17 @@ def products(request, category=None):
             "category": category,
         }
     else:
+        products = Product.objects.all()
+
+        product_paginator = Paginator(products, 8)
+
+        page_num = request.GET.get("page")
+
+        page = product_paginator.get_page(page_num)
+
         context = {
-            "products": Product.objects.all(),
+            "count": product_paginator.count,
+            "page": page
         }
 
     # Product sorting

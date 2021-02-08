@@ -115,23 +115,23 @@
 
 <div class="container py-3 pb-5 text-center">
     <p> {{ count }} items total</p>
-    <div class="page-links">
+    <div class="page-links my-auto">
         {% if page.has_previous %}
-            <a href="?page=1"><<</a>
-            <a href="{% url 'products' %}?page={{ page.previous_page_number }}" class="me-5"><</a>
+            <a href="?page=1" class="px-5 pagination"><i class="fas fa-angle-double-left fa-2x text-dark align-middle"></i></a>
+            <a href="{% url 'products' %}?page={{ page.previous_page_number }}" class="me-5 pagination"><i class="fas fa-angle-left fa-2x text-dark align-middle"></i></a>
         {% endif %}
         {% for num in page.paginator.page_range %}
             {% if page.number == num %}
-                <strong>{{ num }}</strong>
+                <strong class="pagination bg-primary px-3 py-1 align-middle">{{ num }}</strong>
             {% elif num > page.number|add:'-3' and num < page.number|add:'3' %}
-                {{ num }}
+                <a href="?page={{ num }}" class="pagination bg-light px-3 py-1 align-middle"> {{ num }} </a>
             {% endif %}
         {% endfor %}
         {% if page.has_next %}
-        <a href="{% url 'products' %}?page={{ page.next_page_number }}" class="ms-5">></a>
-        <a href="?page={{ page.paginator.num_pages }}">>></a>
+        <a href="{% url 'products' %}?page={{ page.next_page_number }}" class="ms-5 pagination"><i class="fas fa-angle-right fa-2x text-dark align-middle"></i></a>
+        <a href="?page={{ page.paginator.num_pages }}" class="px-5 pagination"><i class="fas fa-angle-double-right fa-2x text-dark align-middle"></i></a>
         {% endif %}
-        <p class="mb-2 py-3">Page {{ page.number }} of {{ page.paginator.num_pages }}</p>
+        <p class="pb-2 pt-4">Page {{ page.number }} of {{ page.paginator.num_pages }}</p>
     </div>
 </div>
 

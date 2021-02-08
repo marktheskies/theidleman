@@ -113,16 +113,25 @@
     </div>
 </div>
 
-<div class="container py-3 text-center">
+<div class="container py-3 pb-5 text-center">
     <p> {{ count }} items total</p>
     <div class="page-links">
         {% if page.has_previous %}
-        <a href="{% url 'products' %}?page={{ page.previous_page_number }}">Previous Page</a>
+            <a href="?page=1"><<</a>
+            <a href="{% url 'products' %}?page={{ page.previous_page_number }}" class="me-5"><</a>
         {% endif %}
-        <p> {{ page }} </p>
+        {% for num in page.paginator.page_range %}
+            {% if page.number == num %}
+                <strong>{{ num }}</strong>
+            {% elif num > page.number|add:'-3' and num < page.number|add:'3' %}
+                {{ num }}
+            {% endif %}
+        {% endfor %}
         {% if page.has_next %}
-        <a href="{% url 'products' %}?page={{ page.next_page_number }}">Next Page</a>
+        <a href="{% url 'products' %}?page={{ page.next_page_number }}" class="ms-5">></a>
+        <a href="?page={{ page.paginator.num_pages }}">>></a>
         {% endif %}
+        <p class="mb-2 py-3">Page {{ page.number }} of {{ page.paginator.num_pages }}</p>
     </div>
 </div>
 

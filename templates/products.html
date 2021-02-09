@@ -117,7 +117,7 @@
     <p> {{ count }} items total</p>
     <div class="page-links my-auto">
         {% if page.has_previous %}
-            <a href="?page=1" class="px-5 pagination"><i class="fas fa-angle-double-left fa-2x text-dark align-middle"></i></a>
+            <a href="?page=1" class="px-4 pagination"><i class="fas fa-angle-double-left fa-2x text-dark align-middle"></i></a>
             <a href="{% url 'products' %}?page={{ page.previous_page_number }}" class="me-5 pagination"><i class="fas fa-angle-left fa-2x text-dark align-middle"></i></a>
         {% endif %}
         {% for num in page.paginator.page_range %}
@@ -129,7 +129,7 @@
         {% endfor %}
         {% if page.has_next %}
         <a href="{% url 'products' %}?page={{ page.next_page_number }}" class="ms-5 pagination"><i class="fas fa-angle-right fa-2x text-dark align-middle"></i></a>
-        <a href="?page={{ page.paginator.num_pages }}" class="px-5 pagination"><i class="fas fa-angle-double-right fa-2x text-dark align-middle"></i></a>
+        <a href="?page={{ page.paginator.num_pages }}" class="px-4 pagination"><i class="fas fa-angle-double-right fa-2x text-dark align-middle"></i></a>
         {% endif %}
         <p class="pb-2 pt-4">Page {{ page.number }} of {{ page.paginator.num_pages }}</p>
     </div>

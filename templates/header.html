@@ -1,3 +1,8 @@
+<!--Loads a customized tags library to simplify number text/number conventions-->
+{% load humanize %}
+<!--Loads style library-->
+{% load static %}
+
 <!--Overall Header Nav Bar, will appear on every page of the site and will responsively adjust to fit the page width. 
     Nav bar is fixed in place when scrolling-->
 <nav class="navbar fixed-top shadow navbar-expand-lg navbar-light bg-white py-4">
@@ -45,12 +50,12 @@
                 <li class="nav-item">
                     <a href="{% url 'member_signup' %}" class="nav-link">Sign Up</a>
                 </li>
-                <li class="nav-item d-lg-none d-xl-none d-xxl-none"><a href="{% url 'shopping_cart' %}" class="nav-link">Cart</a></li>
+                <li class="nav-item d-lg-none d-xl-none d-xxl-none cart-dropdown"><a href="{% url 'shopping_cart' %}" class="nav-link">Cart</a></li>
                 {% else %}
                 <div class="d-lg-none d-xl-none d-xxl-none">
                     <li class="nav-item"><a href="{% url 'member_profile' %}" class="nav-link">Your Profile</a></li>
                     <li class="nav-item"><a href="{% url 'member_logout' %}" class="nav-link">Logout</a></li>
-                    <li class="nav-item"><a href="{% url 'shopping_cart' %}" class="nav-link">Cart</a></li>
+                    <li class="nav-item cart-dropdown"><a href="{% url 'shopping_cart' %}" class="nav-link">Cart</a></li>
                 </div>
                 {% endif %}
 
@@ -83,13 +88,48 @@
 
                 <!--The shopping cart icon has an attached counter which will update when items are added or removed from the cart-->
                 <li class="nav-item">
-                    <a href="/shopping-cart" class="nav-link d-flex">
+                    <a href="/shopping-cart" class="nav-link cart-dropdown d-flex">
                         <i class="fas fa-shopping-cart"></i>
                         {% if "cart" in request.session %}
                         <span class="badge rounded-pill bg-danger">{{ request.session.cart|length }}</span>
                         {% endif %}
+                        <div class="cart-dropdown-content">
+                            <table class="table py-4">
+                                <thead class="text-center text-uppercase">
+                                    <tr>
+                                        <th>Product</th>
+                                        <th>Price</th>
+                                        <th>Quantity</th>
+                                        <th>Total</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody class="cart-product-text">
+                                    {% for item in items %}
+                                    <tr>
+                                        <td>
+                                            {{ item.product.name }}<br>
+                                            <img src="{{ item.product.image.url }}" class="img-fluid" style="max-width: 5rem;"><br>
+                                            Colour: <span class="badge rounded-pill"
+                                                style="background-color: {{ item.color }}">&nbsp;</span><br>
+                                            Size: {{ item.size }}
+                                        </td>
+                                        <td class="text-center align-middle">
+                                            ${{ item.product.price|floatformat:2|intcomma }}
+                                        </td>
+                                        <td class="text-center align-middle">{{ item.quantity }}</td>
+                                        <td class="text-center align-middle">${{ item.total|floatformat:2|intcomma }}</td>
+                                        <td class="text-center align-middle"><a
+                                                href="/shopping-cart/remove-item/{{ item.session_item_id }}">Remove Item</a></td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                            <p class="h3 text-uppercase text-center py-3">ORDER TOTAL: ${{ total|floatformat:2|intcomma }}</p>
+                        </div>
                     </a>
                 </li>
+
 
                 {% comment %} TODO: Implement search <a href="#" class="ms-5"><i class="fas fa-search"></i></a>
                 {% endcomment %}

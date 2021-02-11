@@ -78,17 +78,6 @@ WSGI_APPLICATION = 'theidleman.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
-# if os.environ.get('THEIDLEMAN_ENV') == 'production':
-#     DATABASES = {
-#         'default': {
-#             'ENGINE': 'django.db.backends.mysql',
-#             'NAME': os.environ['THEIDLEMAN_DB_NAME'],
-#             'USER': os.environ['THEIDLEMAN_DB_USER'],
-#             'PASSWORD': os.environ['THEIDLEMAN_DB_PASSWORD'],
-#             'HOST': os.environ['THEIDLEMAN_DB_HOST'],
-#         }
-#     }
-# else:
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',

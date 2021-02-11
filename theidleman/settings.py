@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'blog',
     'members',
     'phonenumber_field',
+    'import_export',
 ]
 
 MIDDLEWARE = [

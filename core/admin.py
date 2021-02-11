@@ -7,10 +7,16 @@ from .models import (
     ProductCategory,
     Size,
 )
+from import_export import resources
+from import_export.admin import ImportExportModelAdmin
 
+class ProductResource(resources.ModelResource):
+
+    class Meta:
+        model = Product
 
 @admin.register(Product)
-class ProductAdmin(admin.ModelAdmin):
+class ProductAdmin(ImportExportModelAdmin):
     list_display = (
         "id",
         "name",
@@ -20,6 +26,7 @@ class ProductAdmin(admin.ModelAdmin):
         "category",
         "image",
     )
+    resource_class = ProductResource
 
 
 @admin.register(ProductCategory)
@@ -40,3 +47,5 @@ class SizeAdmin(admin.ModelAdmin):
 @admin.register(Color)
 class ColorAdmin(admin.ModelAdmin):
     pass
+
+

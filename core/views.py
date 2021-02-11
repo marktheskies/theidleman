@@ -179,11 +179,6 @@ def shopping_cart(request):
     return TemplateResponse(request, "shopping_cart.html", context)
 
 
-def header(request):
-    context = cart_context(request)
-    return TemplateResponse(request, "header.html", context)
-
-
 def checkout(request):
     context = cart_context(request)
     return TemplateResponse(request, "checkout.html", context)

@@ -127,7 +127,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 # Media
 # This is where model images will be stores
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media'),
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
 # Phone number format

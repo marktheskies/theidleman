@@ -15,14 +15,23 @@ from core.models import Product, ProductCategory
 def products(request, category=None):
     """Renders the products page"""
     if category:
+        products_result = Product.objects.filter(category__name=category)
+
+        product_paginator = Paginator(products_result, 8)
+
+        page_num = request.GET.get("page")
+
+        page = product_paginator.get_page(page_num)
+
         context = {
-            "products": Product.objects.filter(category__name=category),
             "category": category,
+            "count": product_paginator.count,
+            "page": page
         }
     else:
-        products = Product.objects.all()
+        products_result = Product.objects.all()
 
-        product_paginator = Paginator(products, 8)
+        product_paginator = Paginator(products_result, 8)
 
         page_num = request.GET.get("page")
 
@@ -36,13 +45,13 @@ def products(request, category=None):
     # Product sorting
     if request.GET.get("sort"):
         try:
-            context["products"] = context["products"].order_by(
+            context["products"]: context["products"].order_by(
                 request.GET.get("sort"))
         except FieldError:
             # The give field does not exist on the Product, thus we must skip sorting.
             pass
 
-    return TemplateResponse(request, "products.html", context)
+    return TemplateResponse(request, "products.html", context) 
 
 
 def product_details(request, id):
@@ -168,6 +177,11 @@ def remove_shopping_cart_item(request, session_item_id):
 def shopping_cart(request):
     context = cart_context(request)
     return TemplateResponse(request, "shopping_cart.html", context)
+
+
+def header(request):
+    context = cart_context(request)
+    return TemplateResponse(request, "header.html", context)
 
 
 def checkout(request):

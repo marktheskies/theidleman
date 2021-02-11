@@ -6,6 +6,7 @@ from django.template.response import TemplateResponse
 
 from core.models import Product, Color, Size
 from members.models import CartItem
+from members.models import WishlistItem
 
 from blog.models import Post
 from core.models import Product, ProductCategory
@@ -166,3 +167,79 @@ def checkout(request):
 
 def contact(request):    
     return render(request, "contact.html")
+
+def wishlist(request):
+    context = wishlist_context(request)
+    return TemplateResponse(request, "wishlist.html", context)
+
+
+def remove_wishlist_item(request, session_item_id):
+    """Removes an item from the session wishlist, by its unique ID in the session."""
+
+    # Remove the item from member db wishlist storage.
+    request.user.member.cartitem_set.filter(
+        session_item_id=session_item_id).delete()
+
+    # If the cart is empty, just redirect to the home page.
+    if "wishlist" not in request.session:
+        return redirect("/")
+
+    new_items = []
+    for item in request.session["wishlist"]:
+        if item["session_item_id"] != session_item_id:
+            new_items.append(item)
+
+    request.session["wishlist"] = new_items
+
+    return redirect("/wishlist")
+
+
+def wishlist_context(request):
+    """Creates a context suitable for wishlist page."""
+    context = {
+        "items": [],
+    }
+    if "wishlist" in request.session:
+        for item in request.session["wishlist"]:
+            product = Product.objects.get(id=item["product_id"])
+            context["items"].append({
+                "session_item_id": item["session_item_id"],
+                "product": product,
+            })
+    return context
+
+def empty_wishlist(request):
+    """Removes all items in wishlist. If the wishlist session variable does not exist, does nothing."""
+    if "wishlist" in request.session:
+        request.session["wishlist"] = []
+
+    request.user.member.cartitem_set.all().delete()
+
+    # Redirect to the last page (HTTP_REFERRER). If HTTP_REFERER is empty, for example, if the user hits "back",
+    # or navigates to the page directly, redirect to the homepage.
+    return redirect(request.META.get("HTTP_REFERER", '/'))
+
+
+def add_to_wishlist(request):
+    if "wishlist" not in request.session:
+        wishlist = []
+    else:
+        wishlist = request.session["wishlist"]
+
+    session_item_id = str(uuid.uuid4())
+
+    if request.user.is_authenticated:
+        ci = WishlistItem(
+            member_id=request.user.member.id,
+            item_id=request.POST["product_id"],
+            session_item_id=session_item_id,
+        )
+
+    wishlist.append({
+        "session_item_id": session_item_id,
+        "product_id": request.POST["product_id"],
+    })
+
+    request.session["wishlist"] = wishlist
+
+    return redirect("/products")

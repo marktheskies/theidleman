@@ -1,0 +1,122 @@
+<!--Denotes that the checkout template is a child of the layout template, and will inherit it's properties-->
+{% extends "layout.html" %}
+
+<!--Overrides the title of the Layout template for the checkout page-->
+{% block title %}Shopping Cart | TheIdleMan{% endblock %}
+
+<!--Overrides the body content of the Layout templat for the chekout page-->
+{% block content %}
+<!--Loads a customized tags library to simplify number text/number conventions-->
+{% load humanize %}
+<!--Loads style library-->
+{% load static %}
+
+<!--Breadcrumbs section of the page which display the parent pages leading to current page.
+    Separated by > symbol.
+    Continure Shopping button links to Products Page-->
+<div class="container-fluid bg-light py-3">
+    <div class="container">
+        <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+            <ol class="breadcrumb mb-0">
+                <li class="breadcrumb-item"><a href="/">Home</a></li>
+                <li class="breadcrumb-item active">Wishlist</li>
+                <li class="ms-auto">
+                    <a href="/products" class="d-flex justify-content-between text-dark">
+                        <i class="fas fa-arrow-circle-left fa-2x"></i><span class="my-auto text-uppercase ms-2">Continue
+                            Shopping</span>
+                    </a>
+                </li>
+            </ol>
+        </nav>
+    </div>
+</div>
+
+<!--Shopping Cart main content.
+    Contains details of all products selected. 
+    Order summary subtotal and total is calculated dynamically.
+    Checkout button links to chekout page.
+    Items can be removed from cart which will update the page.
+    Size Guide displays a modal with different size selections.
+    Information links will direct to relevant pages on final submission.
+    -->
+<div class="container py-5">
+    <div class="row g-4">
+        {# Cart column #}
+        <!--Item details-->
+            <h2 class="text-uppercase text-center mb-5">WishList</h2>
+                    {% for item in items %}
+                <div class="col-lg-3 col-md-6">
+                    {{ item.product.name }}<br>
+                    <img src="{{ item.product.image.url }}" class="img-fluid" style="max-width: 10rem;"><br>
+                    Colour: <span class="badge rounded-pill" style="background-color: {{ item.color }}">&nbsp;</span><br>
+                    Size: {{ item.size }}
+                    <p>
+                        ${{ item.product.price|floatformat:2|intcomma }}
+                    </p>
+                    <p><a href="/wishlist/remove-item/{{ item.session_item_id }}">Remove Item</a></p>
+                </div>
+                    {% endfor %}
+    </div>            
+</div>
+            
+    <!--Information area-->
+    <!--Size Guide-->
+    <div class="row">
+            <button class="btn btn-primary shadow text-white text-uppercase" data-bs-toggle="modal"
+                data-bs-target="#sizeGuideModal">Size Guide
+            </button>
+            <div class="modal fade" id="sizeGuideModal" tabindex="-1" aria-labelledby="sizeGuideModal"
+                aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="sizeGuideModalLabel">Size Guide</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <table class="table p-5 text-center table-bordered">
+                                <tr class="table-primary">
+                                    <th class="text-uppercase">Size</th>
+                                    <th class="text-uppercase">Chest</th>
+                                    <th class="text-uppercase">Waist</th>
+                                    <th class="text-uppercase">Hips</th>
+                                </tr>
+                                <tr>
+                                    <td>S</td>
+                                    <td>100 cm (39 in)</td>
+                                    <td>79 cm (31 in)</td>
+                                    <td>90 cm (35 in)</td>
+                                </tr>
+                                <tr>
+                                    <td>M</td>
+                                    <td>105 cm (41 in)</td>
+                                    <td>84 cm (33 in)</td>
+                                    <td>95 cm (37 in)</td>
+                                </tr>
+                                <tr>
+                                    <td>L</td>
+                                    <td>110 cm (43 in)</td>
+                                    <td>89 cm (35 in)</td>
+                                    <td>100 cm (39 in)</td>
+                                </tr>
+                                <tr>
+                                    <td>XL</td>
+                                    <td>115 cm (45 in)</td>
+                                    <td>94 cm (37 in)</td>
+                                    <td>105 cm (41 in)</td>
+                                </tr>
+                                <tr>
+                                    <td>XXL</td>
+                                    <td>120 cm (37 in)</td>
+                                    <td>99 cm (39 in)</td>
+                                    <td>110 cm (43 in)</td>
+                                </tr>
+                            </table>
+                            {% comment %} TODO: Add size guide {% endcomment %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </div>
+</div>
+{% endblock %}

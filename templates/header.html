@@ -83,6 +83,16 @@
 
                 <!--The shopping cart icon has an attached counter which will update when items are added or removed from the cart-->
                 <li class="nav-item">
+                    <a href="/wishlist" class="nav-link d-flex">
+                        <i class="far fa-heart"></i>
+                        {% if "wishlist" in request.session %}
+                        <span class="badge rounded-pill bg-danger">{{ request.session.wishlist|length }}</span>
+                        {% endif %}
+                    </a>
+                </li>
+
+                <!--The shopping cart icon has an attached counter which will update when items are added or removed from the cart-->
+                <li class="nav-item">
                     <a href="/shopping-cart" class="nav-link d-flex">
                         <i class="fas fa-shopping-cart"></i>
                         {% if "cart" in request.session %}

@@ -12,12 +12,14 @@ Before you start, make sure you have the following installed.
 
 - [Heroku CLI](https://devcenter.heroku.com/articles/heroku-cli)
 - [Git](https://git-scm.com/downloads)
+- [Virtualenv](https://pypi.org/project/virtualenv/)
 
-### 1. Clone the repo
+### 1. Clone the repo and configure git Heroku integration
 
 ```
 git clone https://github.com/marktheskies/theidleman.git
 cd theidleman
+heroku git:remote -a theidleman
 ```
 
 ### 2. Setup environment variables
@@ -30,19 +32,29 @@ To find the Cloudinary URL from production, run:
 heroku config
 ```
 
-### 3. Run database migrations
+### 3. Setup virtualenv with Python 3.8
+
+On Linux/MacOS:
+
+```
+virtualenv -p python3.8 venv
+source venv/bin/activate
+pip install -r requirements.txt
+```
+
+### 4. Run database migrations
 
 ```
 heroku local:run python manage.py migrate
 ```
 
-### 4. Install package.json dependencies
+### 5. Install package.json dependencies
 
 ```
 yarn install
 ```
 
-### 5. Start the development server
+### 6. Start the development server
 
 ```
 heroku local
@@ -54,26 +66,6 @@ To deploy code from the main branch to production, run:
 
 ```
 git push heroku main
-```
-
-## Running the tests
-
-TODO: Document the testing process
-
-### Break down into end to end tests
-
-TODO: Explain what these tests test and why
-
-```
-Give an example
-```
-
-### And coding style tests
-
-TODO: Explain what these tests test and why
-
-```
-Give an example
 ```
 
 ## Contributing

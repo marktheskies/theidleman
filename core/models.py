@@ -1,7 +1,5 @@
 """Contains all E-Commerce related models for The Idle Man"""
 
-import json
-
 from cloudinary.models import CloudinaryField
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models

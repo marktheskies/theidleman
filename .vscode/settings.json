@@ -8,5 +8,8 @@
   ],
   "python.pythonPath": "venv/bin/python",
   "python.linting.pylintEnabled": true,
-  "python.linting.enabled": true
+  "python.linting.enabled": true,
+  "cSpell.words": [
+    "cloudinary"
+  ]
 }

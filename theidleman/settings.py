@@ -134,5 +134,9 @@ MEDIA_URL = '/media/'
 # This specifies the accepted format for PhoneNumberField
 PHONENUMBER_DB_FORMAT = 'E164'
 
+# Cloudinary
+# Allows us to store uploaded media in Cloudinary rather than on the web server
+CLOUDINARY_URL = os.getenv('CLOUDINARY_URL')
+
 # Configure Django App for Heroku
 django_heroku.settings(locals())

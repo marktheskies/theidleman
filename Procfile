@@ -1,2 +1,2 @@
-release: python manage.py migrate && npm install
+release: python manage.py migrate
 web: gunicorn theidleman.wsgi --log-file -

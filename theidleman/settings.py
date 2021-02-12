@@ -14,6 +14,7 @@ import os
 from pathlib import Path
 
 import django_heroku
+import logging
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -154,7 +155,6 @@ PHONENUMBER_DB_FORMAT = 'E164'
 # Allows us to store uploaded media in Cloudinary rather than on the web server
 CLOUDINARY_URL = os.getenv('CLOUDINARY_URL')
 
-# Logging
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,

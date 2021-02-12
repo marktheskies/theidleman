@@ -154,6 +154,23 @@ PHONENUMBER_DB_FORMAT = 'E164'
 # Allows us to store uploaded media in Cloudinary rather than on the web server
 CLOUDINARY_URL = os.getenv('CLOUDINARY_URL')
 
+# Logging
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler',
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['console'],
+            'level': os.getenv('DJANGO_LOG_LEVEL', 'DEBUG'),
+        },
+    },
+}
+
 
 # Configure Django App for Heroku
 django_heroku.settings(locals())

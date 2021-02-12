@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'blog',
     'members',
     'phonenumber_field',
+    'sass_processor',
 ]
 
 MIDDLEWARE = [
@@ -125,6 +126,21 @@ STATICFILES_DIRS = (
 )
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
+SASS_PROCESSOR_ROOT = STATIC_ROOT
+
+SASS_PROCESSOR_INCLUDE_DIRS = [
+    os.path.join(BASE_DIR, 'node_modules'),
+]
+
+SASS_PRECISION = 8
+
+# Staticfiles Finders
+STATICFILES_FINDERS = [
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    'sass_processor.finders.CssFinder',
+]
+
 # Media
 # This is where model images will be stores
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
@@ -137,6 +153,7 @@ PHONENUMBER_DB_FORMAT = 'E164'
 # Cloudinary
 # Allows us to store uploaded media in Cloudinary rather than on the web server
 CLOUDINARY_URL = os.getenv('CLOUDINARY_URL')
+
 
 # Configure Django App for Heroku
 django_heroku.settings(locals())

@@ -2,7 +2,7 @@
 *.sqlite
 .coverage
 venv
-media/*
+media
 .idea
 __pycache__
 */static/css

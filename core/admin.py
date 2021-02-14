@@ -22,6 +22,12 @@ class ProductCategoryResource(resources.ModelResource):
         model = ProductCategory
 
 
+class ProductAdditionalImageResource(resources.ModelResource):
+
+    class Meta:
+        model = ProductAdditionalImage
+
+
 @admin.register(Product)
 class ProductAdmin(ImportExportModelAdmin):
     list_display = (
@@ -42,7 +48,7 @@ class ProductCategoryAdmin(ImportExportModelAdmin):
 
 
 @admin.register(ProductAdditionalImage)
-class ProductAdditionalImageAdmin(admin.ModelAdmin):
+class ProductAdditionalImageAdmin(ImportExportModelAdmin):
     pass
 
 

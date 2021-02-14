@@ -64,8 +64,16 @@ yarn
 
 ### 6. Start the development server
 
+On Linux/Mac:
+
 ```
-heroku local
+heroku local web
+```
+
+On Windows:
+
+```
+heroku local web -f Procfile.windows
 ```
 
 ## Production Deployment

@@ -59,7 +59,7 @@ heroku local:run python manage.py migrate
 ### 5. Install package.json dependencies
 
 ```
-yarn install
+yarn
 ```
 
 ### 6. Start the development server

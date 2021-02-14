@@ -42,6 +42,14 @@ source venv/bin/activate
 pip install -r requirements.txt
 ```
 
+On Windows:
+
+```
+virtualenv -p python3.8 venv
+venv\Scripts\activate
+pip install -r requirements.txt
+```
+
 ### 4. Run database migrations
 
 ```

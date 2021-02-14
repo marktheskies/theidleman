@@ -39,7 +39,7 @@ class WishlistItem(models.Model):
     """Represents an item "saved" in a Member's wishlist, and allows us to load all items into the
     session when a user logs in, to restore their wishlist."""
     member = models.ForeignKey(Member, on_delete=models.CASCADE)
-    wishlist_item = models.ForeignKey(Product, on_delete=models.CASCADE)
+    item = models.ForeignKey(Product, on_delete=models.CASCADE)
     session_item_id = models.UUIDField()
     color = models.ForeignKey(Color, on_delete=models.CASCADE)
     size = models.ForeignKey(Size, on_delete=models.CASCADE)

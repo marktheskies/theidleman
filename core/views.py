@@ -239,7 +239,6 @@ def wishlist_context(request):
                 "session_item_id": item["session_item_id"],
                 "product": product,
                 "quantity": item["quantity"],
-                "total": item_total_cost,
                 "color": item["color"],
                 "size": item["size"],
             })

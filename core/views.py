@@ -1,7 +1,7 @@
 import uuid
 
 from django.core.exceptions import FieldError
-from django.shortcuts import redirect
+from django.shortcuts import redirect, render
 from django.template.response import TemplateResponse
 from django.core.paginator import Paginator
 
@@ -156,9 +156,10 @@ def cart_context(request):
 def remove_shopping_cart_item(request, session_item_id):
     """Removes an item from the session shopping cart, by its unique ID in the session."""
 
-    # Remove the item from member db cart storage.
-    request.user.member.cartitem_set.filter(
-        session_item_id=session_item_id).delete()
+    # Remove the item from member db cart storage if the user is authenticated.
+    if request.user.is_authenticated:
+        request.user.member.cartitem_set.filter(
+            session_item_id=session_item_id).delete()
 
     # If the cart is empty, just redirect to the home page.
     if "cart" not in request.session:
@@ -183,5 +184,6 @@ def checkout(request):
     context = cart_context(request)
     return TemplateResponse(request, "checkout.html", context)
 
-def contact(request):    
+
+def contact(request):
     return render(request, "contact.html")

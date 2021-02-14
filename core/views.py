@@ -5,15 +5,10 @@ from django.shortcuts import redirect, render
 from django.template.response import TemplateResponse
 from django.core.paginator import Paginator
 
-from django.views.generic import TemplateView
-
-import uuid
-
 from core.models import Product, Color, Size
 from members.models import CartItem
 
 from blog.models import Post
-from core.models import Product, ProductCategory
 
 
 def products(request, category=None):
@@ -55,7 +50,7 @@ def products(request, category=None):
             # The give field does not exist on the Product, thus we must skip sorting.
             pass
 
-    return TemplateResponse(request, "products.html", context) 
+    return TemplateResponse(request, "products.html", context)
 
 
 def product_details(request, id):
@@ -188,14 +183,10 @@ def checkout(request):
     context = cart_context(request)
     return render(request, "checkout.html", context)
 
-  
-class InstagramFeed(TemplateView):
-    template_name = 'instagram_feed.html'
-  
-  
-def instagram_feed(request):
+
+def social_media_feed(request):
     return render(request, "instagram_feed.html")
 
-  
+
 def contact(request):
     return render(request, "contact.html")

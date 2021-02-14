@@ -15,8 +15,8 @@ urlpatterns = [
     path("contact/", contact, name="contact"),
     path("shopping-cart/remove-item/<session_item_id>",
          remove_shopping_cart_item, name="remove_shopping_cart_item"),
-     path("wishlist/", wishlist, name="wishlist"),
-     path("add-to-wishlist/", add_to_wishlist, name="add_to_wishlist"),
-         path("wishlist/remove-item/<session_item_id>",
+    path("wishlist/", wishlist, name="wishlist"),
+    path("add-to-wishlist/", add_to_wishlist, name="add_to_wishlist"),
+    path("wishlist/remove-item/<session_item_id>",
          remove_wishlist_item, name="remove_wishlist_item"),
 ]

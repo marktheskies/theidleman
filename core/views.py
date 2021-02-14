@@ -194,32 +194,6 @@ def remove_wishlist_item(request, session_item_id):
     return redirect("/wishlist")
 
 
-def wishlist_context(request):
-    """Creates a context suitable for wishlist page."""
-    context = {
-        "items": [],
-    }
-    if "wishlist" in request.session:
-        for item in request.session["wishlist"]:
-            product = Product.objects.get(id=item["product_id"])
-            context["items"].append({
-                "session_item_id": item["session_item_id"],
-                "product": product,
-            })
-    return context
-
-def empty_wishlist(request):
-    """Removes all items in wishlist. If the wishlist session variable does not exist, does nothing."""
-    if "wishlist" in request.session:
-        request.session["wishlist"] = []
-
-    request.user.member.cartitem_set.all().delete()
-
-    # Redirect to the last page (HTTP_REFERRER). If HTTP_REFERER is empty, for example, if the user hits "back",
-    # or navigates to the page directly, redirect to the homepage.
-    return redirect(request.META.get("HTTP_REFERER", '/'))
-
-
 def add_to_wishlist(request):
     if "wishlist" not in request.session:
         wishlist = []
@@ -229,17 +203,44 @@ def add_to_wishlist(request):
     session_item_id = str(uuid.uuid4())
 
     if request.user.is_authenticated:
-        ci = WishlistItem(
+        wi = WishlistItem(
             member_id=request.user.member.id,
             item_id=request.POST["product_id"],
             session_item_id=session_item_id,
+            quantity=request.POST["quantity"]
         )
+        wi.color = Color.objects.get(hex_value=request.POST["color"])
+        wi.size = Size.objects.get(name=request.POST["size"])
+        wi.save()
 
     wishlist.append({
         "session_item_id": session_item_id,
         "product_id": request.POST["product_id"],
+        "color": request.POST["color"],
+        "size": request.POST["size"],
+        "quantity": request.POST["quantity"],
     })
 
     request.session["wishlist"] = wishlist
 
     return redirect("/products")
+
+
+def wishlist_context(request):
+    """Creates a context suitable for wishlist and checkout pages, containing products, subtotal, 
+    shipping and total."""
+    context = {
+        "items": [],
+    }
+    if "wishlist" in request.session:
+        for item in request.session["wishlist"]:
+            product = Product.objects.get(id=item["product_id"])
+            context["items"].append({
+                "session_item_id": item["session_item_id"],
+                "product": product,
+                "quantity": item["quantity"],
+                "total": item_total_cost,
+                "color": item["color"],
+                "size": item["size"],
+            })
+    return context

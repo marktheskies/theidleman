@@ -81,6 +81,18 @@ def login(request):
                 })
             request.session['cart'] = cart
 
+            # Load the user's wishlist into the session.
+            wishlist = []
+            for stored_wishlist_item in user.member.wishlistitem_set.all():
+                wishlist.append({
+                    "session_item_id": str(stored_wishlist_item.session_item_id),
+                    "product_id": stored_wishlist_item.item.id,
+                    "color": stored_wishlist_item.color.hex_value,
+                    "size": stored_wishlist_item.size.name,
+                    "quantity": stored_wishlist_item.quantity,
+                })
+            request.session['wishlist'] = wishlist
+
             return HttpResponseRedirect('/')
         else:
             return render(request, 'member_login.html', {

@@ -31,11 +31,11 @@
     </div>
 </div>
 
-<!--Shopping Cart main content.
+<!--Wishlist main content.
     Contains details of all products selected. 
     Order summary subtotal and total is calculated dynamically.
-    Checkout button links to chekout page.
-    Items can be removed from cart which will update the page.
+    Individual items can be added to cart with the add to cart button.
+    Items can be removed which will update the page.
     Size Guide displays a modal with different size selections.
     Information links will direct to relevant pages on final submission.
     -->
@@ -48,14 +48,24 @@
                 <div class="col-lg-3 col-md-6">
                     {{ item.product.name }}<br>
                     <img src="{{ item.product.image.url }}" class="img-fluid" style="max-width: 10rem;"><br>
-                    Colour: <span class="badge rounded-pill" style="background-color: {{ item.color }}">&nbsp;</span><br>
-                    Size: {{ item.size }}
-                    <p>
-                        ${{ item.product.price|floatformat:2|intcomma }}
+                    Colour: <span class="badge rounded-pill"
+                        style="background-color: {{ item.color }}">&nbsp;</span><br>
+                    Size: {{ item.size }} <br>
+                    Price: ${{ item.product.price }}
                     </p>
                     <p><a href="/wishlist/remove-item/{{ item.session_item_id }}">Remove Item</a></p>
-                </div>
-                    {% endfor %}
+                                   
+                <!-- Add to Cart Button -->
+                <form action="/add-to-cart/" method="post">
+                    {% csrf_token %}
+                
+                    <input type="hidden" name="product_id" value="{{ product.id }}">
+                    <div class="row py-4">
+                        <button class="btn btn-secondary shadow text-white py-3">Add To Cart</button>
+                    </div>
+                </form>
+            </div>
+                {% endfor %}
     </div>            
 </div>
             

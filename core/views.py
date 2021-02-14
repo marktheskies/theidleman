@@ -9,7 +9,6 @@ from core.models import Product, Color, Size
 from members.models import CartItem
 
 from blog.models import Post
-from core.models import Product, ProductCategory
 
 
 def products(request, category=None):
@@ -51,7 +50,7 @@ def products(request, category=None):
             # The give field does not exist on the Product, thus we must skip sorting.
             pass
 
-    return TemplateResponse(request, "products.html", context) 
+    return TemplateResponse(request, "products.html", context)
 
 
 def product_details(request, id):
@@ -182,7 +181,11 @@ def shopping_cart(request):
 
 def checkout(request):
     context = cart_context(request)
-    return TemplateResponse(request, "checkout.html", context)
+    return render(request, "checkout.html", context)
+
+
+def social_media_feed(request):
+    return render(request, "instagram_feed.html")
 
 
 def contact(request):

@@ -10,9 +10,10 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
+import os
 from pathlib import Path
 
-import os
+import django_heroku
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -21,13 +22,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '5o$z!6_1#)#)#idi%_gvw(gqicdzbwq8349*=6ags)ccrhx9qk'
+SECRET_KEY = os.environ['SECRET_KEY']
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
-ALLOWED_HOSTS = [os.environ.get(
-    "THEIDLEMAN_SERVER_HOST"), "localhost", "127.0.0.1"]
+DEBUG = os.environ.get('DEBUG') == "True"
 
 # Application definition
 
@@ -44,6 +42,7 @@ INSTALLED_APPS = [
     'blog',
     'members',
     'phonenumber_field',
+    'sass_processor',
 ]
 
 MIDDLEWARE = [
@@ -80,23 +79,12 @@ WSGI_APPLICATION = 'theidleman.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
-if os.environ.get('THEIDLEMAN_ENV') == 'production':
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.mysql',
-            'NAME': os.environ['THEIDLEMAN_DB_NAME'],
-            'USER': os.environ['THEIDLEMAN_DB_USER'],
-            'PASSWORD': os.environ['THEIDLEMAN_DB_PASSWORD'],
-            'HOST': os.environ['THEIDLEMAN_DB_HOST'],
-        }
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
-else:
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': BASE_DIR / 'db.sqlite3',
-        }
-    }
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
@@ -133,12 +121,38 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'static/'),
+)
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles/')
+
+SASS_PROCESSOR_ROOT = STATIC_ROOT
+
+SASS_PROCESSOR_INCLUDE_DIRS = [
+    os.path.join(BASE_DIR, 'node_modules'),
+]
+
+SASS_PRECISION = 8
+
+# Staticfiles Finders
+STATICFILES_FINDERS = [
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    'sass_processor.finders.CssFinder',
+]
 
 # Media
 # This is where model images will be stores
-MEDIA_ROOT = 'media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
 # Phone number format
 # This specifies the accepted format for PhoneNumberField
 PHONENUMBER_DB_FORMAT = 'E164'
+
+# Cloudinary
+# Allows us to store uploaded media in Cloudinary rather than on the web server
+CLOUDINARY_URL = os.getenv('CLOUDINARY_URL')
+
+# Configure Django App for Heroku
+django_heroku.settings(locals())

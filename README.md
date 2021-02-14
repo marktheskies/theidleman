@@ -76,6 +76,8 @@ On Windows:
 heroku local web -f Procfile.windows
 ```
 
+Now open your browser and go to http://localhost:5000.
+
 ## Production Deployment
 
 To deploy code from the main branch to production, run:

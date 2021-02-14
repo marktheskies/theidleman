@@ -15,6 +15,13 @@ class ProductResource(resources.ModelResource):
     class Meta:
         model = Product
 
+
+class ProductCategoryResource(resources.ModelResource):
+
+    class Meta:
+        model = ProductCategory
+
+
 @admin.register(Product)
 class ProductAdmin(ImportExportModelAdmin):
     list_display = (
@@ -30,7 +37,7 @@ class ProductAdmin(ImportExportModelAdmin):
 
 
 @admin.register(ProductCategory)
-class ProductCategoryAdmin(admin.ModelAdmin):
+class ProductCategoryAdmin(ImportExportModelAdmin):
     pass
 
 

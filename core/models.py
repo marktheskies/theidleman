@@ -1,9 +1,8 @@
 """Contains all E-Commerce related models for The Idle Man"""
 
-from django.db import models
+from cloudinary.models import CloudinaryField
 from django.core.validators import MaxValueValidator, MinValueValidator
-
-import json
+from django.db import models
 
 
 class ProductCategory(models.Model):
@@ -49,7 +48,7 @@ class Product(models.Model):
     )
 
     # The main image of the product
-    image = models.ImageField(null=True, blank=True)
+    image = CloudinaryField('image', null=True)
 
     free_delivery = models.BooleanField(default=False)
 
@@ -74,5 +73,5 @@ class Product(models.Model):
 class ProductAdditionalImage(models.Model):
     """An additional image of a product"""
 
-    image = models.ImageField(null=True, blank=True)
+    image = CloudinaryField('image', null=True)
     product = models.ForeignKey(Product, models.CASCADE)

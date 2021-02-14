@@ -16,7 +16,7 @@ $navbar-nav-link-padding-x: 2rem;
 $input-btn-padding-y: 0.7rem;
 $input-btn-padding-x: 1.5rem;
 
-@import "../../../node_modules/bootstrap/scss/bootstrap";
+@import "node_modules/bootstrap/scss/bootstrap";
 
 // Prevent overlap of navbar
 body {
@@ -79,4 +79,19 @@ body {
   background-repeat: no-repeat;
   background-position: 50%;
   background-size: 100% 100%;
+}
+
+@media only screen and (max-width: 600px) {
+  .additional-images {
+    max-width: 7rem;
+  }
+}
+
+.pagination {
+  display: inline-block;
+  text-decoration: none;
+}
+
+.pagination:hover {
+  filter:opacity(65%);
 }

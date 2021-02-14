@@ -18,11 +18,14 @@ from django.contrib import admin
 from django.urls import include, path
 
 import core.urls
-from django.views.generic import TemplateView
+import blog.urls
+import members.urls
+
 from theidleman import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include(core.urls)),
+    path('blog/', include(blog.urls)),
+    path('members/', include(members.urls)),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-

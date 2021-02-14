@@ -2,10 +2,14 @@
 *.sqlite
 .coverage
 venv
-media/*
+media
 .idea
 __pycache__
 */static/css
 node_modules
 .DS_Store
 package-lock.json
+.env
+staticfiles
+.vscode
+static/scss/app.css

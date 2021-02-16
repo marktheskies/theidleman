@@ -81,15 +81,15 @@
                 </li>
                 {% endif %}
 
-                <!--The shopping cart icon has an attached counter which will update when items are added or removed from the cart-->
+                <!--The shopping wishlist icon has an attached counter which will update when items are added or removed from the wishlist-->
+                {% if user.is_authenticated %}
                 <li class="nav-item">
-                    <a href="/wishlist" class="nav-link d-flex">
+                    <a href="/members/wishlist" class="nav-link d-flex">
                         <i class="far fa-heart"></i>
-                        {% if "wishlist" in request.session %}
-                        <span class="badge rounded-pill bg-danger">{{ request.session.wishlist|length }}</span>
-                        {% endif %}
+                        <span class="badge rounded-pill bg-danger">{{ request.user.member.wishlistitem_set.all|length }}</span>
                     </a>
                 </li>
+                {% endif %}
 
                 <!--The shopping cart icon has an attached counter which will update when items are added or removed from the cart-->
                 <li class="nav-item">

@@ -344,7 +344,7 @@
 
 
                 <!-- Add to wishlist link -->
-                <form action="/add-to-wishlist/" method="post">
+                <form action="/members/add-to-wishlist/" method="post">
                     {% csrf_token %}
                 
                     <input type="hidden" name="product_id" value="{{ product.id }}">

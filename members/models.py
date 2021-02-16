@@ -40,7 +40,3 @@ class WishlistItem(models.Model):
     session when a user logs in, to restore their wishlist."""
     member = models.ForeignKey(Member, on_delete=models.CASCADE)
     item = models.ForeignKey(Product, on_delete=models.CASCADE)
-    session_item_id = models.UUIDField()
-    color = models.ForeignKey(Color, on_delete=models.CASCADE)
-    size = models.ForeignKey(Size, on_delete=models.CASCADE)
-    quantity = models.IntegerField()

@@ -48,12 +48,8 @@
                 <div class="col-lg-3 col-md-6">
                     {{ item.product.name }}<br>
                     <img src="{{ item.product.image.url }}" class="img-fluid" style="max-width: 10rem;"><br>
-                    Colour: <span class="badge rounded-pill"
-                        style="background-color: {{ item.color }}">&nbsp;</span><br>
-                    Size: {{ item.size }} <br>
-                    Price: ${{ item.product.price }}
                     </p>
-                    <p><a href="/wishlist/remove-item/{{ item.session_item_id }}">Remove Item</a></p>
+                    <p><a href="/members/wishlist/remove-item/{{ item.id }}">Remove Item</a></p>
                                    
                 <!-- Add to Cart Button -->
                 <form action="/add-to-cart/" method="post">
@@ -65,7 +61,7 @@
                     </div>
                 </form>
             </div>
-                {% endfor %}
+                    {% endfor %}
     </div>            
 </div>
             

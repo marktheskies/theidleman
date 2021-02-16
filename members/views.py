@@ -2,10 +2,12 @@ from django.contrib.auth import authenticate, login as django_login, logout
 from django.contrib.auth.password_validation import validate_password
 from django.contrib.auth.models import User
 from django.http import HttpResponseNotAllowed, HttpResponseRedirect
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.template.response import TemplateResponse
 
 from members.forms import MemberSignupForm, MemberProfileForm, UserProfileForm
 
+from members.models import WishlistItem
 
 def signup(request):
     if request.method == 'GET':
@@ -81,18 +83,6 @@ def login(request):
                 })
             request.session['cart'] = cart
 
-            # Load the user's wishlist into the session.
-            wishlist = []
-            for stored_wishlist_item in user.member.wishlistitem_set.all():
-                wishlist.append({
-                    "session_item_id": str(stored_wishlist_item.session_item_id),
-                    "product_id": stored_wishlist_item.item.id,
-                    "color": stored_wishlist_item.color.hex_value,
-                    "size": stored_wishlist_item.size.name,
-                    "quantity": stored_wishlist_item.quantity,
-                })
-            request.session['wishlist'] = wishlist
-
             return HttpResponseRedirect('/')
         else:
             return render(request, 'member_login.html', {
@@ -134,3 +124,34 @@ def profile(request):
         'user_form': user_form,
         'member_form': member_form
     })
+
+def wishlist(request):
+    context = wishlist_context(request)
+    return TemplateResponse(request, "wishlist.html", context)
+
+
+def remove_wishlist_item(request, wishlist_item_id):
+    """Removes an item from the session wishlist, by its unique ID in the session."""
+
+    WishlistItem.objects.get(id=wishlist_item_id).delete()
+
+    return redirect("/members/wishlist")
+
+
+def add_to_wishlist(request):
+    if request.user.is_authenticated:
+        wi = WishlistItem(
+            member_id=request.user.member.id,
+            item_id=request.POST["product_id"],
+        )
+        wi.save()
+    return redirect("/products")
+
+
+def wishlist_context(request):
+    """Creates a context suitable for wishlist and checkout pages, containing products, subtotal, 
+    shipping and total."""
+    context = {
+        "items": request.user.member.wishlistitem_set.all(),
+    }
+    return context

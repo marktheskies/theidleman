@@ -66,6 +66,34 @@ body {
   max-width: 1rem;
 }
 
+// Product top hero section
+.products-hero {
+  // Ref: Hunters Race, 2020, Unsplash, https://unsplash.com/photos/hNoSCxPWYII
+  background-image: url('../images/hunters-race-hNoSCxPWYII-unsplash.jpg');
+  background-size: cover;
+  background-position: center;
+  color: $white;
+  position: relative; // Required for ::after (overlay) to work.
+  z-index: 1;
+}
+
+// Ensure hero's text sits on top of the overlay
+.products-hero > * {
+  z-index: 100;
+}
+
+// Overlay for the hero image
+.products-hero::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: rgba($black, .5);
+  z-index: -1;
+}
+
 .darken {
   filter: brightness(90%);
   border: 1px solid rgba($dark, 0.4);

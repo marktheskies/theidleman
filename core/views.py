@@ -4,7 +4,7 @@ from django.core.exceptions import FieldError
 from django.shortcuts import redirect, render
 from django.template.response import TemplateResponse
 
-from core.models import Product, Color, Size
+from core.models import Product, Color, Size, ProductCategory
 from members.models import CartItem
 
 from blog.models import Post
@@ -21,7 +21,14 @@ def products(request, category=None):
     else:
         context = {
             "products": Product.objects.all(),
+            "featured_categories": [],
         }
+        for category in ProductCategory.objects.filter(featured=True):
+            context["featured_categories"].append({
+                "category": category,
+                "image": category.products.all()[0].image,
+            })
+            print(category.products.all()[0].image)
 
     # Product sorting
     if request.GET.get("sort"):

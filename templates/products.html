@@ -45,6 +45,26 @@
     </div>
 </section>
 
+{% if featured_categories %}
+<section class="py-5">
+    <div class="container">
+        <h2 class="h4 mb-4">Shop categories</h2>
+        <div class="row row-cols-1 row-cols-md-6 g-4">
+            {% for item in featured_categories %}
+            <div class="col">
+                <div class="card border-0 mb-2 text-center">
+                    <img src="{{ item.image.url }}" class="card-img-top mb-2" alt="{{ item.image }}">
+                    <a href="{% url 'products_with_category' item.category.name %}" class="h5 stretched-link">
+                        {{ item.category.name }}
+                    </a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endif %}
+
 <!--Filter and sorting functions.
     Filter or order products by category, color, price rating etc.
     Placeholder only - will be functional in final submission-->

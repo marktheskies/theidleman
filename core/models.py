@@ -12,6 +12,7 @@ class ProductCategory(models.Model):
         verbose_name_plural = "product categories"
 
     name = models.CharField(max_length=255, unique=True)
+    featured = models.BooleanField(default=False)
 
     def __str__(self):
         return self.name
@@ -44,7 +45,7 @@ class Product(models.Model):
     price = models.FloatField()
     discount_price = models.FloatField(null=True, blank=True)
     category = models.ForeignKey(
-        ProductCategory, models.SET_NULL, blank=True, null=True
+        ProductCategory, models.SET_NULL, blank=True, null=True, related_name='products'
     )
 
     # The main image of the product

@@ -89,7 +89,12 @@
             <!--Style Model-->
             <div class="col-md-4 col-6 pt-2 pt-md-0 p-4 text-center">
                 {% load static %}
-                <img class="img-fluid mx-auto d-block" src="{% static 'images/stylish-dude.png' %}" alt="style model">
+                <div class="container-model">
+                    <img class="img-fluid mx-auto d-block" src="{% static 'images/stylish-dude.png' %}" alt="style model">
+                    <a href="/products/13"><img class="touchpoint-jacket img-fluid" src="{% static 'images/touchpoint.png' %}" alt="Jacket Touchpoint"></a>
+                    <a href="/products/5"><img class="touchpoint-shoes img-fluid" src="{% static 'images/touchpoint.png' %}" alt="Shoes Touchpoint"></a>
+                    <a href="/products/9"><img class="touchpoint-joggers img-fluid" src="{% static 'images/touchpoint.png' %}" alt="Joggers Touchpoint"></a>
+                </div>
             </div>
             <!--New Styles-->
             <div class="col-md-8 d-flex text-center text-md-start">

@@ -23,20 +23,30 @@
             <div class="carousel-item active">
                 {% load static %}
                 <img src="{% static 'images/homepage-feature.jpg' %}" alt="feature item 1" class="d-block w-100">
-                <div class="carousel-caption d-none d-md-block text-start text-dark">
-                    <h1 class="display-3">Discover our latest <br>collection</h1>
-                    <p class="lead">Click below to see our latest collection and always look your best,<br>day or
+                <div class="carousel-caption d-md-block text-start text-dark">
+                    <h1 class="display-3 d-md-block d-none">Discover our latest <br>collection</h1>
+                    <p class="lead d-none d-md-block">Click below to see our latest collection and always look your best,<br>day or
                         night.</p>
-                    <a href="/products" class="btn btn-primary shadow text-white">See More</a>
+                    <a href="/products" class="btn btn-primary shadow text-white see-more">See More</a>
                 </div>
             </div>
             <div class="carousel-item">
                 {% load static %}
                 <img src="{% static 'images/homepage-feature2.jpg' %}" alt="feature item 2" class="d-block w-100">
+                <div class="carousel-caption d-md-block text-start text-white">
+                    <h1 class="display-3 d-none d-md-block">Accessories for every <br>occasion</h1>
+                    <p class="lead d-none d-md-block">Style is all in the little details. View our range of accessories<br>to finish off your look.</p>
+                    <a href="/products" class="btn btn-primary shadow text-white see-more">See More</a>
+                </div>
             </div>
             <div class="carousel-item">
                 {% load static %}
                 <img src="{% static 'images/homepage-feature3.jpg' %}" alt="feature item 3" class="d-block w-100">
+                <div class="carousel-caption d-md-block text-start text-white">
+                    <h1 class="display-3 d-none d-md-block">Shoes: sneakers, <br> boots and slides</h1>
+                    <p class="lead d-none d-md-block">Start from the bottom with our wide range of men's shoes.</p>
+                    <a href="/products" class="btn btn-primary shadow text-white see-more">See More</a>
+                </div>
             </div>
         </div>
         <!--Carousel left and right controls-->

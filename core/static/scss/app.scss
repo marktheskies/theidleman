@@ -120,3 +120,69 @@ body {
 .cart-product-text {
   font-size: 14px;
 }
+
+.container-model {
+  position: relative;
+}
+
+.touchpoint-jacket {
+  position: absolute;
+  top: 140px;
+  left: 130px;
+  max-width: 3.5rem;
+  opacity: 90%;
+}
+
+.touchpoint-shoes {
+  position: absolute;
+  bottom: 25px;
+  right: 120px;
+  max-width: 3.5rem;
+  opacity: 90%;
+}
+
+.touchpoint-joggers {
+  position: absolute;
+  bottom: 200px;
+  right: 120px;
+  max-width: 3.5rem;
+  opacity: 90%;
+}
+
+@media only screen and (max-width: 600px) {
+  .touchpoint-jacket {
+    position: absolute;
+    top: 50px;
+    left: 25px;
+    max-width: 3rem;
+    opacity: 90%;
+  }
+  
+  .touchpoint-shoes {
+    position: absolute;
+    bottom: 0px;
+    right: 25px;
+    max-width: 3rem;
+    opacity: 90%;
+  }
+  
+  .touchpoint-joggers {
+    position: absolute;
+    bottom: 70px;
+    right: 25px;
+    max-width: 3rem;
+    opacity: 90%;
+  }
+}
+
+@keyframes pulse {
+  from { transform: scale(1); }
+  50% { transform: scale(1.25); }
+  to { transform: scale(1); }
+}
+
+.touchpoint-jacket, .touchpoint-joggers, .touchpoint-shoes {
+  animation-name: pulse;
+  animation-duration: 2.5s;
+  animation-iteration-count: infinite;
+}

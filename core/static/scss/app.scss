@@ -186,3 +186,12 @@ body {
   animation-duration: 2.5s;
   animation-iteration-count: infinite;
 }
+
+@media only screen and (max-width: 600px) {
+  .see-more {
+    position: absolute;
+    font-size: 12px;
+    left: 80px;
+    bottom: 70px;
+  }
+}

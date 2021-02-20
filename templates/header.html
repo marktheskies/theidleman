@@ -52,6 +52,20 @@
                     <li class="nav-item"><a href="{% url 'member_logout' %}" class="nav-link">Logout</a></li>
                     <li class="nav-item"><a href="{% url 'shopping_cart' %}" class="nav-link">Cart</a></li>
                 </div>
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Search
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <form class="form-inline" action={% url 'search_results' %}>
+                            <input class="form-control mr-sm-2" id="search" type="search" 
+                                    placeholder="Search" aria-label="Search" name="search">
+                            <button type="submit" class="btn btn-primary mb-2 center">Search</button>
+                        </form>
+                    </ul>
+                 </li>
+
                 {% endif %}
 
                 <li class="nav-item">

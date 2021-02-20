@@ -5,12 +5,25 @@
 {% block title %}Search Results | TheIdleMan{% endblock %}
 {% block content%}
 
+<!--Page heading and introduction text-->
+<div class="container text-center py-5">
+    <div class="row">
+        <div class="col-md-7 mx-auto">
+            {% if category %}
+                <h1>{{ category }}</h1>
+            {% else %}
+                <h1>Search Results</h1>
+            {% endif %}
+            <p class="lead">Below are the items that match your search.<br>
+            If you can't find what you're looking for, browse our products section.</p>
+        </div>
+    </div>
+</div>
+
  <!--Product images, titles and price from database matching the user query. 
     Displayed in grid of rows and columns which changes responsively based on viewport resolution
     As more products are added there will be multiple pages of products -->
-
 <div class="container py-5">
-    <h1>Search Results</h1>
     <div class="row g-4">
     {% if products %}
         {% for product in products %}

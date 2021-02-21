@@ -2,7 +2,7 @@ from django.urls import path
 
 from core.views import (products, home, product_details, add_to_cart, empty_cart,
                         shopping_cart, checkout, remove_shopping_cart_item,
-                        social_media_feed, contact)
+                        social_media_feed, contact, search_results)
 
 urlpatterns = [
     path("products/", products, name="products"),
@@ -18,4 +18,5 @@ urlpatterns = [
     path("contact/", contact, name="contact"),
     path("shopping-cart/remove-item/<session_item_id>",
          remove_shopping_cart_item, name="remove_shopping_cart_item"),
+    path("search-results/", search_results, name="search_results"),
 ]

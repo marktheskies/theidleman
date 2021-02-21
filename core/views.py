@@ -4,6 +4,7 @@ from django.core.exceptions import FieldError
 from django.shortcuts import redirect, render
 from django.template.response import TemplateResponse
 from django.core.paginator import Paginator
+from django.db.models import Q
 
 from core.models import Product, Color, Size
 from members.models import CartItem
@@ -190,3 +191,15 @@ def social_media_feed(request):
 
 def contact(request):
     return render(request, "contact.html")
+
+def search_results(request): 
+    search_products = request.GET.get('search')
+
+    if search_products:
+        products_result = Product.objects.filter(Q(name__icontains=search_products))
+    
+    else:
+        # If not searched, return default products
+        products_result = Product.objects.all()
+
+    return render(request, 'search_results.html', {'products': products_result})

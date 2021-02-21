@@ -60,21 +60,22 @@
                     <li class="nav-item"><a href="{% url 'member_logout' %}" class="nav-link">Logout</a></li>
                     <li class="nav-item cart-dropdown"><a href="{% url 'shopping_cart' %}" class="nav-link">Cart</a>
                     </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            Search
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <form class="form-inline" action={% url 'search_results' %}>
+                                <input class="form-control mr-sm-2" id="search" type="search" placeholder="Search"
+                                    aria-label="Search" name="search">
+                                <button type="submit" class="btn btn-primary mb-2 center">Search</button>
+                            </form>
+                        </ul>
+                    </li>
                 </div>
 
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                        data-bs-toggle="dropdown" aria-expanded="false">
-                        Search
-                    </a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <form class="form-inline" action={% url 'search_results' %}>
-                            <input class="form-control mr-sm-2" id="search" type="search" placeholder="Search"
-                                aria-label="Search" name="search">
-                            <button type="submit" class="btn btn-primary mb-2 center">Search</button>
-                        </form>
-                    </ul>
-                </li>
+
 
                 {% endif %}
 
@@ -110,7 +111,8 @@
                 <li class="nav-item">
                     <a href="/members/wishlist" class="nav-link d-flex">
                         <i class="far fa-heart"></i>
-                        <span class="badge rounded-pill bg-danger">{{ request.user.member.wishlistitem_set.all|length }}</span>
+                        <span
+                            class="badge rounded-pill bg-danger">{{ request.user.member.wishlistitem_set.all|length }}</span>
                     </a>
                 </li>
                 {% endif %}

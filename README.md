@@ -42,6 +42,14 @@ source venv/bin/activate
 pip install -r requirements.txt
 ```
 
+On Windows:
+
+```
+virtualenv -p python3.8 venv
+venv\Scripts\activate
+pip install -r requirements.txt
+```
+
 ### 4. Run database migrations
 
 ```
@@ -51,14 +59,24 @@ heroku local:run python manage.py migrate
 ### 5. Install package.json dependencies
 
 ```
-yarn install
+yarn
 ```
 
 ### 6. Start the development server
 
+On Linux/Mac:
+
 ```
-heroku local
+heroku local web
 ```
+
+On Windows:
+
+```
+heroku local web -f Procfile.windows
+```
+
+Now open your browser and go to http://localhost:5000.
 
 ## Production Deployment
 

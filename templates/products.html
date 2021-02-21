@@ -131,7 +131,7 @@
     As more products are added there will be multiple pages of products-->
 <div class="container py-5">
     <div class="row g-4">
-        {% for product in products %}
+        {% for product in page.object_list %}
         <div class="col-lg-3 col-md-6">
             <div class="product-card card border-0 cursor-pointer" data-product-id="{{ product.id }}">
                 <img src="{{ product.image.url }}" class="card-img-top" alt="product image">
@@ -152,4 +152,27 @@
         </script>
     </div>
 </div>
+
+<div class="container py-3 pb-5 text-center">
+    <p> {{ count }} items total</p>
+    <div class="page-links my-auto">
+        {% if page.has_previous %}
+            <a href="?page=1" class="px-3 pagination"><i class="fas fa-angle-double-left fa-2x text-dark align-middle"></i></a>
+            <a href="?page={{ page.previous_page_number }}" class="me-5 pagination"><i class="fas fa-angle-left fa-2x text-dark align-middle"></i></a>
+        {% endif %}
+        {% for num in page.paginator.page_range %}
+            {% if page.number == num %}
+                <strong class="pagination bg-primary px-3 py-1 align-middle">{{ num }}</strong>
+            {% elif num > page.number|add:'-3' and num < page.number|add:'3' %}
+                <a href="?page={{ num }}" class="pagination bg-light px-3 py-1 align-middle"> {{ num }} </a>
+            {% endif %}
+        {% endfor %}
+        {% if page.has_next %}
+        <a href="?page={{ page.next_page_number }}" class="ms-5 pagination"><i class="fas fa-angle-right fa-2x text-dark align-middle"></i></a>
+        <a href="?page={{ page.paginator.num_pages }}" class="px-3 pagination"><i class="fas fa-angle-double-right fa-2x text-dark align-middle"></i></a>
+        {% endif %}
+        <p class="pb-2 pt-4">Page {{ page.number }} of {{ page.paginator.num_pages }}</p>
+    </div>
+</div>
+
 {% endblock %}

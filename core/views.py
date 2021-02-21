@@ -3,25 +3,44 @@ import uuid
 from django.core.exceptions import FieldError
 from django.shortcuts import redirect, render
 from django.template.response import TemplateResponse
+from django.core.paginator import Paginator
+from django.db.models import Q
 
 from core.models import Product, Color, Size, ProductCategory
 from members.models import CartItem
 
 from blog.models import Post
-from core.models import Product, ProductCategory
 
 
 def products(request, category=None):
     """Renders the products page"""
     if category:
+        products_result = Product.objects.filter(category__name=category)
+
+        product_paginator = Paginator(products_result, 8)
+
+        page_num = request.GET.get("page")
+
+        page = product_paginator.get_page(page_num)
+
         context = {
-            "products": Product.objects.filter(category__name=category),
             "category": category,
+            "count": product_paginator.count,
+            "page": page
         }
     else:
+        products_result = Product.objects.all()
+
+        product_paginator = Paginator(products_result, 8)
+
+        page_num = request.GET.get("page")
+
+        page = product_paginator.get_page(page_num)
+
         context = {
-            "products": Product.objects.all(),
             "featured_categories": [],
+            "count": product_paginator.count,
+            "page": page
         }
         for category in ProductCategory.objects.filter(featured=True):
             context["featured_categories"].append({
@@ -33,7 +52,7 @@ def products(request, category=None):
     # Product sorting
     if request.GET.get("sort"):
         try:
-            context["products"] = context["products"].order_by(
+            context["products"]: context["products"].order_by(
                 request.GET.get("sort"))
         except FieldError:
             # The give field does not exist on the Product, thus we must skip sorting.
@@ -170,8 +189,26 @@ def shopping_cart(request):
 
 def checkout(request):
     context = cart_context(request)
-    return TemplateResponse(request, "checkout.html", context)
+    return render(request, "checkout.html", context)
+
+
+def social_media_feed(request):
+    return render(request, "instagram_feed.html")
 
 
 def contact(request):
     return render(request, "contact.html")
+
+
+def search_results(request):
+    search_products = request.GET.get('search')
+
+    if search_products:
+        products_result = Product.objects.filter(
+            Q(name__icontains=search_products))
+
+    else:
+        # If not searched, return default products
+        products_result = Product.objects.all()
+
+    return render(request, 'search_results.html', {'products': products_result})

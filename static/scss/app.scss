@@ -115,3 +115,12 @@ body {
     max-width: 7rem;
   }
 }
+
+.pagination {
+  display: inline-block;
+  text-decoration: none;
+}
+
+.pagination:hover {
+  filter:opacity(65%);
+}

@@ -122,9 +122,9 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'static'),
+    os.path.join(BASE_DIR, 'static/'),
 )
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles/')
 
 SASS_PROCESSOR_ROOT = STATIC_ROOT
 
@@ -153,7 +153,6 @@ PHONENUMBER_DB_FORMAT = 'E164'
 # Cloudinary
 # Allows us to store uploaded media in Cloudinary rather than on the web server
 CLOUDINARY_URL = os.getenv('CLOUDINARY_URL')
-
 
 # Configure Django App for Heroku
 django_heroku.settings(locals())

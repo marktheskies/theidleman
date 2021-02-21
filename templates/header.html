@@ -136,12 +136,10 @@
                                     </tr>
                                 </thead>
                                 <tbody class="cart-product-text">
-                                    {% for item in items %}
+                                    {% for item in request.session.cart %}
                                     <tr>
                                         <td>
                                             {{ item.product.name }}<br>
-                                            <img src="{{ item.product.image.url }}" class="img-fluid"
-                                                style="max-width: 5rem;"><br>
                                             Colour: <span class="badge rounded-pill"
                                                 style="background-color: {{ item.color }}">&nbsp;</span><br>
                                             Size: {{ item.size }}
@@ -150,7 +148,7 @@
                                             ${{ item.product.price|floatformat:2|intcomma }}
                                         </td>
                                         <td class="text-center align-middle">{{ item.quantity }}</td>
-                                        <td class="text-center align-middle">${{ item.total|floatformat:2|intcomma }}
+                                        <td class="text-center align-middle">${{ item.subtotal|floatformat:2|intcomma }}
                                         </td>
                                         <td class="text-center align-middle"><a
                                                 href="/shopping-cart/remove-item/{{ item.session_item_id }}">Remove
@@ -159,8 +157,6 @@
                                     {% endfor %}
                                 </tbody>
                             </table>
-                            <p class="h3 text-uppercase text-center py-3">ORDER TOTAL:
-                                ${{ total|floatformat:2|intcomma }}</p>
                         </div>
                     </a>
                 </li>

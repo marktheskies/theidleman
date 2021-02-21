@@ -11,6 +11,10 @@ from members.models import CartItem
 from members.models import WishlistItem
 
 from blog.models import Post
+from django.core import serializers
+
+from django.core.serializers.json import DjangoJSONEncoder
+from django.forms.models import model_to_dict
 
 
 def products(request, category=None):
@@ -103,9 +107,12 @@ def add_to_cart(request):
     cart.append({
         "session_item_id": session_item_id,
         "product_id": request.POST["product_id"],
+        "product": model_to_dict(Product.objects.get(pk=request.POST["product_id"]),
+                                 fields=['name', 'price']),
         "color": request.POST["color"],
         "size": request.POST["size"],
         "quantity": request.POST["quantity"],
+        "subtotal": int(request.POST["quantity"]) * Product.objects.get(pk=request.POST["product_id"]).price
     })
 
     request.session["cart"] = cart

@@ -1,0 +1,26 @@
+<!--Denotes that the checkout template is a child of the layout template, and will inherit it's properties-->
+{% extends "layout.html" %}
+
+<!--Overrides the title of the Layout template for the checkout page-->
+{% block title %}Instagram Feed | TheIdleMan{% endblock %}
+
+<!--Overrides the body content of the Layout template for the checkout page-->
+{% block content %}
+
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Social Media feed</title>
+    </head>
+    <!-- Below script utilizes Juicer.io plugin to pull social media information-->
+    <script src="https://assets.juicer.io/embed.js" type="text/javascript"></script>
+    <link href="https://assets.juicer.io/embed.css" media="all" rel="stylesheet" type="text/css" />
+    <ul class="juicer-feed" data-feed-id="theidleman">
+    <h1 class="referral">
+    </h1>
+</ul>
+</html>
+
+{% endblock %}

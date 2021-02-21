@@ -1,3 +1,8 @@
+<!--Loads a customized tags library to simplify number text/number conventions-->
+{% load humanize %}
+<!--Loads style library-->
+{% load static %}
+
 <!--Overall Header Nav Bar, will appear on every page of the site and will responsively adjust to fit the page width. 
     Nav bar is fixed in place when scrolling-->
 <nav class="navbar fixed-top shadow navbar-expand-lg navbar-light bg-white py-4">
@@ -6,7 +11,7 @@
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
             <span class="navbar-toggler-icon"></span>
         </button>
-      
+
         <!--Nav Bar contains the Idle Man logo which will return to the home page when clicked-->
         <a class="navbar-brand me-0" href="/">
             {% load static %}
@@ -14,23 +19,24 @@
         </a>
         <!--Nav Bar content will link to the relevant pages when clicked. 
             This will be updated in the final delivery-->
-      
+
         <div class="collapse navbar-collapse" id="navbarContent">
             <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
                 <li class="nav-item">
                     <a class="nav-link" href="/products?sort=-id">New</a>
                 </li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                        data-bs-toggle="dropdown" aria-expanded="false">
                         Categories
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                         {% for category in categories %}
-                            <li>
-                                <a class="dropdown-item" href="/products/categories/{{ category.name }}">
-                                    {{ category.name }}
-                                </a>
-                            </li>
+                        <li>
+                            <a class="dropdown-item" href="/products/categories/{{ category.name }}">
+                                {{ category.name }}
+                            </a>
+                        </li>
                         {% endfor %}
                     </ul>
                 </li>
@@ -45,18 +51,36 @@
                 <li class="nav-item">
                     <a href="{% url 'member_signup' %}" class="nav-link">Sign Up</a>
                 </li>
-                <li class="nav-item d-lg-none d-xl-none d-xxl-none"><a href="{% url 'shopping_cart' %}" class="nav-link">Cart</a></li>
+
+                <li class="nav-item d-lg-none d-xl-none d-xxl-none cart-dropdown"><a href="{% url 'shopping_cart' %}"
+                        class="nav-link">Cart</a></li>
                 {% else %}
                 <div class="d-lg-none d-xl-none d-xxl-none">
                     <li class="nav-item"><a href="{% url 'member_profile' %}" class="nav-link">Your Profile</a></li>
                     <li class="nav-item"><a href="{% url 'member_logout' %}" class="nav-link">Logout</a></li>
-                    <li class="nav-item"><a href="{% url 'shopping_cart' %}" class="nav-link">Cart</a></li>
+                    <li class="nav-item cart-dropdown"><a href="{% url 'shopping_cart' %}" class="nav-link">Cart</a>
+                    </li>
                 </div>
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        Search
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <form class="form-inline" action={% url 'search_results' %}>
+                            <input class="form-control mr-sm-2" id="search" type="search" placeholder="Search"
+                                aria-label="Search" name="search">
+                            <button type="submit" class="btn btn-primary mb-2 center">Search</button>
+                        </form>
+                    </ul>
+                </li>
+
                 {% endif %}
 
                 <li class="nav-item">
                     <a class="nav-link" href="/blog">Style Guide</a>
-                </li> 
+                </li>
             </ul>
 
         </div>
@@ -93,16 +117,72 @@
 
                 <!--The shopping cart icon has an attached counter which will update when items are added or removed from the cart-->
                 <li class="nav-item">
-                    <a href="/shopping-cart" class="nav-link d-flex">
+                    <a href="/shopping-cart" class="nav-link cart-dropdown d-flex">
                         <i class="fas fa-shopping-cart"></i>
                         {% if "cart" in request.session %}
                         <span class="badge rounded-pill bg-danger">{{ request.session.cart|length }}</span>
                         {% endif %}
+                        <div class="cart-dropdown-content">
+                            <table class="table py-4">
+                                <thead class="text-center text-uppercase">
+                                    <tr>
+                                        <th>Product</th>
+                                        <th>Price</th>
+                                        <th>Quantity</th>
+                                        <th>Total</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody class="cart-product-text">
+                                    {% for item in items %}
+                                    <tr>
+                                        <td>
+                                            {{ item.product.name }}<br>
+                                            <img src="{{ item.product.image.url }}" class="img-fluid"
+                                                style="max-width: 5rem;"><br>
+                                            Colour: <span class="badge rounded-pill"
+                                                style="background-color: {{ item.color }}">&nbsp;</span><br>
+                                            Size: {{ item.size }}
+                                        </td>
+                                        <td class="text-center align-middle">
+                                            ${{ item.product.price|floatformat:2|intcomma }}
+                                        </td>
+                                        <td class="text-center align-middle">{{ item.quantity }}</td>
+                                        <td class="text-center align-middle">${{ item.total|floatformat:2|intcomma }}
+                                        </td>
+                                        <td class="text-center align-middle"><a
+                                                href="/shopping-cart/remove-item/{{ item.session_item_id }}">Remove
+                                                Item</a></td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                            <p class="h3 text-uppercase text-center py-3">ORDER TOTAL:
+                                ${{ total|floatformat:2|intcomma }}</p>
+                        </div>
                     </a>
                 </li>
 
-                {% comment %} TODO: Implement search <a href="#" class="ms-5"><i class="fas fa-search"></i></a>
-                {% endcomment %}
+                <!-- Search button -->
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="fas fa-search"></i>
+                    </a>
+                    <ul class="dropdown-menu p-2" aria-labelledby="searchDropdown">
+                        <form action={% url 'search_results' %}>
+                            <div class="form-row">
+                                <div class="col mb-1">
+                                    <input class="form-control col" id="search" type="search" placeholder="Search"
+                                        aria-label="Search" name="search">
+                                </div>
+                                <div class="col text-center">
+                                    <button type="submit" class="btn btn-primary col">Search</button>
+                                </div>
+                            </div>
+                        </form>
+                    </ul>
+                </li>
             </ul>
         </div>
     </div>

@@ -1,0 +1,232 @@
+@import url("https://fonts.googleapis.com/css2?family=Abel&family=Oswald&display=swap");
+
+$font-family-sans-serif: "Abel";
+$headings-font-family: "Oswald";
+
+// Theme colors
+$light: #ece8e5;
+$primary: #89a9c3;
+$secondary: #ddc167;
+$dark: #000;
+$success: #c7daa8;
+
+$navbar-nav-link-padding-x: 2rem;
+$navbar-light-hover-color: $secondary;
+
+// Buttons
+$input-btn-padding-y: 0.7rem;
+$input-btn-padding-x: 1.5rem;
+
+@import "node_modules/bootstrap/scss/bootstrap";
+
+// Prevent overlap of navbar
+body {
+  padding-top: 88px;
+}
+
+.navbar-nav .nav-item {
+  text-transform: uppercase;
+}
+
+.footer-link {
+  text-decoration: none;
+  color: $dark;
+  text-transform: uppercase;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.btn {
+  text-transform: uppercase;
+}
+
+.homepage-blogposts-section {
+  background: linear-gradient(#ffffff, $light);
+}
+
+.homepage-top .carousel-caption {
+  top: 0;
+  left: 0;
+  right: initial;
+  padding: 5rem 10rem;
+}
+
+.brand-img {
+  max-width: 6rem;
+  filter: grayscale(100%);
+}
+
+.product-star-rating {
+  max-width: 6rem;
+}
+
+.product-tool-icons {
+  max-width: 1rem;
+}
+
+// Product top hero section
+.products-hero {
+  // Ref: Hunters Race, 2020, Unsplash, https://unsplash.com/photos/hNoSCxPWYII
+  background-image: url('../images/hunters-race-hNoSCxPWYII-unsplash.jpg');
+  background-size: cover;
+  background-position: center;
+  color: $white;
+  position: relative; // Required for ::after (overlay) to work.
+  z-index: 1;
+}
+
+// Ensure hero's text sits on top of the overlay
+.products-hero > * {
+  z-index: 100;
+}
+
+// Overlay for the hero image
+.products-hero::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: rgba($black, .5);
+  z-index: -1;
+}
+
+.darken {
+  filter: brightness(90%);
+  border: 1px solid rgba($dark, 0.4);
+}
+
+// Formatting for products page carousel icons
+.product-carousel-control-prev-icon,
+.product-carousel-control-next-icon,
+.reviews-carousel-control-prev-icon,
+.reviews-carousel-control-next-icon {
+  display: inline-block;
+  width: 4rem;
+  height: 5rem;
+  background-repeat: no-repeat;
+  background-position: 50%;
+  background-size: 100% 100%;
+}
+
+@media only screen and (max-width: 600px) {
+  .additional-images {
+    max-width: 7rem;
+  }
+}
+
+.pagination {
+  display: inline-block;
+  text-decoration: none;
+}
+
+.pagination:hover {
+  filter:opacity(65%);
+}
+
+.cart-dropdown {
+  position: relative;
+  display: block;
+}
+
+.cart-dropdown-content {
+  display: none;
+  position: absolute;
+  right: 5px;
+  top: 30px;
+  background-color: #ffffff;
+  box-shadow: 15px 15px 15px 15px rgba(0.2,0.2,0.2,0.2);
+  z-index: 1;
+  max-height: 500px;
+  overflow: scroll;
+}
+
+.cart-dropdown-content a:hover {background-color: #ddd;}
+
+.cart-dropdown:hover .cart-dropdown-content {display: block;}
+
+.cart-product-text {
+  font-size: 14px;
+}
+
+.container-model {
+  position: relative;
+}
+
+.touchpoint-jacket {
+  position: absolute;
+  top: 140px;
+  left: 130px;
+  max-width: 3.5rem;
+  opacity: 90%;
+}
+
+.touchpoint-shoes {
+  position: absolute;
+  bottom: 25px;
+  right: 120px;
+  max-width: 3.5rem;
+  opacity: 90%;
+}
+
+.touchpoint-joggers {
+  position: absolute;
+  bottom: 200px;
+  right: 120px;
+  max-width: 3.5rem;
+  opacity: 90%;
+}
+
+@media only screen and (max-width: 600px) {
+  .touchpoint-jacket {
+    position: absolute;
+    top: 50px;
+    left: 25px;
+    max-width: 3rem;
+    opacity: 90%;
+  }
+  
+  .touchpoint-shoes {
+    position: absolute;
+    bottom: 0px;
+    right: 25px;
+    max-width: 3rem;
+    opacity: 90%;
+  }
+  
+  .touchpoint-joggers {
+    position: absolute;
+    bottom: 70px;
+    right: 25px;
+    max-width: 3rem;
+    opacity: 90%;
+  }
+}
+
+@keyframes pulse {
+  from { transform: scale(1); }
+  50% { transform: scale(1.25); }
+  to { transform: scale(1); }
+}
+
+.touchpoint-jacket, .touchpoint-joggers, .touchpoint-shoes {
+  animation-name: pulse;
+  animation-duration: 2.5s;
+  animation-iteration-count: infinite;
+}
+
+@media only screen and (max-width: 600px) {
+  .see-more {
+    position: absolute;
+    font-size: 12px;
+    left: 80px;
+    bottom: 70px;
+  }
+}
+
+.carousel-control-prev, .carousel-control-next {
+  width: 10%;
+}

@@ -14,12 +14,12 @@
         <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
             <ol class="breadcrumb mb-0">
                 {% if category %}
-                    <li class="breadcrumb-item"><a href="/">Home</a></li>
-                    <li class="breadcrumb-item"><a href="/products">Products</a></li>
-                    <li class="breadcrumb-item active">{{ category }}</li>
+                <li class="breadcrumb-item"><a href="/">Home</a></li>
+                <li class="breadcrumb-item"><a href="/products">Products</a></li>
+                <li class="breadcrumb-item active">{{ category }}</li>
                 {% else %}
-                    <li class="breadcrumb-item"><a href="/">Home</a></li>
-                    <li class="breadcrumb-item active">Products</li>
+                <li class="breadcrumb-item"><a href="/">Home</a></li>
+                <li class="breadcrumb-item active">Products</li>
                 {% endif %}
             </ol>
         </nav>
@@ -27,21 +27,43 @@
 </div>
 
 <!--Page heading and introduction text-->
-<div class="container text-center py-5">
-    <div class="row">
-        <div class="col-md-7 mx-auto">
-            {% if category %}
+<section class="products-hero py-5">
+    <div class="container text-center py-5">
+        <div class="row">
+            <div class="col-md-7 mx-auto">
+                {% if category %}
                 <h1>{{ category }}</h1>
-            {% else %}
+                {% else %}
                 <h1>Menswear</h1>
-            {% endif %}
-            <p class="lead">Browse the latest in men's clothing and fashion with The Idle Man. Offering modern fits
-                and
-                premium fabrics, you'll discover the perfect outfit for any occasion.</p>
-            <p class="lead">With our range, be the best man you can be.</p>
+                {% endif %}
+                <p class="lead">Browse the latest in men's clothing and fashion with The Idle Man. Offering modern fits
+                    and
+                    premium fabrics, you'll discover the perfect outfit for any occasion.</p>
+                <p class="lead">With our range, be the best man you can be.</p>
+            </div>
         </div>
     </div>
-</div>
+</section>
+
+{% if featured_categories %}
+<section class="py-5">
+    <div class="container">
+        <h2 class="h4 mb-4">Shop categories</h2>
+        <div class="row row-cols-1 row-cols-md-6 g-4">
+            {% for item in featured_categories %}
+            <div class="col">
+                <div class="card border-0 mb-2 text-center">
+                    <img src="{{ item.image.url }}" class="card-img-top mb-2" alt="{{ item.image }}">
+                    <a href="{% url 'products_with_category' item.category.name %}" class="h5 stretched-link">
+                        {{ item.category.name }}
+                    </a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endif %}
 
 <!--Filter and sorting functions.
     Filter or order products by category, color, price rating etc.
@@ -50,37 +72,55 @@
     <div class="container">
         <!-- Filter Dropdown. Allows the user to filter products. -->
         <span class="dropdown">
-            <button class="btn btn-link dropdown-toggle text-decoration-none" type="button" id="filterDropdownButton" data-bs-toggle="dropdown" aria-expanded="false">
+            <button class="btn btn-link dropdown-toggle text-decoration-none" type="button" id="filterDropdownButton"
+                data-bs-toggle="dropdown" aria-expanded="false">
                 Filter <i class="fas fa-filter"></i>
             </button>
             <ul class="dropdown-menu" aria-labelledby="filterDropdownButton">
-                <li><h6 class="dropdown-header">Categories</h6></li>
+                <li>
+                    <h6 class="dropdown-header">Categories</h6>
+                </li>
                 {% for category in categories %}
-                    <li><a class="dropdown-item" href="/products/categories/{{ category.name }}">{{ category.name }}</a></li>
+                <li><a class="dropdown-item" href="/products/categories/{{ category.name }}">{{ category.name }}</a>
+                </li>
                 {% endfor %}
 
                 {% if category %}
-                    <!-- Clear filter button -->
-                    <li><hr class="dropdown-divider"></li>
-                    <li><a class="dropdown-item text-warning" href="/products">Clear filter</a></li>
+                <!-- Clear filter button -->
+                <li>
+                    <hr class="dropdown-divider">
+                </li>
+                <li><a class="dropdown-item text-warning" href="/products">Clear filter</a></li>
                 {% endif %}
             </ul>
         </span>
 
         <!-- Sort Dropdown. Allows the user to sort products. -->
         <span class="dropdown">
-            <button class="btn btn-link dropdown-toggle text-decoration-none" type="button" id="filterDropdownButton" data-bs-toggle="dropdown" aria-expanded="false">
-                Sort 
+            <button class="btn btn-link dropdown-toggle text-decoration-none" type="button" id="filterDropdownButton"
+                data-bs-toggle="dropdown" aria-expanded="false">
+                Sort
                 {% if request.GET.sort %}&nbsp;({{ request.GET.sort }}){% endif %}
                 &nbsp;<i class="fas fa-sort"></i>
             </button>
             <ul class="dropdown-menu" aria-labelledby="filterDropdownButton">
-                <li><a class="dropdown-item" href="/products/{% if category %}categories/{{ category }}{% endif %}?sort=-id">Newest First</a></li>
-                <li><a class="dropdown-item" href="/products/{% if category %}categories/{{ category }}{% endif %}?sort=id">Oldest First</a></li>
-                <li><a class="dropdown-item" href="/products/{% if category %}categories/{{ category }}{% endif %}?sort=price">Price - Lowest First</a></li>
-                <li><a class="dropdown-item" href="/products/{% if category %}categories/{{ category }}{% endif %}?sort=-price">Price - Highest First</a></li>
-                <li><a class="dropdown-item" href="/products/{% if category %}categories/{{ category }}{% endif %}?sort=category">Category</a></li>
-                <li><a class="dropdown-item" href="/products/{% if category %}categories/{{ category }}{% endif %}?sort=name">Name</a></li>
+                <li><a class="dropdown-item"
+                        href="/products/{% if category %}categories/{{ category }}{% endif %}?sort=-id">Newest First</a>
+                </li>
+                <li><a class="dropdown-item"
+                        href="/products/{% if category %}categories/{{ category }}{% endif %}?sort=id">Oldest First</a>
+                </li>
+                <li><a class="dropdown-item"
+                        href="/products/{% if category %}categories/{{ category }}{% endif %}?sort=price">Price - Lowest
+                        First</a></li>
+                <li><a class="dropdown-item"
+                        href="/products/{% if category %}categories/{{ category }}{% endif %}?sort=-price">Price -
+                        Highest First</a></li>
+                <li><a class="dropdown-item"
+                        href="/products/{% if category %}categories/{{ category }}{% endif %}?sort=category">Category</a>
+                </li>
+                <li><a class="dropdown-item"
+                        href="/products/{% if category %}categories/{{ category }}{% endif %}?sort=name">Name</a></li>
             </ul>
         </span>
     </div>
@@ -91,7 +131,7 @@
     As more products are added there will be multiple pages of products-->
 <div class="container py-5">
     <div class="row g-4">
-        {% for product in products %}
+        {% for product in page.object_list %}
         <div class="col-lg-3 col-md-6">
             <div class="product-card card border-0 cursor-pointer" data-product-id="{{ product.id }}">
                 <img src="{{ product.image.url }}" class="card-img-top" alt="product image">
@@ -112,4 +152,27 @@
         </script>
     </div>
 </div>
+
+<div class="container py-3 pb-5 text-center">
+    <p> {{ count }} items total</p>
+    <div class="page-links my-auto">
+        {% if page.has_previous %}
+            <a href="?page=1" class="px-3 pagination"><i class="fas fa-angle-double-left fa-2x text-dark align-middle"></i></a>
+            <a href="?page={{ page.previous_page_number }}" class="me-5 pagination"><i class="fas fa-angle-left fa-2x text-dark align-middle"></i></a>
+        {% endif %}
+        {% for num in page.paginator.page_range %}
+            {% if page.number == num %}
+                <strong class="pagination bg-primary px-3 py-1 align-middle">{{ num }}</strong>
+            {% elif num > page.number|add:'-3' and num < page.number|add:'3' %}
+                <a href="?page={{ num }}" class="pagination bg-light px-3 py-1 align-middle"> {{ num }} </a>
+            {% endif %}
+        {% endfor %}
+        {% if page.has_next %}
+        <a href="?page={{ page.next_page_number }}" class="ms-5 pagination"><i class="fas fa-angle-right fa-2x text-dark align-middle"></i></a>
+        <a href="?page={{ page.paginator.num_pages }}" class="px-3 pagination"><i class="fas fa-angle-double-right fa-2x text-dark align-middle"></i></a>
+        {% endif %}
+        <p class="pb-2 pt-4">Page {{ page.number }} of {{ page.paginator.num_pages }}</p>
+    </div>
+</div>
+
 {% endblock %}

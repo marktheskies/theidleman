@@ -23,27 +23,40 @@
             <div class="carousel-item active">
                 {% load static %}
                 <img src="{% static 'images/homepage-feature.jpg' %}" alt="feature item 1" class="d-block w-100">
-                <div class="carousel-caption d-none d-md-block text-start text-dark">
-                    <h1 class="display-3">Discover our latest <br>collection</h1>
-                    <p class="lead">Click below to see our latest collection and always look your best,<br>day or
-                        night.</p>
-                    <a href="/products" class="btn btn-primary shadow text-white">See More</a>
+                <div class="carousel-caption ms-5 d-md-block text-start text-dark">
+                    <h1 class="display-3 d-md-block d-none">Discover our latest <br>collection</h1>
+                    <p class="lead d-none d-md-block">Click below to see our latest collection and always look your
+                        best,<br>
+                        day or night.</p>
+                    <a href="/products" class="btn btn-primary shadow text-white see-more">See More</a>
                 </div>
             </div>
             <div class="carousel-item">
                 {% load static %}
                 <img src="{% static 'images/homepage-feature2.jpg' %}" alt="feature item 2" class="d-block w-100">
+                <div class="carousel-caption d-md-block text-start text-white">
+                    <h1 class="display-3 d-none d-md-block">Accessories for every <br>occasion</h1>
+                    <p class="lead d-none d-md-block">Style is all in the little details. View our range of
+                        accessories<br>to finish off your look.</p>
+                    <a href="/products/categories/Accessories" class="btn btn-primary shadow text-white see-more">See
+                        More</a>
+                </div>
             </div>
             <div class="carousel-item">
                 {% load static %}
                 <img src="{% static 'images/homepage-feature3.jpg' %}" alt="feature item 3" class="d-block w-100">
+                <div class="carousel-caption d-md-block text-start text-white">
+                    <h1 class="display-3 d-none d-md-block">Shoes: sneakers, <br> boots and slides</h1>
+                    <p class="lead d-none d-md-block">Start from the bottom with our wide range of men's shoes.</p>
+                    <a href="/products/categories/Shoes" class="btn btn-primary shadow text-white see-more">See More</a>
+                </div>
             </div>
         </div>
         <!--Carousel left and right controls-->
         <a class="carousel-control-prev" href="#homepageHeroCarousel" role="button" data-bs-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
         </a>
+        <span class="visually-hidden">Previous</span>
         <a class="carousel-control-next" href="#homepageHeroCarousel" role="button" data-bs-slide="next">
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
             <span class="visually-hidden">Next</span>
@@ -58,18 +71,18 @@
         <div class="row">
             <div class="col-3 d-flex justify-content-center">
                 {% load static %}
-                <img class="img-fluid brand-img my-auto mx-auto px-3 px-md-0" src="{% static 'images/brand-fossil.png' %}"
-                    alt="fossil logo">
+                <img class="img-fluid brand-img my-auto mx-auto px-3 px-md-0"
+                    src="{% static 'images/brand-fossil.png' %}" alt="fossil logo">
             </div>
             <div class="col-3 d-flex">
                 {% load static %}
-                <img class="img-fluid brand-img my-auto mx-auto px-3 px-md-0" src="{% static 'images/brand-taikan.png' %}"
-                    alt="taikan logo">
+                <img class="img-fluid brand-img my-auto mx-auto px-3 px-md-0"
+                    src="{% static 'images/brand-taikan.png' %}" alt="taikan logo">
             </div>
             <div class="col-3 d-flex">
                 {% load static %}
-                <img class="img-fluid brand-img my-auto mx-auto px-3 px-md-0" src="{% static 'images/brand-topman.png' %}"
-                    alt="topman logo">
+                <img class="img-fluid brand-img my-auto mx-auto px-3 px-md-0"
+                    src="{% static 'images/brand-topman.png' %}" alt="topman logo">
             </div>
             <div class="col-3 d-flex">
                 {% load static %}
@@ -89,7 +102,16 @@
             <!--Style Model-->
             <div class="col-md-4 col-6 pt-2 pt-md-0 p-4 text-center">
                 {% load static %}
-                <img class="img-fluid mx-auto d-block" src="{% static 'images/stylish-dude.png' %}" alt="style model">
+                <div class="container-model">
+                    <img class="img-fluid mx-auto d-block" src="{% static 'images/stylish-dude.png' %}"
+                        alt="style model">
+                    <a href="/products/13"><img class="touchpoint-jacket img-fluid"
+                            src="{% static 'images/touchpoint.png' %}" alt="Jacket Touchpoint"></a>
+                    <a href="/products/5"><img class="touchpoint-shoes img-fluid"
+                            src="{% static 'images/touchpoint.png' %}" alt="Shoes Touchpoint"></a>
+                    <a href="/products/9"><img class="touchpoint-joggers img-fluid"
+                            src="{% static 'images/touchpoint.png' %}" alt="Joggers Touchpoint"></a>
+                </div>
             </div>
             <!--New Styles-->
             <div class="col-md-8 d-flex text-center text-md-start">
@@ -102,7 +124,8 @@
                         <a href="/products" class="btn btn-primary text-white shadow mb-4">New Styles</a>
                     </div>
                     <div class="row mt-md-3">
-                        {% comment %} TODO: Link to products on the model and implement touchpoint icons {% endcomment %}
+                        {% comment %} TODO: Link to products on the model and implement touchpoint icons
+                        {% endcomment %}
                         {% for product in products %}
                         <!--New Style Products-->
                         <div class="col">
@@ -125,67 +148,33 @@
 
 <!--Page section separator-->
 <div class="container-fluid">
-        <hr>
-    </div>
+    <hr>
+</div>
 
 {# Blogpost section #}
 <!--Area for featured blog posts with a brief synopsis. 
-        Displays 3 feature blogs at a time drawn from database. 
-        Current content is placeholder only - will become full links after Blog page is completed in final submission-->
+        Displays 3 feature blogs at a time drawn from database.-->
+
+<!--Blogpost Articles-->
 <div class="container-fluid text-center py-4 homepage-blogposts-section">
-    <!-- TODO: Would load recent/chosen blog post snippets from database ? Using dummy content for now --> 
-    <!--Blogpost Articles-->
-    
     <div class="container">
         <div class="row">
-            <div class="col-md-4">
-                <a href="/blog/christmas-gift-ideas">
-                <img class="img-fluid height: auto py-1" src="{% static 'images/blog-christmasgifts.jpg' %}"
-                    alt="christmas gift image"> </a>
-                <h5 class="text-uppercase">Christmas Gift Ideas</h5>
-                <p>Christmas is just around the corner and you're fresh out of ideas. Don't panic. We've built an
-                    entire...</p>
-            </div>
-            <div class="col-md-4">
-                <a href="/blog/5-best-winter-styles">
-                <img class="img-fluid height: auto py-1" src="{% static 'images/blog-winterstyles.jpg' %}"
-                    alt="winter clothes image"></a>
-                <h5 class="text-uppercase">5 Best Winter Styles</h5>
-                <p>Cold weather doesn't automatically mean you need to reach for your big coat. We've got some
-                    fresh...</p>
-            </div>
-            <div class="col-md-4">
-                <a href="/blog/our-top-wardrobe-hacks">
-                <img class="img-fluid height: auto py-1" src="{% static 'images/blog-wardrobehacks.jpg' %}" alt="wardrobe image"></a>
-                <h5 class="text-uppercase">Our Top Wardrobe Hacks</h5>
-                <p>So you've just invested in a new wardrobe. You've got the shoes, the suit, and the...</p>
-            </div>
-        </div>
-        <a href="/blog"><button class="btn btn-primary text-white text-uppercase shadow">See More</button></a>
-    </div>
-</div>
-
-{% comment %}
-TODO: Format to match current blog links and merge
-<div class="container">
-    <div class="row d-flex justify-content-center">
-        <!-- Blog Entries Column -->
-        <div class="col-md-8 mt-3 ">
+            <!-- Blog Entries Column -->
             {% for post in post_list %}
-            <div class="card mb-4 bg-light">
+            <div class="col-md-4">
                 <div class="card-body">
+                    <a href="{% url 'post_detail' post.slug  %}">
+                        <img class="img-fluid height: auto py-1" src="{{ post.image.url }}" class="img-fluid"
+                            alt="post main image"></a>
                     <h2 class="card-title d-flex justify-content-center">{{ post.title }}</h2>
-                    <img src="{{ post.image.url }}" class="img-fluid" alt="post main image">
-                    <p class="card-text text-muted h6">{{ post.author }} | {{ post.created_on}} </p>
                     <p class="card-text">{{post.content|slice:":200" }}....</p>
-                    <a href="{% url 'post_detail' post.slug  %}" class="btn btn-primary">Read More &rarr;</a>
                 </div>
             </div>
             {% endfor %}
         </div>
+        <a href="/blog"><button class="btn btn-primary text-white text-uppercase shadow">See More</button></a>
     </div>
 </div>
-{% endcomment %}
 
 <!--Page section separator-->
 <div class="container-fluid bg-light">
@@ -198,52 +187,105 @@ TODO: Format to match current blog links and merge
 
 <!--Reviews carousel scrolls automatically or when clicked between 3 reviews drawn from the database. 
         Can be expanded with more reviews as needed. 
-        Carousel and content responsively adjust to fit viewport
-        Current content is placeholder only - will be linked to a larger database at final submission-->
-<div class="container-fluid bg-light text-center">
-    <div class="container">
-        <h3 class="text-uppercase py-3">What Our Customers Say</h3>
-        <!--Reviews-->
-        <div class="row py-4 justify-content-evenly">
-            <div class="col-md-3 me-1 bg-white py-3 rounded shadow mb-4">
-                <div class="py-3 px-5">
-                    <img src="{% static 'images/five-stars.png' %}" alt="five stars" class="img-fluid">
-                </div>
-                <div class="py-3">
-                    <p>This is the first time I've used The Idle Man site and have had no problems
-                        whatsoever. A very efficient and professional way to shop. I appreciate their ways of
-                        dealing
-                        with...</p>
-                    <a href="#" class="text-uppercase">Read More</a>
+        Carousel and content responsively adjust to fit viewport -->
+<div class="bg-light">
+<h3 class="text-uppercase py-3 text-center ">What Our Customers Say</h3>
+<div class="container-fluid d-flex bg-light align-items-center">
+    
+    <!--Carousel scroller previous-->
+    <a class="justify-content-start pe-md-5" href="#carouselReviews" role="button" data-bs-slide="prev">
+        <span class="reviews-carousel-control-prev-icon" aria-hidden="true">
+            <i class="fas fa-arrow-alt-circle-left fa-3x text-dark d-none d-md-inline-block"></i>
+        </span>
+        <span class="visually-hidden">Previous</span>
+    </a>
+    <div id="carouselReviews" class="carousel slide mx-auto" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <div class="row justify-content-evenly">
+                    <div class="col-md-3 me-1 bg-white py-3 rounded shadow mb-4">
+                        <div class="py-3 px-5 px-md-3">
+                            <img src="{% static 'images/five-stars.png' %}" alt="five stars" class="img-fluid">
+                        </div>
+                        <div class="py-3 px-2">
+                            <p>This is the first time I've used The Idle Man site and have had no problems
+                                whatsoever. A very efficient and professional way to shop. I appreciate their ways of
+                                dealing with...</p>
+                            <a href="#" class="text-uppercase">Read More</a>
+                        </div>
+                        <div class="px-4"><strong><p>Steve H</p></strong></div>
+                    </div>
+        
+                    <div class="col-md-3 me-1 bg-white py-3 rounded shadow mb-4">
+                        <div class="py-3 px-5 px-md-3">
+                            <img src="{% static 'images/five-stars.png' %}" alt="five stars" class="img-fluid">
+                        </div>
+                        <div class="py-3 px-2">
+                        <p>Good product - good delivery!<br>Very happy with the 
+                            whole process. This is about my seventh transaction.</p>
+                        </div>
+                        <div class="px-4"><strong><p>Jack C</p></strong></div>
+                    </div>
+        
+                    <div class="col-md-3 me-1 bg-white py-3 rounded shadow mb-4">
+                        <div class="py-3 px-5 px-md-3">
+                            <img src="{% static 'images/five-stars.png' %}" alt="five stars" class="img-fluid">
+                        </div>
+                        <div class="py-3 px-2">
+                            <p>Delivered promptly and efficiently as expected. <br>Unfortunately had to return as item did not
+                                fit - refund given immediately upon receipt. Would be very happy to use this...</p>
+                            <a href="#" class="text-uppercase">Read More</a>
+                            <div class="px-4"><strong><p>Tim V</p></strong></div>
+                        </div>
+                    </div>
                 </div>
             </div>
-
-            <div class="col-md-3 me-1 bg-white py-3 rounded shadow mb-4">
-                <div class="py-3 px-5">
-                    <img src="{% static 'images/five-stars.png' %}" alt="five stars" class="img-fluid">
-                </div>
-                <div class="py-3">
-                    <p>Good product - good delivery!<br>
-                        Very happy with the whole process. This is about my seventh transaction.</p>
-                </div>
-            </div>
-            <div class="col-md-3 me-1 bg-white py-3 rounded shadow mb-4">
-                <div class="py-3 px-5">
-                    <img src="{% static 'images/five-stars.png' %}" alt="five stars" class="img-fluid">
-                </div>
-                <div class="py-3">
-                    <p>Delivered promptly and efficiently as expected. Unfortunately had to return as item did not
-                        fit - refund given immediately upon receipt. Would be very happy to use this...</p>
-                    <a href="#" class="text-uppercase">Read More</a>
-                </div>
+        
+            <div class="carousel-item">
+                <div class="row justify-content-evenly">
+                    <div class="col-md-3 me-1 bg-white py-3 rounded shadow mb-4">
+                        <div class="py-3 px-5 px-md-3">
+                            <img src="{% static 'images/five-stars.png' %}" alt="five stars" class="img-fluid">
+                        </div>
+                        <div class="py-3 px-2">
+                            <p>I bough a pair of shoes and was worried that it may not fit but the sizing instructions on the page were very helpful and shoes fit like a glove.</p>
+                            <a href="#" class="text-uppercase">Read More</a>
+                            <div class="px-4"><strong><p>Jacob S</p></strong></div>
+                        </div>
+                    </div>
+        
+                    <div class="col-md-3 me-1 bg-white py-3 rounded shadow mb-4">
+                        <div class="py-3 px-5 px-md-3">
+                            <img src="{% static 'images/five-stars.png' %}" alt="five stars" class="img-fluid">
+                        </div>
+                        <div class="py-3 px-2">
+                            <p>Jeans and jacket fit great and are high quality. <br>I'm very happy with these products and received my order within 2 days. </p>
+                            <div class="px-4"><strong><p>Callum S</p></strong></div>
+                        </div>
+                    </div>
+        
+                    <div class="col-md-3 me-1 bg-white py-3 rounded shadow mb-4">
+                        <div class="py-3 px-5 px-md-3">
+                            <img src="{% static 'images/five-stars.png' %}" alt="five stars" class="img-fluid">
+                        </div>
+                        <div class="py-3 px-2">
+                            <p>This shop is great. Clothes fit great and they look cool. My go to store for all casual and going out clothes. </p>
+                            <div class="px-4"><strong><p>Peter F</p></strong></div>
+                        </div>
+                    </div>
             </div>
         </div>
     </div>
+    <!--Carousel scroller next-->          
+    </div>
+    <a class="justify-content-end ps-md-5" href="#carouselReviews" role="button" data-bs-slide="next">
+        <span class="reviews-carousel-control-next-icon" aria-hidden="true">
+            <i class="fas fa-arrow-alt-circle-right fa-3x text-dark d-none d-md-inline-block"></i>
+        </span>
+        <span class="visually-hidden">Next</span>
+    </a>
 </div>
-
-
-
-
+</div>
 
 <!--Newsletter signup area. 
     Includes text entry input field and "Join" button which will pop up a modal overlay when clicked-->

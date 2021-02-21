@@ -6,7 +6,7 @@ from django.template.response import TemplateResponse
 from django.core.paginator import Paginator
 from django.db.models import Q
 
-from core.models import Product, Color, Size
+from core.models import Product, Color, Size, ProductCategory
 from members.models import CartItem
 
 from blog.models import Post
@@ -38,9 +38,16 @@ def products(request, category=None):
         page = product_paginator.get_page(page_num)
 
         context = {
+            "featured_categories": [],
             "count": product_paginator.count,
             "page": page
         }
+        for category in ProductCategory.objects.filter(featured=True):
+            context["featured_categories"].append({
+                "category": category,
+                "image": category.products.all()[0].image,
+            })
+            print(category.products.all()[0].image)
 
     # Product sorting
     if request.GET.get("sort"):
@@ -192,12 +199,14 @@ def social_media_feed(request):
 def contact(request):
     return render(request, "contact.html")
 
-def search_results(request): 
+
+def search_results(request):
     search_products = request.GET.get('search')
 
     if search_products:
-        products_result = Product.objects.filter(Q(name__icontains=search_products))
-    
+        products_result = Product.objects.filter(
+            Q(name__icontains=search_products))
+
     else:
         # If not searched, return default products
         products_result = Product.objects.all()

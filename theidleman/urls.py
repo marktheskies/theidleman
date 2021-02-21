@@ -29,4 +29,3 @@ urlpatterns = [
     path('blog/', include(blog.urls)),
     path('members/', include(members.urls)),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-

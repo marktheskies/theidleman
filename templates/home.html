@@ -145,62 +145,27 @@
 
 {# Blogpost section #}
 <!--Area for featured blog posts with a brief synopsis. 
-        Displays 3 feature blogs at a time drawn from database. 
-        Current content is placeholder only - will become full links after Blog page is completed in final submission-->
-<div class="container-fluid text-center py-4 homepage-blogposts-section">
-    <!-- TODO: Would load recent/chosen blog post snippets from database ? Using dummy content for now --> 
+        Displays 3 feature blogs at a time drawn from database.-->
+
     <!--Blogpost Articles-->
-    
+<div class="container-fluid text-center py-4 homepage-blogposts-section">
     <div class="container">
         <div class="row">
-            <div class="col-md-4">
-                <a href="/blog/christmas-gift-ideas">
-                <img class="img-fluid height: auto py-1" src="{% static 'images/blog-christmasgifts.jpg' %}"
-                    alt="christmas gift image"> </a>
-                <h5 class="text-uppercase">Christmas Gift Ideas</h5>
-                <p>Christmas is just around the corner and you're fresh out of ideas. Don't panic. We've built an
-                    entire...</p>
-            </div>
-            <div class="col-md-4">
-                <a href="/blog/5-best-winter-styles">
-                <img class="img-fluid height: auto py-1" src="{% static 'images/blog-winterstyles.jpg' %}"
-                    alt="winter clothes image"></a>
-                <h5 class="text-uppercase">5 Best Winter Styles</h5>
-                <p>Cold weather doesn't automatically mean you need to reach for your big coat. We've got some
-                    fresh...</p>
-            </div>
-            <div class="col-md-4">
-                <a href="/blog/our-top-wardrobe-hacks">
-                <img class="img-fluid height: auto py-1" src="{% static 'images/blog-wardrobehacks.jpg' %}" alt="wardrobe image"></a>
-                <h5 class="text-uppercase">Our Top Wardrobe Hacks</h5>
-                <p>So you've just invested in a new wardrobe. You've got the shoes, the suit, and the...</p>
-            </div>
+            <!-- Blog Entries Column -->
+                {% for post in post_list %}
+                <div class="col-md-4">
+                    <div class="card-body">
+                        <a href="{% url 'post_detail' post.slug  %}">
+                        <img class="img-fluid height: auto py-1" src="{{ post.image.url }}" class="img-fluid" alt="post main image"></a>
+                        <h2 class="card-title d-flex justify-content-center">{{ post.title }}</h2>
+                        <p class="card-text">{{post.content|slice:":200" }}....</p>
+                    </div>
+                </div>    
+                {% endfor %}
         </div>
         <a href="/blog"><button class="btn btn-primary text-white text-uppercase shadow">See More</button></a>
     </div>
 </div>
-
-{% comment %}
-TODO: Format to match current blog links and merge
-<div class="container">
-    <div class="row d-flex justify-content-center">
-        <!-- Blog Entries Column -->
-        <div class="col-md-8 mt-3 ">
-            {% for post in post_list %}
-            <div class="card mb-4 bg-light">
-                <div class="card-body">
-                    <h2 class="card-title d-flex justify-content-center">{{ post.title }}</h2>
-                    <img src="{{ post.image.url }}" class="img-fluid" alt="post main image">
-                    <p class="card-text text-muted h6">{{ post.author }} | {{ post.created_on}} </p>
-                    <p class="card-text">{{post.content|slice:":200" }}....</p>
-                    <a href="{% url 'post_detail' post.slug  %}" class="btn btn-primary">Read More &rarr;</a>
-                </div>
-            </div>
-            {% endfor %}
-        </div>
-    </div>
-</div>
-{% endcomment %}
 
 <!--Page section separator-->
 <div class="container-fluid bg-light">
@@ -255,9 +220,6 @@ TODO: Format to match current blog links and merge
         </div>
     </div>
 </div>
-
-
-
 
 
 <!--Newsletter signup area. 

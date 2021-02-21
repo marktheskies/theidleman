@@ -6,7 +6,7 @@
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
             <span class="navbar-toggler-icon"></span>
         </button>
-      
+
         <!--Nav Bar contains the Idle Man logo which will return to the home page when clicked-->
         <a class="navbar-brand me-0" href="/">
             {% load static %}
@@ -14,23 +14,24 @@
         </a>
         <!--Nav Bar content will link to the relevant pages when clicked. 
             This will be updated in the final delivery-->
-      
+
         <div class="collapse navbar-collapse" id="navbarContent">
             <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
                 <li class="nav-item">
                     <a class="nav-link" href="/products?sort=-id">New</a>
                 </li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                        data-bs-toggle="dropdown" aria-expanded="false">
                         Categories
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                         {% for category in categories %}
-                            <li>
-                                <a class="dropdown-item" href="/products/categories/{{ category.name }}">
-                                    {{ category.name }}
-                                </a>
-                            </li>
+                        <li>
+                            <a class="dropdown-item" href="/products/categories/{{ category.name }}">
+                                {{ category.name }}
+                            </a>
+                        </li>
                         {% endfor %}
                     </ul>
                 </li>
@@ -45,7 +46,8 @@
                 <li class="nav-item">
                     <a href="{% url 'member_signup' %}" class="nav-link">Sign Up</a>
                 </li>
-                <li class="nav-item d-lg-none d-xl-none d-xxl-none"><a href="{% url 'shopping_cart' %}" class="nav-link">Cart</a></li>
+                <li class="nav-item d-lg-none d-xl-none d-xxl-none"><a href="{% url 'shopping_cart' %}"
+                        class="nav-link">Cart</a></li>
                 {% else %}
                 <div class="d-lg-none d-xl-none d-xxl-none">
                     <li class="nav-item"><a href="{% url 'member_profile' %}" class="nav-link">Your Profile</a></li>
@@ -54,23 +56,24 @@
                 </div>
 
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                        data-bs-toggle="dropdown" aria-expanded="false">
                         Search
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <form class="form-inline" action={% url 'search_results' %}>
-                            <input class="form-control mr-sm-2" id="search" type="search" 
-                                    placeholder="Search" aria-label="Search" name="search">
+                            <input class="form-control mr-sm-2" id="search" type="search" placeholder="Search"
+                                aria-label="Search" name="search">
                             <button type="submit" class="btn btn-primary mb-2 center">Search</button>
                         </form>
                     </ul>
-                 </li>
+                </li>
 
                 {% endif %}
 
                 <li class="nav-item">
                     <a class="nav-link" href="/blog">Style Guide</a>
-                </li> 
+                </li>
             </ul>
 
         </div>
@@ -104,21 +107,21 @@
                         {% endif %}
                     </a>
                 </li>
-           
-                <!-- Search button --> 
+
+                <!-- Search button -->
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"
                         data-bs-toggle="dropdown" aria-expanded="false">
                         <i class="fas fa-search"></i>
                     </a>
-                    <ul class="dropdown-menu" aria-labelledby="searchDropdown">
+                    <ul class="dropdown-menu p-2" aria-labelledby="searchDropdown">
                         <form action={% url 'search_results' %}>
                             <div class="form-row">
-                                <div class = "col">
-                                    <input class="form-control col" id="search" type="search" 
-                                    placeholder="Search" aria-label="Search" name="search">
+                                <div class="col mb-1">
+                                    <input class="form-control col" id="search" type="search" placeholder="Search"
+                                        aria-label="Search" name="search">
                                 </div>
-                                <div class="col">
+                                <div class="col text-center">
                                     <button type="submit" class="btn btn-primary col">Search</button>
                                 </div>
                             </div>

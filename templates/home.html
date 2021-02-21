@@ -25,8 +25,9 @@
                 <img src="{% static 'images/homepage-feature.jpg' %}" alt="feature item 1" class="d-block w-100">
                 <div class="carousel-caption ms-5 d-md-block text-start text-dark">
                     <h1 class="display-3 d-md-block d-none">Discover our latest <br>collection</h1>
-                    <p class="lead d-none d-md-block">Click below to see our latest collection and always look your best,<br>day or
-                        night.</p>
+                    <p class="lead d-none d-md-block">Click below to see our latest collection and always look your
+                        best,<br>
+                        day or night.</p>
                     <a href="/products" class="btn btn-primary shadow text-white see-more">See More</a>
                 </div>
             </div>
@@ -35,8 +36,10 @@
                 <img src="{% static 'images/homepage-feature2.jpg' %}" alt="feature item 2" class="d-block w-100">
                 <div class="carousel-caption d-md-block text-start text-white">
                     <h1 class="display-3 d-none d-md-block">Accessories for every <br>occasion</h1>
-                    <p class="lead d-none d-md-block">Style is all in the little details. View our range of accessories<br>to finish off your look.</p>
-                    <a href="/products/categories/Accessories" class="btn btn-primary shadow text-white see-more">See More</a>
+                    <p class="lead d-none d-md-block">Style is all in the little details. View our range of
+                        accessories<br>to finish off your look.</p>
+                    <a href="/products/categories/Accessories" class="btn btn-primary shadow text-white see-more">See
+                        More</a>
                 </div>
             </div>
             <div class="carousel-item">
@@ -53,7 +56,7 @@
         <a class="carousel-control-prev" href="#homepageHeroCarousel" role="button" data-bs-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
         </a>
-            <span class="visually-hidden">Previous</span>
+        <span class="visually-hidden">Previous</span>
         <a class="carousel-control-next" href="#homepageHeroCarousel" role="button" data-bs-slide="next">
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
             <span class="visually-hidden">Next</span>
@@ -68,18 +71,18 @@
         <div class="row">
             <div class="col-3 d-flex justify-content-center">
                 {% load static %}
-                <img class="img-fluid brand-img my-auto mx-auto px-3 px-md-0" src="{% static 'images/brand-fossil.png' %}"
-                    alt="fossil logo">
+                <img class="img-fluid brand-img my-auto mx-auto px-3 px-md-0"
+                    src="{% static 'images/brand-fossil.png' %}" alt="fossil logo">
             </div>
             <div class="col-3 d-flex">
                 {% load static %}
-                <img class="img-fluid brand-img my-auto mx-auto px-3 px-md-0" src="{% static 'images/brand-taikan.png' %}"
-                    alt="taikan logo">
+                <img class="img-fluid brand-img my-auto mx-auto px-3 px-md-0"
+                    src="{% static 'images/brand-taikan.png' %}" alt="taikan logo">
             </div>
             <div class="col-3 d-flex">
                 {% load static %}
-                <img class="img-fluid brand-img my-auto mx-auto px-3 px-md-0" src="{% static 'images/brand-topman.png' %}"
-                    alt="topman logo">
+                <img class="img-fluid brand-img my-auto mx-auto px-3 px-md-0"
+                    src="{% static 'images/brand-topman.png' %}" alt="topman logo">
             </div>
             <div class="col-3 d-flex">
                 {% load static %}
@@ -100,10 +103,14 @@
             <div class="col-md-4 col-6 pt-2 pt-md-0 p-4 text-center">
                 {% load static %}
                 <div class="container-model">
-                    <img class="img-fluid mx-auto d-block" src="{% static 'images/stylish-dude.png' %}" alt="style model">
-                    <a href="/products/13"><img class="touchpoint-jacket img-fluid" src="{% static 'images/touchpoint.png' %}" alt="Jacket Touchpoint"></a>
-                    <a href="/products/5"><img class="touchpoint-shoes img-fluid" src="{% static 'images/touchpoint.png' %}" alt="Shoes Touchpoint"></a>
-                    <a href="/products/9"><img class="touchpoint-joggers img-fluid" src="{% static 'images/touchpoint.png' %}" alt="Joggers Touchpoint"></a>
+                    <img class="img-fluid mx-auto d-block" src="{% static 'images/stylish-dude.png' %}"
+                        alt="style model">
+                    <a href="/products/13"><img class="touchpoint-jacket img-fluid"
+                            src="{% static 'images/touchpoint.png' %}" alt="Jacket Touchpoint"></a>
+                    <a href="/products/5"><img class="touchpoint-shoes img-fluid"
+                            src="{% static 'images/touchpoint.png' %}" alt="Shoes Touchpoint"></a>
+                    <a href="/products/9"><img class="touchpoint-joggers img-fluid"
+                            src="{% static 'images/touchpoint.png' %}" alt="Joggers Touchpoint"></a>
                 </div>
             </div>
             <!--New Styles-->
@@ -117,7 +124,8 @@
                         <a href="/products" class="btn btn-primary text-white shadow mb-4">New Styles</a>
                     </div>
                     <div class="row mt-md-3">
-                        {% comment %} TODO: Link to products on the model and implement touchpoint icons {% endcomment %}
+                        {% comment %} TODO: Link to products on the model and implement touchpoint icons
+                        {% endcomment %}
                         {% for product in products %}
                         <!--New Style Products-->
                         <div class="col">
@@ -140,28 +148,29 @@
 
 <!--Page section separator-->
 <div class="container-fluid">
-        <hr>
-    </div>
+    <hr>
+</div>
 
 {# Blogpost section #}
 <!--Area for featured blog posts with a brief synopsis. 
         Displays 3 feature blogs at a time drawn from database.-->
 
-    <!--Blogpost Articles-->
+<!--Blogpost Articles-->
 <div class="container-fluid text-center py-4 homepage-blogposts-section">
     <div class="container">
         <div class="row">
             <!-- Blog Entries Column -->
-                {% for post in post_list %}
-                <div class="col-md-4">
-                    <div class="card-body">
-                        <a href="{% url 'post_detail' post.slug  %}">
-                        <img class="img-fluid height: auto py-1" src="{{ post.image.url }}" class="img-fluid" alt="post main image"></a>
-                        <h2 class="card-title d-flex justify-content-center">{{ post.title }}</h2>
-                        <p class="card-text">{{post.content|slice:":200" }}....</p>
-                    </div>
-                </div>    
-                {% endfor %}
+            {% for post in post_list %}
+            <div class="col-md-4">
+                <div class="card-body">
+                    <a href="{% url 'post_detail' post.slug  %}">
+                        <img class="img-fluid height: auto py-1" src="{{ post.image.url }}" class="img-fluid"
+                            alt="post main image"></a>
+                    <h2 class="card-title d-flex justify-content-center">{{ post.title }}</h2>
+                    <p class="card-text">{{post.content|slice:":200" }}....</p>
+                </div>
+            </div>
+            {% endfor %}
         </div>
         <a href="/blog"><button class="btn btn-primary text-white text-uppercase shadow">See More</button></a>
     </div>

@@ -8,6 +8,7 @@ from django.db.models import Q
 
 from core.models import Product, Color, Size, ProductCategory
 from members.models import CartItem
+from members.models import WishlistItem
 
 from blog.models import Post
 

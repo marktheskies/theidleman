@@ -335,36 +335,53 @@
                         </div>
                     </div>
 
-                    <!-- Test on avatar link -->
-                    {% comment %} TODO: Implement {% endcomment %}
-                    <div class="d-flex justify-content-end align-items-center pt-3">
-                        <div class="col-auto">
-                            <img src="{% static 'images/avatar-icon.png' %}" alt="avatar icon"
-                                class="img-fluid product-tool-icons mx-2 py-1">
-                        </div>
-                        <div class="col-auto">
-                            <a href="#" class="text-uppercase text-underline">Try On Avatar</a>
-                        </div>
-                    </div>
-
-                    <!-- Add to wishlist link -->
-                    {% comment %} TODO: Implement {% endcomment %}
-                    <div class="d-flex justify-content-end align-items-center py-2">
-                        <div class="col-auto">
-                            <img src="{% static 'images/heart-icon.png' %}" alt="wishlist icon"
-                                class="img-fluid product-tool-icons mx-2 py-1">
-                        </div>
-                        <div class="col-auto">
-                            <a href="#" class="text-uppercase text-underline">Add to Wishlist</a>
-                        </div>
-                    </div>
-
                     <!-- Add to Cart Button -->
                     <div class="row py-4">
                         <button class="btn btn-secondary shadow text-white py-3">Add To Cart</button>
                     </div>
-
                 </form>
+                                    
+
+
+                <!-- Add to wishlist link -->
+                <form action="/members/add-to-wishlist/" method="post">
+                    {% csrf_token %}
+                
+                    <input type="hidden" name="product_id" value="{{ product.id }}">
+                
+                    <div class="d-flex justify-content-end align-items-center py-2">
+                        <div class="col-auto">
+                            <i class="far fa-heart"></i>
+                        </div>
+                        <div class="col-auto">
+                            <style>
+                                .btn-link {
+                                    border: none;
+                                    outline: none;
+                                    background: none;
+                                    cursor: pointer;
+                                    padding: 0;
+                                    text-decoration: underline;
+                                    font-family: inherit;
+                                    font-size: inherit;
+                                }
+                            </style>
+                            <button class="btn-link">Add to Wishlist</button>
+                        </div>
+                    </div>
+                </form>
+                                    
+                <!-- Test on avatar link -->
+                {% comment %} TODO: Implement {% endcomment %}
+                <div class="d-flex justify-content-end align-items-center pt-3">
+                    <div class="col-auto">
+                        <img src="{% static 'images/avatar-icon.png' %}" alt="avatar icon"
+                            class="img-fluid product-tool-icons mx-2 py-1">
+                    </div>
+                    <div class="col-auto">
+                        <a href="#" class="text-uppercase text-underline">Try On Avatar</a>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

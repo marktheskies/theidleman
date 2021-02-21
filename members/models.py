@@ -33,8 +33,6 @@ class CartItem(models.Model):
     quantity = models.IntegerField()
 
 
-
-
 class WishlistItem(models.Model):
     """Represents an item "saved" in a Member's wishlist, and allows us to load all items into the
     session when a user logs in, to restore their wishlist."""

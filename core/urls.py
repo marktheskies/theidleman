@@ -1,8 +1,7 @@
 from django.urls import path
 
-from core.views import (products, home, product_details, add_to_cart, empty_cart,
-                        shopping_cart, checkout, remove_shopping_cart_item,
-                        social_media_feed, contact, search_results)
+from core.views import (products, home, product_details, add_to_cart, empty_cart, shopping_cart,
+                        checkout, remove_shopping_cart_item, social_media_feed, contact, search_results)
 
 urlpatterns = [
     path("products/", products, name="products"),

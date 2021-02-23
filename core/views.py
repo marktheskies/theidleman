@@ -51,8 +51,9 @@ def products(request, category=None):
             context["featured_categories"].append({
                 "category": category,
                 "image": category.products.all()[0].image,
+                "image_reference": category.products.all()[0].image_reference,
             })
-            print(category.products.all()[0].image)
+            print(category.products.all()[0].image_reference)
 
     # Product sorting
     if request.GET.get("sort"):

@@ -53,8 +53,9 @@
             {% for item in featured_categories %}
             <div class="col">
                 <div class="card border-0 mb-2 text-center">
+                    <!-- {{ item.image_reference }} -->
                     <img src="{{ item.image.url }}" class="card-img-top mb-2" alt="{{ item.image }}">
-                    <a href="{% url 'products_with_category' item.category.name %}" class="h5 stretched-link">
+                    <a href="{% url 'products_with_category' item.category.name %}" class="h5 stretched-link" title="{{ item.image_reference }}">
                         {{ item.category.name }}
                     </a>
                 </div>
@@ -133,7 +134,8 @@
     <div class="row g-4">
         {% for product in page.object_list %}
         <div class="col-lg-3 col-md-6">
-            <div class="product-card card border-0 cursor-pointer" data-product-id="{{ product.id }}">
+            <div class="product-card card border-0 cursor-pointer" data-product-id="{{ product.id }}" title="{{ product.image_reference }}">
+                <!-- {{ product.image_reference }} -->
                 <img src="{{ product.image.url }}" class="card-img-top" alt="product image">
                 <div class="card-body text-center">
                     <h6 class="card-title">{{ product.name }}</h6>

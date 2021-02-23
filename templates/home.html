@@ -22,6 +22,7 @@
         <div class="carousel-inner">
             <div class="carousel-item active">
                 {% load static %}
+                <!-- Hukkanen, Toni. 2019. “[Man with Skull Shirt].” https://unsplash.com/photos/jXWWfITDB5o. -->
                 <img src="{% static 'images/homepage-feature.jpg' %}" alt="feature item 1" class="d-block w-100">
                 <div class="carousel-caption ms-5 d-md-block text-start text-dark">
                     <h1 class="display-3 d-md-block d-none">Discover our latest <br>collection</h1>
@@ -33,6 +34,7 @@
             </div>
             <div class="carousel-item">
                 {% load static %}
+                <!-- [Nordgreen]. 2020. “[Fossil Watch].” https://unsplash.com/photos/jdOh4lkD42w. -->
                 <img src="{% static 'images/homepage-feature2.jpg' %}" alt="feature item 2" class="d-block w-100">
                 <div class="carousel-caption d-md-block text-start text-white">
                     <h1 class="display-3 d-none d-md-block">Accessories for every <br>occasion</h1>
@@ -44,6 +46,7 @@
             </div>
             <div class="carousel-item">
                 {% load static %}
+                <!-- Hershey, Ben. 2020. “[Vans in a Carpark].” https://unsplash.com/photos/18Sr7o0b0j4. -->
                 <img src="{% static 'images/homepage-feature3.jpg' %}" alt="feature item 3" class="d-block w-100">
                 <div class="carousel-caption d-md-block text-start text-white">
                     <h1 class="display-3 d-none d-md-block">Shoes: sneakers, <br> boots and slides</h1>
@@ -71,21 +74,25 @@
         <div class="row">
             <div class="col-3 d-flex justify-content-center">
                 {% load static %}
+                <!-- Fossil - StickPNG. 2021. “Fossil Logo.” https://www.stickpng.com/img/icons-logos-emojis/shop-logos/fossil-logo. -->
                 <img class="img-fluid brand-img my-auto mx-auto px-3 px-md-0"
                     src="{% static 'images/brand-fossil.png' %}" alt="fossil logo">
             </div>
             <div class="col-3 d-flex">
                 {% load static %}
+                <!-- Taikan - Taikan. 2021. “Taikan Logo.” https://www.taikaneverything.com/. -->
                 <img class="img-fluid brand-img my-auto mx-auto px-3 px-md-0"
                     src="{% static 'images/brand-taikan.png' %}" alt="taikan logo">
             </div>
             <div class="col-3 d-flex">
                 {% load static %}
+                <!-- Topman - StickPNG. 2021. “Topman Logo.” https://www.stickpng.com/img/icons-logos-emojis/shop-logos/topman-logo.  -->
                 <img class="img-fluid brand-img my-auto mx-auto px-3 px-md-0"
                     src="{% static 'images/brand-topman.png' %}" alt="topman logo">
             </div>
             <div class="col-3 d-flex">
                 {% load static %}
+                <!-- Vans - Merkabici. 2021. “Vans Logo.” https://www.pngitem.com/middle/hwwhwh_transparent-vans-logo-png-vans-logo-png-download/. -->
                 <img class="img-fluid brand-img my-auto mx-auto px-3 px-md-0" src="{% static 'images/brand-vans.png' %}"
                     alt="vans logo">
             </div>
@@ -103,6 +110,10 @@
             <div class="col-md-4 col-6 pt-2 pt-md-0 p-4 text-center">
                 {% load static %}
                 <div class="container-model">
+                    <!-- 
+                        Model - H&M. 2015. “Marlon Teixeira H&M Spring 2015.” https://www.thefashionisto.com/marlon-teixeira-rocks-trendy-joggers-hm-models-wear/#jp-carousel-387719. 
+                        Model wooden background -  SoVibrant. 2016. “Free Wood Backgrounds 5.” https://www.pinterest.com.au/pin/111816003224386109/.
+                    -->
                     <img class="img-fluid mx-auto d-block" src="{% static 'images/stylish-dude.png' %}"
                         alt="style model">
                     <a href="/products/13"><img class="touchpoint-jacket img-fluid"
@@ -120,16 +131,14 @@
                         <h2 class="text-uppercase">Discover Our Latest Trends</h2>
                         <p>Refresh your wardrobe with our new summer styles.<br>
                             Click below to view more of our modeled outfits.</p>
-                        {% comment %} TODO: Link to products with filter for NEW {% endcomment %}
                         <a href="/products" class="btn btn-primary text-white shadow mb-4">New Styles</a>
                     </div>
                     <div class="row mt-md-3">
-                        {% comment %} TODO: Link to products on the model and implement touchpoint icons
-                        {% endcomment %}
                         {% for product in products %}
                         <!--New Style Products-->
                         <div class="col">
-                            <div class="product-card card border-0 cursor-pointer" data-product-id="{{ product.id }}">
+                            <div class="product-card card border-0 cursor-pointer" data-product-id="{{ product.id }}" title="{{ product.image_reference }}">
+                                <!-- {{ product.image_reference }} -->
                                 <img src="{{ product.image.url }}" class="card-img-top shadow" alt="main page product">
                                 <div class="card-body text-center">
                                     <h6 class="card-title">{{ product.name }}</h6>

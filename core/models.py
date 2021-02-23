@@ -50,6 +50,7 @@ class Product(models.Model):
 
     # The main image of the product
     image = CloudinaryField('image', null=True)
+    image_reference = models.TextField(blank=True)
 
     free_delivery = models.BooleanField(default=False)
 
@@ -75,4 +76,5 @@ class ProductAdditionalImage(models.Model):
     """An additional image of a product"""
 
     image = CloudinaryField('image', null=True)
+    reference = models.TextField(blank=True)
     product = models.ForeignKey(Product, models.CASCADE)

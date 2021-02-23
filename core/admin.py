@@ -29,7 +29,12 @@ class ProductCategoryAdmin(admin.ModelAdmin):
 
 @admin.register(ProductAdditionalImage)
 class ProductAdditionalImageAdmin(admin.ModelAdmin):
-    pass
+    list_display = (
+        "id",
+        "image",
+        "product",
+        "reference",
+    )
 
 
 @admin.register(Size)

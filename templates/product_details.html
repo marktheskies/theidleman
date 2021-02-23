@@ -35,7 +35,8 @@
             <!-- Main Image -->
             <div class="col-md-6 p-md-5">
                 <div class="p-md-5">
-                    <img src="{{ product.image.url }}" class="img-fluid" alt="product main image">
+                    <!-- {{ product.image_reference }} -->
+                    <img src="{{ product.image.url }}" class="img-fluid" alt="product main image" title="{{ product.image_reference }}">
                 </div>
             </div>
             <!-- Secondary Images Image -->
@@ -43,7 +44,8 @@
                 {% comment %} Additional Product Images {% endcomment %}
                 {% load static %}
                 {% for image in first_three_additional_images %}
-                <img src="{{ image.image.url }}" class="img-fluid py-2 px-2 additional-images" alt="product secondary image">
+                <!-- {{ image.reference }} -->
+                <img src="{{ image.image.url }}" class="img-fluid py-2 px-2 additional-images" alt="product secondary image" title="{{ image.reference }}">
                 {% endfor %}
             </div>
             <!-- Product Name, Price and shipping-->
@@ -460,7 +462,8 @@ Carousel and content responsively adjust to fit viewport-->
                     {% else %}
                     <div class="col">
                         <div class="card border-0 shadow mb-3" style="max-width: 214px">
-                            <img src="{{ product.image.url }}" class="card-img-top" alt="product image">
+                            <!-- {{ product.image_reference }} -->
+                            <img src="{{ product.image.url }}" class="card-img-top" alt="product image" title="{{ product.image_reference }}">
                             <div class="card-body text-center">
                                 <h6 class="card-title">{{ product.name }}</h6>
                                 <span class="h5"><strong>${{ product.price }}</strong></span>

@@ -65,6 +65,9 @@ class Product(models.Model):
     sizes = models.ManyToManyField(Size)
     colors = models.ManyToManyField(Color)
 
+    class Meta:
+        ordering = ['-id']
+
     def __str__(self):
         return self.name
 
